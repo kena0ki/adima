@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.hline {
+  cursor: grab;
+}
+.amida-container {
+  padding: 1rem;
+}
+</style>
+</head>
+<body>
+
+<div class="amida-container">
+  <svg height="210" width="500" xmlns="http://www.w3.org/2000/svg" >
+    <g style="stroke:rgb(255,0,0);stroke-width:2" >
+    <g id="vline1" transform="translate(0,0)" >
+      <line x1="0" y1="0" x2="0" y2="200" />
+    </g>
+    <g id="vline2" transform="translate(20,0)" >
+      <line x1="0" y1="0" x2="0" y2="200" />
+    </g>
+    <g id="hline1" class="hline" transform="translate(0,20)" >
+      <line x1="0" y1="0" x2="20" y2="0" />
+    </g>
+    <g id="hline2" class="hline" transform="translate(0,40)" >
+      <line x1="0" y1="0" x2="20" y2="0" />
+    </g>
+    </g>
+    Sorry, your browser does not support inline SVG.
+  </svg>
+</div>
+
+<script>
+// !function() {
+//   let posX = 0, posY = 0;
+//   const line1 = document.getElementById('line1');
+//   console.log(line1)
+//   line1.onmousedown = function(lEvt) {
+//     console.log(1)
+//     posX = lEvt.clientX;
+//     posY = lEvt.clientY;
+//     document.onmousemove = function(dEvt) {
+//         dEvt = dEvt || window.event;
+//         // dEvt.preventDefault();
+//         const diffX = dEvt.clientX - posX;
+//         const diffY = dEvt.clientY - posY;
+//         posX = dEvt.clientX;
+//         posY = dEvt.clientY;
+//         line1.setAttribute('x1', line1.x1.baseVal.value + diffX)
+//         line1.setAttribute('x2', line1.x2.baseVal.value + diffX)
+//         line1.setAttribute('y1', line1.y1.baseVal.value + diffY)
+//         line1.setAttribute('y2', line1.y2.baseVal.value + diffY)
+//         console.log(2)
+//     }
+//     document.onmouseup = function(e) {
+//       document.onmousemove = null
+//       document.onmouseup = null
+//       console.log(3)
+//     }
+//   }
+// }()
+function draggablify(elm) {
+  const regex = /translate\(\s*([^\s,)]+)[ ,]([^\s,)]+)/
+  let posX = 0, posY = 0;
+  elm.onmousedown = function(lEvt) {
+    console.log(11)
+    posX = lEvt.clientX;
+    posY = lEvt.clientY;
+    document.onmousemove = function(dEvt) {
+        dEvt = dEvt || window.event;
+        const diffX = dEvt.clientX - posX;
+        const diffY = dEvt.clientY - posY;
+        posX = dEvt.clientX;
+        posY = dEvt.clientY;
+        const xforms = elm.getAttribute('transform');
+        const [, offsetX, offsetY] = regex.exec(xforms);
+        elm.setAttribute('transform', 'translate(' + (+offsetX + +diffX) + ',' + (+offsetY + +diffY) + ')' )
+        console.log(12)
+    }
+    document.onmouseup = function(e) {
+      document.onmousemove = null
+      document.onmouseup = null
+      console.log(13)
+    }
+  }
+}
+document.querySelectorAll('[id^="hline"]').forEach(function(n) {
+  console.log(n)
+  draggablify(n)
+});
+
+</script>
+</body>
+</html>
+
