@@ -1,0 +1,27 @@
+{
+  "name": "amida",
+  "version": "1.0.0",
+  "description": "Amidakuji on the Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kena0ki/amida.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kena0ki/amida/issues"
+  },
+  "homepage": "https://github.com/kena0ki/amida#readme",
+  "dependencies": {
+    "typescript": "^3.7.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "eslint": "^6.8.0"
+  }
+}
