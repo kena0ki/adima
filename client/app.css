@@ -4,4 +4,7 @@
 .amida-container {
   padding: 1rem;
 }
+#indicator.inactive {
+  display: none;
+}
 
