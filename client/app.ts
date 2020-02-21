@@ -2,23 +2,29 @@ interface Global {
   amida: Amida
 }
 interface Amida {
-  x,
-  y,
+  pageX: number,
+  pageY: number,
   vLines: VLine[],
-  hLines: HLine[],
-  svg,
-  activeVlineIdx,
+  hLines: HLineArray,
+  svg: string,
+  activeVlineIdx: number,
 }
 interface VLine {
-  position: { x, y? },
-  boundary: { x1, x2 },
-  members?: [],
+  position: { x: number, y?: number },
+  boundary: { x1: number, x2: number },
+  members?: string[],
+}
+interface HLineArray {
+  [key: string]: HLine,
 }
 interface HLine {
-  position: { x, y },
-  ownerIdx,
-  beingDragged?,
+  key: string
+  position: { x: number, y: number },
+  ownerIdx: number,
+  beingDragged?: boolean,
 }
+
+const NO_INDICATOR = -1;
 
 (function(global: Global) {
   const DEFAULT_VLINES = 4;
@@ -36,14 +42,17 @@ interface HLine {
     }
     return vLines;
   })()
-  const hLines: HLine[] = (() => {
-    const hLines: HLine[] = [];
+  const hLines: HLineArray = (() => {
+    const hLines: HLineArray = {}
+    const timestamp = Date.now()
     for(let i=0, j=0; i<DEFAULT_HLINES; i++, j++) {
       if (j >= DEFAULT_VLINES - 1) j = 0;
-      hLines.push({
+      const key = 'hline' + timestamp + i
+      hLines[key] = {
+        key,
         position: { x: vLines[j].position.x, y: Math.floor(Math.random() * VLINE_HEIGHT) },
         ownerIdx: j,
-      })
+      }
     }
     return hLines;
   })()
@@ -56,9 +65,10 @@ interface HLine {
         <line x1="0" y1="0" x2="0" y2="${VLINE_HEIGHT}" />
       </g>`
   }, '')
-  svg += hLines.reduce((result, next, idx) => {
+  svg += Object.keys(hLines).reduce((result, next) => {
+    const h = hLines[next]
     return `${result}
-      <g id="hline${idx}" class="hline" transform="translate(${next.position.x},${next.position.y})" >
+      <g id="${h.key}" class="hline" transform="translate(${h.position.x},${h.position.y})" >
         <line x1="0" y1="0" x2="20" y2="0" />
       </g>`
   }, '')
@@ -73,12 +83,12 @@ interface HLine {
     const root = document.getElementById('root')
     root.innerHTML = svg
     global.amida = {
-      x: root.children[0].getBoundingClientRect().x,
-      y: root.children[0].getBoundingClientRect().y,
+      pageX: root.children[0].getBoundingClientRect().left + scrollX,
+      pageY: root.children[0].getBoundingClientRect().top + scrollY,
       vLines,
       hLines,
       svg,
-      activeVlineIdx: 0,
+      activeVlineIdx: NO_INDICATOR,
     }
     console.log(global.amida)
 
@@ -91,38 +101,57 @@ interface HLine {
 
 function draggablify(hLineElm: HTMLElement, amida: Amida) {
   let pntrX = 0, pntrY = 0;
-  hLineElm.onmousedown = function(lEvt) {
-    pntrX = lEvt.clientX;
-    pntrY = lEvt.clientY;
-    const idx = (lEvt.target as HTMLElement).parentElement.id.replace('hline', '')
-    const hLine = amida.hLines[idx]
+  hLineElm.onmousedown = function(mdEvt) {
+    pntrX = mdEvt.clientX;
+    pntrY = mdEvt.clientY;
+    const key = (mdEvt.target as Element).parentElement.id
+    const hLine = amida.hLines[key]
     let vLine = amida.vLines[hLine.ownerIdx]
     const indicator = document.getElementById('indicator')
     indicator.setAttribute('class', 'active')
     indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
-    document.onmousemove = function(mEvt) {
-        const diffX = mEvt.clientX - pntrX;
-        const diffY = mEvt.clientY - pntrY;
-        pntrX = mEvt.clientX;
-        pntrY = mEvt.clientY;
-        hLine.position = { x: (+hLine.position.x + +diffX), y: (+hLine.position.y + +diffY) }
-        const offsetWithinAmidaX = mEvt.clientX - amida.x
-        if (offsetWithinAmidaX < vLine.boundary.x1) {
+    document.onmousemove = function(mmEvt) {
+      const diffX = mmEvt.clientX - pntrX;
+      const diffY = mmEvt.clientY - pntrY;
+      pntrX = mmEvt.clientX;
+      pntrY = mmEvt.clientY;
+      hLine.position = { x: (+hLine.position.x + +diffX), y: (+hLine.position.y + +diffY) }
+      const offsetFromAmidaLeft = (hLineElm.getBoundingClientRect().left + scrollX) - amida.pageX
+      if (offsetFromAmidaLeft < vLine.boundary.x1) {
+        if (hLine.ownerIdx > 0) {
           hLine.ownerIdx--
           vLine = amida.vLines[hLine.ownerIdx]
           amida.activeVlineIdx = hLine.ownerIdx
-        } else if (vLine.boundary.x2 < offsetWithinAmidaX) {
+        } else {
+          amida.activeVlineIdx = NO_INDICATOR
+        }
+      } else if (vLine.boundary.x2 < offsetFromAmidaLeft) {
+        if (hLine.ownerIdx < amida.vLines.length - 2) {
           hLine.ownerIdx++
           vLine = amida.vLines[hLine.ownerIdx]
           amida.activeVlineIdx = hLine.ownerIdx
+        } else {
+          amida.activeVlineIdx = NO_INDICATOR
         }
-        hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
+      }
+      hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
+      if (amida.activeVlineIdx === NO_INDICATOR) {
+        indicator.setAttribute('class', 'inactive')
+      } else {
+        indicator.setAttribute('class', 'active')
         indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
+      }
     }
     document.onmouseup = function() {
       document.onmousemove = null
       document.onmouseup = null
-      indicator.setAttribute('class', 'inactive')
+      if (amida.activeVlineIdx === NO_INDICATOR) {
+        delete amida.hLines[key]
+        hLineElm.parentNode.removeChild(hLineElm)
+      } else {
+        hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
+        indicator.setAttribute('class', 'inactive')
+      }
     }
   }
 }
