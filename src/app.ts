@@ -6,31 +6,36 @@ interface Amida {
   pageY: number,
   vLines: VLine[],
   hLines: HLineArray,
-  svg: string,
+  svg: string, // TODO create getter for svg
   activeVlineIdx: number,
+}
+interface HLineArray {
+  [key: string]: HLine,
 }
 interface VLine {
   position: { x: number, y?: number },
   boundary: { x1: number, x2: number },
   members?: string[],
 }
-interface HLineArray {
-  [key: string]: HLine,
-}
 interface HLine {
   key: string
-  position: { x: number, y: number },
+  position: { x: number, y: number, adjustedY: number }, // TODO create getter for adjustedY
   ownerIdx: number,
   beingDragged?: boolean,
 }
 
 const NO_INDICATOR = -1;
+const DEFAULT_VLINES = 4;
+const DEFAULT_HLINES = 6;
+const VLINE_HEIGHT = 100
+const VLINE_MARGIN_HEIGHT_RATIO = .1
+const VLINE_MARGIN_HEIGHT = VLINE_HEIGHT * VLINE_MARGIN_HEIGHT_RATIO
+const VLINE_CONTENT_HEIGHT = VLINE_HEIGHT - VLINE_MARGIN_HEIGHT
+const VLINE_CONTENT_MIN_POS = VLINE_MARGIN_HEIGHT / 2
+const VLINE_CONTENT_MAX_POS = VLINE_HEIGHT - VLINE_CONTENT_MIN_POS
+const LINE_SPAN = 20;
 
 (function(global: Global) {
-  const DEFAULT_VLINES = 4;
-  const DEFAULT_HLINES = 6;
-  const VLINE_HEIGHT = 100
-  const LINE_SPAN = 20;
   const vLines: VLine[] = (() => {
     const vLines: VLine[] = [];
     for(let i=0; i<DEFAULT_VLINES; i++) {
@@ -48,9 +53,10 @@ const NO_INDICATOR = -1;
     for(let i=0, j=0; i<DEFAULT_HLINES; i++, j++) {
       if (j >= DEFAULT_VLINES - 1) j = 0;
       const key = 'hline' + timestamp + i
+      const y = Math.floor(Math.random() * VLINE_CONTENT_HEIGHT) + (VLINE_CONTENT_MIN_POS);
       hLines[key] = {
         key,
-        position: { x: vLines[j].position.x, y: Math.floor(Math.random() * VLINE_HEIGHT) },
+        position: { x: vLines[j].position.x, y, adjustedY: y },
         ownerIdx: j,
       }
     }
@@ -102,8 +108,8 @@ const NO_INDICATOR = -1;
 function draggablify(hLineElm: HTMLElement, amida: Amida) {
   let pntrX = 0, pntrY = 0;
   hLineElm.onmousedown = function(mdEvt) {
-    pntrX = mdEvt.clientX;
-    pntrY = mdEvt.clientY;
+    pntrX = +mdEvt.clientX;
+    pntrY = +mdEvt.clientY;
     const key = (mdEvt.target as Element).parentElement.id
     const hLine = amida.hLines[key]
     let vLine = amida.vLines[hLine.ownerIdx]
@@ -111,14 +117,19 @@ function draggablify(hLineElm: HTMLElement, amida: Amida) {
     indicator.setAttribute('class', 'active')
     indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
     document.onmousemove = function(mmEvt) {
-      const diffX = mmEvt.clientX - pntrX;
-      const diffY = mmEvt.clientY - pntrY;
-      pntrX = mmEvt.clientX;
-      pntrY = mmEvt.clientY;
-      hLine.position = { x: (+hLine.position.x + +diffX), y: (+hLine.position.y + +diffY) }
+      const diffX = +mmEvt.clientX - pntrX;
+      const diffY = +mmEvt.clientY - pntrY;
+      pntrX = +mmEvt.clientX;
+      pntrY = +mmEvt.clientY;
+      hLine.position = {
+        x: hLine.position.x + diffX,
+        y: hLine.position.y + diffY,
+        adjustedY: hLine.position.y < VLINE_CONTENT_MIN_POS ? VLINE_CONTENT_MIN_POS :
+          (VLINE_CONTENT_MAX_POS < hLine.position.y ? VLINE_CONTENT_MAX_POS : hLine.position.y)
+      }
       const offsetFromAmidaLeft = (hLineElm.getBoundingClientRect().left + scrollX) - amida.pageX
       if (offsetFromAmidaLeft < vLine.boundary.x1) {
-        if (hLine.ownerIdx > 0) {
+        if (0 < hLine.ownerIdx) {
           hLine.ownerIdx--
           vLine = amida.vLines[hLine.ownerIdx]
           amida.activeVlineIdx = hLine.ownerIdx
@@ -133,13 +144,15 @@ function draggablify(hLineElm: HTMLElement, amida: Amida) {
         } else {
           amida.activeVlineIdx = NO_INDICATOR
         }
+      } else if (vLine.boundary.x1 < offsetFromAmidaLeft || offsetFromAmidaLeft < vLine.boundary.x2) {
+        amida.activeVlineIdx = hLine.ownerIdx
       }
       hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
       if (amida.activeVlineIdx === NO_INDICATOR) {
         indicator.setAttribute('class', 'inactive')
       } else {
         indicator.setAttribute('class', 'active')
-        indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
+        indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.adjustedY})`)
       }
     }
     document.onmouseup = function() {
@@ -149,6 +162,7 @@ function draggablify(hLineElm: HTMLElement, amida: Amida) {
         delete amida.hLines[key]
         hLineElm.parentNode.removeChild(hLineElm)
       } else {
+        hLine.position.y = hLine.position.adjustedY
         hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
         indicator.setAttribute('class', 'inactive')
       }
