@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "target": "es5",
+    "strictNullChecks": true,
+    // "strict": true,
+    // "diagnostics": true,
   },
   "include": [
       "src/**/*"

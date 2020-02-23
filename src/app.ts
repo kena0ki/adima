@@ -6,7 +6,7 @@ interface Amida {
   pageY: number,
   vLines: VLine[],
   hLines: HLineArray,
-  svg: string, // TODO getter
+  innerHTML: string, // TODO getter
   activeVlineIdx: number,
 }
 interface HLineArray {
@@ -14,14 +14,52 @@ interface HLineArray {
 }
 interface VLine {
   position: { x: number, y?: number },
-  boundary: { x1: number, x2: number }, // TODO getter
-  members?: string[],
+  routes: VLineRoutes,
+  startRoute: string,
 }
+interface VLineRoutes {
+  [key: string]: VLineRoute,
+}
+interface VLineRoute {
+  nextHLineKey: string | null,
+  lr: VLineRouteLR,
+}
+type VLineRouteLR = -1 | 1;
 interface HLine {
   key: string
-  position: { x: number, y: number, adjustedY: number }, // TODO getter
+  position: HLinePos,
   ownerIdx: number,
   beingDragged?: boolean,
+}
+interface HLinePos {
+  x: number,
+  y: number,
+}
+
+class VLine implements VLine {
+  private LINE_SPAN;
+  public routes = {} as VLineRoutes;
+  constructor(props) {
+    Object.keys(props).forEach(key => {
+      this[key] = props[key];
+    })
+  }
+  public get boundary(): {x1:number, x2:number} {
+    return { x1: this.position.x - (this.LINE_SPAN/2), x2: this.position.x + (this.LINE_SPAN/2) };
+  }
+}
+class HLinePos implements HLinePos {
+  private VLINE_CONTENT_MIN_POS;
+  private VLINE_CONTENT_MAX_POS;
+  constructor(props) {
+    Object.keys(props).forEach(key => {
+      this[key] = props[key];
+    })
+  }
+  public get adjustedY(): number { // returns valid y position in the content area
+    return this.y < this.VLINE_CONTENT_MIN_POS ? this.VLINE_CONTENT_MIN_POS :
+            (this.VLINE_CONTENT_MAX_POS < this.y ? this.VLINE_CONTENT_MAX_POS : this.y)
+  }
 }
 
 (function(global: Global) {
@@ -44,10 +82,7 @@ interface HLine {
     const vLines: VLine[] = [];
     for(let i=0; i<DEFAULT_VLINES; i++) {
       const posX = i*LINE_SPAN
-      vLines.push({
-        position: { x: posX },
-        boundary: { x1: posX - (LINE_SPAN/2), x2: posX + (LINE_SPAN/2) },
-      })
+      vLines.push(new VLine({ position: { x: posX }, LINE_SPAN }));
     }
     return vLines;
   })()
@@ -58,11 +93,14 @@ interface HLine {
       if (j >= DEFAULT_VLINES - 1) j = 0;
       const key = 'hline' + timestamp + i
       const y = Math.floor(Math.random() * VLINE_CONTENT_HEIGHT) + (VLINE_CONTENT_MIN_POS);
-      hLines[key] = {
+      const newHLine = {
         key,
-        position: { x: vLines[j].position.x, y, adjustedY: y },
+        position: new HLinePos({ x: vLines[j].position.x, y, VLINE_CONTENT_MAX_POS, VLINE_CONTENT_MIN_POS }),
         ownerIdx: j,
       }
+      hLines[key] = newHLine;
+      updateRoute(vLines[j].startRoute, vLines[j], 1, newHLine, hLines);
+      updateRoute(vLines[j+1].startRoute, vLines[j+1], -1, newHLine, hLines);
     }
     return hLines;
   })()
@@ -103,20 +141,21 @@ interface HLine {
   </div>`
 
   document.addEventListener('DOMContentLoaded', function(){
-    const rootElm = document.getElementById('root')
+    const rootElm = document.getElementById('root') as Element
     rootElm.innerHTML = svg + menu
-    const amida = {
+    const amida: Amida = {
       pageX: rootElm.children[0].getBoundingClientRect().left + scrollX,
       pageY: rootElm.children[0].getBoundingClientRect().top + scrollY,
       vLines,
       hLines,
-      svg,
+      innerHTML: rootElm.innerHTML,
       activeVlineIdx: NO_INDICATOR,
     }
     global.amida = amida;
+    console.log(JSON.parse(JSON.stringify(amida)));
 
     const svgElm = document.getElementById('amida-svg') as unknown as SVGElement // https://github.com/microsoft/TypeScript/issues/32822
-    const menuElm = document.getElementById('amida-menu')
+    const menuElm = document.getElementById('amida-menu') as HTMLElement
     svgElm.addEventListener('contextmenu', cEvt => {
       cEvt.preventDefault()
       menuElm.style.left = cEvt.pageX + 'px'
@@ -132,17 +171,14 @@ interface HLine {
     addVLineElm.addEventListener('mousedown', () => { // TODO click event
       const lastVLineIdx = amida.vLines.length-1;
       const lastVLine = amida.vLines[lastVLineIdx];
-      const newVLine: VLine = {
-        position: { x: lastVLine.position.x + LINE_SPAN },
-        boundary: { x1: lastVLine.boundary.x1 + LINE_SPAN, x2: lastVLine.boundary.x2 + LINE_SPAN }
-      }
+      const newVLine = new VLine({ position: { x: lastVLine.position.x + LINE_SPAN }, LINE_SPAN });
       amida.vLines.push(newVLine)
-      const lastVLineElm = document.getElementById('vline'+lastVLineIdx)
-      const clone = lastVLineElm.cloneNode(true) as SVGGElement
-      clone.id = 'vline' + (amida.vLines.length-1)
-      clone.setAttribute('transform', `translate(${newVLine.position.x}, 0)`)
-      lastVLineElm.parentNode.insertBefore(clone, lastVLineElm.nextSibling)
-      svgElm.setAttribute('width', '' + LINE_SPAN*amida.vLines.length*(1+AMIDA_CONTAINER_MARGIN_RATIO))
+      const lastVLineElm = document.getElementById('vline'+lastVLineIdx) as unknown as SVGElement;
+      const clone = lastVLineElm.cloneNode(true) as SVGGElement;
+      clone.id = 'vline' + (amida.vLines.length-1);
+      clone.setAttribute('transform', `translate(${newVLine.position.x}, 0)`);
+      (lastVLineElm.parentNode as Node).insertBefore(clone, lastVLineElm.nextSibling);
+      svgElm.setAttribute('width', '' + LINE_SPAN*amida.vLines.length*(1+AMIDA_CONTAINER_MARGIN_RATIO));
     })
     const addHLineElm = menuElm.children[1] as HTMLElement // cast is needed, otherwise mdEvt is not recognized as MouseEvent
     addHLineElm.addEventListener('mousedown', mdEvt => { // TODO click event
@@ -156,21 +192,23 @@ interface HLine {
         return isLeftEnd ? 0 : (isRightEnd ? amida.vLines.length - 2 : i - 1);
       })()
       const y = (menuElm.getBoundingClientRect().top + scrollY - amida.pageY)
-      const adjustedY = y < VLINE_CONTENT_MIN_POS ? VLINE_CONTENT_MIN_POS :
-            (VLINE_CONTENT_MAX_POS < y ? VLINE_CONTENT_MAX_POS : y)
       const key = `hline${Date.now()}1`
       const newHLine: HLine = {
         key,
-        position: { x: amida.vLines[ownerIdx].position.x, y: adjustedY, adjustedY },
+        position: new HLinePos({ x: amida.vLines[ownerIdx].position.x, y, VLINE_CONTENT_MIN_POS, VLINE_CONTENT_MAX_POS }),
         ownerIdx,
-      }
-      amida.hLines[key] = newHLine
-      const hLineElm = document.querySelector('[id^=hline]')
-      const clone = hLineElm.cloneNode(true) as Element
-      clone.id = key
-      clone.setAttribute('transform', `translate(${newHLine.position.x}, ${newHLine.position.y})`)
-      hLineElm.parentNode.insertBefore(clone, hLineElm.nextSibling)
-      draggablify(clone, amida)
+      };
+      newHLine.position.y = newHLine.position.adjustedY; // New horizontal line should be placed at valid position, so let's immediately overwrite it
+      amida.hLines[key] = newHLine;
+      updateRoute(amida.vLines[ownerIdx].startRoute, amida.vLines[ownerIdx], 1, newHLine, amida.hLines);
+      updateRoute(amida.vLines[ownerIdx+1].startRoute, amida.vLines[ownerIdx+1], -1, newHLine, amida.hLines);
+      console.log(JSON.parse(JSON.stringify(amida)));
+      const hLineElm = document.querySelector('[id^=hline]') as Node;
+      const clone = hLineElm.cloneNode(true) as Element;
+      clone.id = key;
+      clone.setAttribute('transform', `translate(${newHLine.position.x}, ${newHLine.position.y})`);
+      (hLineElm.parentNode as Node).insertBefore(clone, hLineElm.nextSibling);
+      draggablify(clone, amida);
     })
 
     document.querySelectorAll('[id^="hline"]').forEach(function(n) {
@@ -184,10 +222,10 @@ interface HLine {
       if (mdEvt.button !== 0) return;
       pntrX = +mdEvt.clientX;
       pntrY = +mdEvt.clientY;
-      const key = (mdEvt.target as Element).parentElement.id
+      const key = ((mdEvt.target as Element).parentElement as Element).id
       const hLine = amida.hLines[key]
       let vLine = amida.vLines[hLine.ownerIdx]
-      const indicator = document.getElementById('indicator')
+      const indicator = document.getElementById('indicator') as Element
       indicator.setAttribute('class', 'active')
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
       const dragging = mmEvt => {
@@ -195,12 +233,12 @@ interface HLine {
         const diffY = +mmEvt.clientY - pntrY;
         pntrX = +mmEvt.clientX;
         pntrY = +mmEvt.clientY;
-        hLine.position = {
+        hLine.position = new HLinePos({
           x: hLine.position.x + diffX,
           y: hLine.position.y + diffY,
-          adjustedY: hLine.position.y < VLINE_CONTENT_MIN_POS ? VLINE_CONTENT_MIN_POS :
-            (VLINE_CONTENT_MAX_POS < hLine.position.y ? VLINE_CONTENT_MAX_POS : hLine.position.y)
-        }
+          VLINE_CONTENT_MIN_POS,
+          VLINE_CONTENT_MAX_POS,
+        })
         const offsetFromAmidaLeft = (hLineElm.getBoundingClientRect().left + scrollX) - amida.pageX
         if (offsetFromAmidaLeft < vLine.boundary.x1) {
           if (0 < hLine.ownerIdx) {
@@ -234,16 +272,56 @@ interface HLine {
         document.removeEventListener('mousemove', dragging)
         document.removeEventListener('mouseup', dragEnd)
         if (amida.activeVlineIdx === NO_INDICATOR) {
-          delete amida.hLines[key]
-          hLineElm.parentNode.removeChild(hLineElm)
+          delete amida.hLines[key];
+          // TODO rearrange route
+          (hLineElm.parentNode as Node).removeChild(hLineElm);
         } else {
           hLine.position.y = hLine.position.adjustedY
+          // TODO rearrange route
           hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
           indicator.setAttribute('class', 'inactive')
         }
       }
       document.addEventListener('mouseup', dragEnd)
     })
+  }
+  function updateRoute(currentKey: string, vl: VLine, lr: VLineRouteLR, newHLine: HLine, hLines: HLineArray) {
+    if (!currentKey) {
+      if (vl.position.x === 40) {
+        console.log('start:', currentKey );
+        console.log('newHLine.key:', newHLine.key );
+      }
+      vl.startRoute = newHLine.key;
+      vl.routes[newHLine.key] = { nextHLineKey: null, lr }
+      return;
+    }
+    const currentRoute = vl.routes[currentKey];
+    const startHLine = hLines[vl.startRoute]
+    const isFirst = newHLine.position.y < startHLine.position.y;
+    if (isFirst) {
+      if (vl.position.x === 40) {
+        console.log('first:', currentKey );
+        console.log('newHLine.key:', newHLine.key );
+      }
+      vl.startRoute = newHLine.key;
+      vl.routes[newHLine.key] = { nextHLineKey: currentKey, lr };
+      return;
+    }
+    if (!currentRoute.nextHLineKey || // isLast
+      newHLine.position.y <= hLines[currentRoute.nextHLineKey].position.y // isMiddle
+      ) {
+      if (vl.position.x === 40) {
+        console.log(currentRoute.nextHLineKey?'middle:':'last:', currentKey);
+        console.log('newHLine.position.y:', newHLine.position.y);
+        console.log('hLines[currentRoute.nextHLineKey].position.y:', currentRoute.nextHLineKey? hLines[currentRoute.nextHLineKey].position.y:'');
+        console.log('newHLine.key:', newHLine.key);
+        console.log('currentRoute.nextHLineKey:', currentRoute.nextHLineKey);
+      }
+      vl.routes[newHLine.key] = { nextHLineKey: currentRoute.nextHLineKey /* Always null when isLast */, lr };
+      currentRoute.nextHLineKey = newHLine.key;
+      return;
+    }
+    updateRoute(currentRoute.nextHLineKey, vl, lr, newHLine, hLines);
   }
 })(Function('return this')())
 
