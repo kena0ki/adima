@@ -1,5 +1,6 @@
 interface Global {
-  amida: Amida
+  amida: Amida,
+  log: (...any) => void,
 }
 interface Amida {
   pageX: number,
@@ -15,13 +16,14 @@ interface HLineArray {
 interface VLine {
   position: { x: number, y?: number },
   routes: VLineRoutes,
-  startRoute: string,
+  startRoute: string | null,
 }
 interface VLineRoutes {
-  [key: string]: VLineRoute,
+  [key: string]: VLineRoute, // HLine.key value is used as this key value
 }
 interface VLineRoute {
-  nextHLineKey: string | null,
+  nextKey: string | null,
+  prevKey: string | null,
   lr: VLineRouteLR,
 }
 type VLineRouteLR = -1 | 1;
@@ -66,6 +68,7 @@ class HLinePos implements HLinePos {
 
   'use strict'
 
+  const PRODUCTION = false;
   const NO_INDICATOR = -1;
   const DEFAULT_VLINES = 4;
   const DEFAULT_HLINES = 6;
@@ -77,6 +80,8 @@ class HLinePos implements HLinePos {
   const VLINE_CONTENT_MAX_POS = VLINE_HEIGHT - VLINE_CONTENT_MIN_POS
   const LINE_SPAN = 40;
   const AMIDA_CONTAINER_MARGIN_RATIO = .2;
+
+  initializeLogger(PRODUCTION);
 
   const vLines: VLine[] = (() => {
     const vLines: VLine[] = [];
@@ -99,8 +104,7 @@ class HLinePos implements HLinePos {
         ownerIdx: j,
       }
       hLines[key] = newHLine;
-      updateRoute(vLines[j].startRoute, vLines[j], 1, newHLine, hLines);
-      updateRoute(vLines[j+1].startRoute, vLines[j+1], -1, newHLine, hLines);
+      addRoute(vLines, newHLine, hLines);
     }
     return hLines;
   })()
@@ -152,7 +156,7 @@ class HLinePos implements HLinePos {
       activeVlineIdx: NO_INDICATOR,
     }
     global.amida = amida;
-    console.log(JSON.parse(JSON.stringify(amida)));
+    global.log(JSON.parse(JSON.stringify(amida)));
 
     const svgElm = document.getElementById('amida-svg') as unknown as SVGElement // https://github.com/microsoft/TypeScript/issues/32822
     const menuElm = document.getElementById('amida-menu') as HTMLElement
@@ -182,7 +186,7 @@ class HLinePos implements HLinePos {
     })
     const addHLineElm = menuElm.children[1] as HTMLElement // cast is needed, otherwise mdEvt is not recognized as MouseEvent
     addHLineElm.addEventListener('mousedown', mdEvt => { // TODO click event
-      console.log('x:', mdEvt.pageX - amida.pageX)
+      global.log('x:', mdEvt.pageX - amida.pageX)
       const ownerIdx = (() => {
         const i = (amida.vLines.findIndex(v => {
           return (menuElm.getBoundingClientRect().left + scrollX - amida.pageX) < v.position.x
@@ -200,9 +204,8 @@ class HLinePos implements HLinePos {
       };
       newHLine.position.y = newHLine.position.adjustedY; // New horizontal line should be placed at valid position, so let's immediately overwrite it
       amida.hLines[key] = newHLine;
-      updateRoute(amida.vLines[ownerIdx].startRoute, amida.vLines[ownerIdx], 1, newHLine, amida.hLines);
-      updateRoute(amida.vLines[ownerIdx+1].startRoute, amida.vLines[ownerIdx+1], -1, newHLine, amida.hLines);
-      console.log(JSON.parse(JSON.stringify(amida)));
+      addRoute(amida.vLines, newHLine, amida.hLines);
+      global.log(JSON.parse(JSON.stringify(amida)));
       const hLineElm = document.querySelector('[id^=hline]') as Node;
       const clone = hLineElm.cloneNode(true) as Element;
       clone.id = key;
@@ -218,17 +221,22 @@ class HLinePos implements HLinePos {
 
   function draggablify(hLineElm: Element, amida: Amida) {
     let pntrX = 0, pntrY = 0;
-    hLineElm.addEventListener('mousedown', (mdEvt: MouseEvent) => {
+    hLineElm.addEventListener('mousedown', dragStart);
+    function dragStart(mdEvt: MouseEvent) {
       if (mdEvt.button !== 0) return;
       pntrX = +mdEvt.clientX;
       pntrY = +mdEvt.clientY;
-      const key = ((mdEvt.target as Element).parentElement as Element).id
-      const hLine = amida.hLines[key]
-      let vLine = amida.vLines[hLine.ownerIdx]
-      const indicator = document.getElementById('indicator') as Element
-      indicator.setAttribute('class', 'active')
-      indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
-      const dragging = mmEvt => {
+      const key = ((mdEvt.target as Element).parentElement as Element).id;
+      const hLine = amida.hLines[key];
+      amida.activeVlineIdx = hLine.ownerIdx
+      removeRoute(amida.vLines, hLine);
+      global.log(JSON.parse(JSON.stringify(amida)));
+      let vLine = amida.vLines[hLine.ownerIdx];
+      const indicator = document.getElementById('indicator') as Element;
+      indicator.setAttribute('class', 'active');
+      indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
+      document.addEventListener('mousemove', dragging);
+      function dragging(mmEvt) {
         const diffX = +mmEvt.clientX - pntrX;
         const diffY = +mmEvt.clientY - pntrY;
         pntrX = +mmEvt.clientX;
@@ -267,61 +275,101 @@ class HLinePos implements HLinePos {
           indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.adjustedY})`)
         }
       }
-      document.addEventListener('mousemove', dragging)
-      const dragEnd = () => {
+      document.addEventListener('mouseup', dragEnd)
+      function dragEnd() {
         document.removeEventListener('mousemove', dragging)
         document.removeEventListener('mouseup', dragEnd)
         if (amida.activeVlineIdx === NO_INDICATOR) {
           delete amida.hLines[key];
-          // TODO rearrange route
           (hLineElm.parentNode as Node).removeChild(hLineElm);
         } else {
-          hLine.position.y = hLine.position.adjustedY
-          // TODO rearrange route
+          hLine.position.y = hLine.position.adjustedY;
+          addRoute(amida.vLines, hLine, amida.hLines); // old route is already removed at mousedown, so just add it
           hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
           indicator.setAttribute('class', 'inactive')
         }
+        global.log(JSON.parse(JSON.stringify(amida)));
       }
-      document.addEventListener('mouseup', dragEnd)
-    })
+    }
   }
-  function updateRoute(currentKey: string, vl: VLine, lr: VLineRouteLR, newHLine: HLine, hLines: HLineArray) {
-    if (!currentKey) {
-      if (vl.position.x === 40) {
-        console.log('start:', currentKey );
-        console.log('newHLine.key:', newHLine.key );
+  function addRoute(vls: VLine[], newHLine: HLine, hLines: HLineArray) {
+    recursive(vls[newHLine.ownerIdx].startRoute, vls[newHLine.ownerIdx], 1, newHLine, hLines);
+    recursive(vls[newHLine.ownerIdx+1].startRoute, vls[newHLine.ownerIdx+1], -1, newHLine, hLines);
+    function recursive(currentKey: string | null, vl: VLine, lr: VLineRouteLR, newHLine: HLine, hLines: HLineArray) {
+      if (!currentKey) { // initialize
+        /**
+         * Before:
+         *  [Start] -> [End]
+         * After:
+         *  [Start] -> |newKey| -> [End]
+         */
+        vl.startRoute = newHLine.key;
+        vl.routes[newHLine.key] = { nextKey: null, prevKey: null, lr }
+        return;
       }
-      vl.startRoute = newHLine.key;
-      vl.routes[newHLine.key] = { nextHLineKey: null, lr }
-      return;
-    }
-    const currentRoute = vl.routes[currentKey];
-    const startHLine = hLines[vl.startRoute]
-    const isFirst = newHLine.position.y < startHLine.position.y;
-    if (isFirst) {
-      if (vl.position.x === 40) {
-        console.log('first:', currentKey );
-        console.log('newHLine.key:', newHLine.key );
+      const currentRoute = vl.routes[currentKey];
+      // @ts-ignore vl.startRoute shouldn't be undefined, because initialize block would be executed beforehand
+      const startHLine = hLines[vl.startRoute]
+      if (newHLine.position.y < startHLine.position.y) { // addToFirst
+        /**
+         * Before:
+         *  [Start] -> |currentKey|
+         * After:
+         *  [Start] -> |newKey| -> |currentKey|
+         */
+        global.log('first.vl', JSON.parse(JSON.stringify(vl)));
+        global.log('first.newHLine.key', newHLine.key);
+        global.log('first.prevKey', null);
+        vl.startRoute = newHLine.key;
+        vl.routes[currentKey].prevKey = newHLine.key;
+        vl.routes[newHLine.key] = { nextKey: currentKey, prevKey: null, lr };
+        return;
+      } else if (!currentRoute.nextKey) { // addToLast
+        /**
+         * Before:
+         *  |currentKey| -> [End]
+         * After:
+         *  |currentKey| -> |newKey| -> [End]
+         */
+        global.log('last.vl', JSON.parse(JSON.stringify(vl)));
+        global.log('last.newHLine.key', newHLine.key);
+        global.log('last.currentKey', currentKey);
+        vl.routes[newHLine.key] = { nextKey: null, prevKey: currentKey, lr };
+        currentRoute.nextKey = newHLine.key;
+        return;
+      } else if ( newHLine.position.y <= hLines[currentRoute.nextKey].position.y) { // addToMiddle
+        /**
+         * Before:
+         *  |currentKey| -> |nextKey|
+         * After:
+         *  |currentKey| -> |newKey| -> |nextKey|
+         */
+        global.log('middle.vl', JSON.parse(JSON.stringify(vl)));
+        global.log('middle.newHLine.key', newHLine.key);
+        global.log('middle.currentKey', currentKey);
+        vl.routes[currentRoute.nextKey].prevKey = newHLine.key;
+        vl.routes[newHLine.key] = { nextKey: currentRoute.nextKey, prevKey: currentKey, lr };
+        currentRoute.nextKey = newHLine.key;
+        return;
       }
-      vl.startRoute = newHLine.key;
-      vl.routes[newHLine.key] = { nextHLineKey: currentKey, lr };
-      return;
+      recursive(currentRoute.nextKey, vl, lr, newHLine, hLines);
     }
-    if (!currentRoute.nextHLineKey || // isLast
-      newHLine.position.y <= hLines[currentRoute.nextHLineKey].position.y // isMiddle
-      ) {
-      if (vl.position.x === 40) {
-        console.log(currentRoute.nextHLineKey?'middle:':'last:', currentKey);
-        console.log('newHLine.position.y:', newHLine.position.y);
-        console.log('hLines[currentRoute.nextHLineKey].position.y:', currentRoute.nextHLineKey? hLines[currentRoute.nextHLineKey].position.y:'');
-        console.log('newHLine.key:', newHLine.key);
-        console.log('currentRoute.nextHLineKey:', currentRoute.nextHLineKey);
-      }
-      vl.routes[newHLine.key] = { nextHLineKey: currentRoute.nextHLineKey /* Always null when isLast */, lr };
-      currentRoute.nextHLineKey = newHLine.key;
-      return;
+  }
+  function removeRoute(vls: VLine[], hl: HLine) {
+    fn(hl.ownerIdx);
+    fn(hl.ownerIdx+1);
+    function fn(idx) {
+      const routes = vls[idx].routes;
+      const route = routes[hl.key];
+      if (route.prevKey) routes[route.prevKey].nextKey = route.nextKey;
+      else vls[idx].startRoute = route.nextKey;
+      if (route.nextKey) routes[route.nextKey].prevKey = route.prevKey;
+      delete routes[hl.key];
     }
-    updateRoute(currentRoute.nextHLineKey, vl, lr, newHLine, hLines);
+  }
+  function initializeLogger(isProduction) {
+    if (isProduction) global.log = () => {};
+    else global.log = console.log;
   }
 })(Function('return this')())
 
