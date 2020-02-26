@@ -9,12 +9,14 @@ interface Amida {
   hLines: HLineArray,
   innerHTML: string, // TODO getter
   activeVlineIdx: number,
+  players: Player[],
+  goals: Goal[],
 }
 interface HLineArray {
   [key: string]: HLine,
 }
 interface VLine {
-  position: { x: number, y?: number },
+  position: { x: number },
   routes: VLineRoutes,
   startRoute: string | null,
 }
@@ -31,11 +33,22 @@ interface HLine {
   key: string
   position: HLinePos,
   ownerIdx: number,
-  beingDragged?: boolean,
 }
-interface HLinePos {
+interface HLinePos extends Pozition{
+}
+interface Player {
+  paths: Pozition[],
+  name: string,
+  goal: Goal,
+}
+interface Pozition {
   x: number,
   y: number,
+}
+interface Goal {
+  type: 'item' | 'rank',
+  item?: string,
+  rank?: number,
 }
 
 class VLine implements VLine {
@@ -108,6 +121,12 @@ class HLinePos implements HLinePos {
     }
     return hLines;
   })()
+  const menuItems = [
+    'Start',
+    'Add a virtical line',
+    'Add a horizontal line',
+    'Clear',
+  ];
   let svg = `
   <svg id="amida-svg" height="${VLINE_HEIGHT*(1+AMIDA_CONTAINER_MARGIN_RATIO)}" width="${LINE_SPAN*DEFAULT_VLINES*(1+AMIDA_CONTAINER_MARGIN_RATIO)}" xmlns="http://www.w3.org/2000/svg" >
     <g style="stroke:rgb(255,0,0);stroke-width:2" >`
@@ -133,15 +152,10 @@ class HLinePos implements HLinePos {
   </svg>`
   const menu = `
   <div id="amida-menu" class="amida-menu-container" style="display: none">
+    ${menuItems.reduce((result, next) => `${result}
     <div class="amida-menu-item" >
-      <span class="amida-menu-item-text">Add a virtical line</span>
-    </div>
-    <div class="amida-menu-item" >
-      <span class="amida-menu-item-text">Add a horizontal line</span>
-    </div>
-    <div class="amida-menu-item" >
-      <span class="amida-menu-item-text">Clear</span>
-    <div>
+      <span class="amida-menu-item-text">${next}</span>
+    </div>`, '')}
   </div>`
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -154,6 +168,8 @@ class HLinePos implements HLinePos {
       hLines,
       innerHTML: rootElm.innerHTML,
       activeVlineIdx: NO_INDICATOR,
+      players: [],
+      goals: [],
     }
     global.amida = amida;
     global.log(JSON.parse(JSON.stringify(amida)));
@@ -171,7 +187,26 @@ class HLinePos implements HLinePos {
       }
       document.addEventListener('mousedown', clearCtxMenu)
     })
-    const addVLineElm = menuElm.children[0]
+    const startLineElm = menuElm.children[0]
+    startLineElm.addEventListener('mousedown', () => { // TODO click event
+      amida.players = amida.players.map((p, idx) => {
+        p.paths.push({ x: amida.vLines[idx].position.x, y: 0 });
+        const finIdx = fn(amida.vLines[idx].startRoute, idx);
+        function fn(routeKey: string | null, i: number): number {
+          if (!routeKey) return i;
+          const hl = amida.hLines[routeKey];
+          const vl = amida.vLines[i];
+          p.paths.push({ x: vl.position.x, y: hl.position.y });
+          const route = amida.vLines[idx].routes[routeKey];
+          const nextVl = amida.vLines[i+route.lr];
+          p.paths.push({ x: nextVl.position.x, y: hl.position.y });
+          return fn(nextVl.routes[routeKey].nextKey, idx+route.lr);
+        }
+        p.paths.push({ x: amida.vLines[finIdx].position.x, y: VLINE_HEIGHT });
+        return p;
+      });
+    })
+    const addVLineElm = menuElm.children[1]
     addVLineElm.addEventListener('mousedown', () => { // TODO click event
       const lastVLineIdx = amida.vLines.length-1;
       const lastVLine = amida.vLines[lastVLineIdx];
@@ -184,7 +219,7 @@ class HLinePos implements HLinePos {
       (lastVLineElm.parentNode as Node).insertBefore(clone, lastVLineElm.nextSibling);
       svgElm.setAttribute('width', '' + LINE_SPAN*amida.vLines.length*(1+AMIDA_CONTAINER_MARGIN_RATIO));
     })
-    const addHLineElm = menuElm.children[1] as HTMLElement // cast is needed, otherwise mdEvt is not recognized as MouseEvent
+    const addHLineElm = menuElm.children[2] as HTMLElement // cast is needed, otherwise mdEvt is not recognized as MouseEvent
     addHLineElm.addEventListener('mousedown', mdEvt => { // TODO click event
       global.log('x:', mdEvt.pageX - amida.pageX)
       const ownerIdx = (() => {
