@@ -10,7 +10,7 @@ interface Amida {
   innerHTML: string, // TODO getter
   activeVlineIdx: number,
   players: Player[],
-  goals: Goal[],
+  goals: string[] | number[],
 }
 interface HLineArray {
   [key: string]: HLine,
@@ -37,18 +37,13 @@ interface HLine {
 interface HLinePos extends Pozition{
 }
 interface Player {
-  paths: Pozition[],
   name: string,
-  goal: Goal,
+  paths: Pozition[],
+  goal?: string | number,
 }
 interface Pozition {
   x: number,
   y: number,
-}
-interface Goal {
-  type: 'item' | 'rank',
-  item?: string,
-  rank?: number,
 }
 
 class VLine implements VLine {
@@ -168,8 +163,14 @@ class HLinePos implements HLinePos {
       hLines,
       innerHTML: rootElm.innerHTML,
       activeVlineIdx: NO_INDICATOR,
-      players: [],
-      goals: [],
+      players: ((p: Player[]) => {
+        for(let i=0; i<vLines.length; i++) p.push({ name: ''+i, paths: [] });
+        return p;
+      })([]),
+      goals: ((g: string[]) => {
+        for(let i=65/*'A'*/; i<vLines.length; i++) g.push(String.fromCharCode(i));
+        return g;
+      })([]),
     }
     global.amida = amida;
     global.log(JSON.parse(JSON.stringify(amida)));
@@ -197,10 +198,10 @@ class HLinePos implements HLinePos {
           const hl = amida.hLines[routeKey];
           const vl = amida.vLines[i];
           p.paths.push({ x: vl.position.x, y: hl.position.y });
-          const route = amida.vLines[idx].routes[routeKey];
+          const route = vl.routes[routeKey];
           const nextVl = amida.vLines[i+route.lr];
           p.paths.push({ x: nextVl.position.x, y: hl.position.y });
-          return fn(nextVl.routes[routeKey].nextKey, idx+route.lr);
+          return fn(nextVl.routes[routeKey].nextKey, i+route.lr);
         }
         p.paths.push({ x: amida.vLines[finIdx].position.x, y: VLINE_HEIGHT });
         return p;
