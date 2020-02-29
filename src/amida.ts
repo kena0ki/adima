@@ -38,9 +38,11 @@ interface HLinePos extends Pozition{
 }
 interface Player {
   name: string,
-  paths: Pozition[],
+  path: Path,
   goal?: string | number,
+  startVLineIdx: number,
 }
+type Path = Pozition[];
 interface Pozition {
   x: number,
   y: number,
@@ -88,6 +90,22 @@ class HLinePos implements HLinePos {
   const VLINE_CONTENT_MAX_POS = VLINE_HEIGHT - VLINE_CONTENT_MIN_POS
   const LINE_SPAN = 40;
   const AMIDA_CONTAINER_MARGIN_RATIO = .2;
+  const COLORS = [
+    'RED',
+    'MAROON',
+    'YELLOW',
+    'OLIVE',
+    'LIME',
+    'GREEN',
+    'AQUA',
+    'TEAL',
+    'BLUE',
+    'NAVY',
+    'FUCHSIA',
+    'PURPLE',
+    'SILVER',
+  ];
+  const CHAR_A = 65;
 
   initializeLogger(PRODUCTION);
 
@@ -115,7 +133,15 @@ class HLinePos implements HLinePos {
       addRoute(vLines, newHLine, hLines);
     }
     return hLines;
-  })()
+  })();
+  const players = ((p: Player[]) => {
+    for(let i=0; i<vLines.length; i++) p.push({ name: ''+i, path: [], startVLineIdx: i });
+    return p;
+  })([]);
+  const goals = ((g: string[]) => {
+    for(let i=CHAR_A; i<vLines.length; i++) g.push(String.fromCharCode(i));
+    return g;
+  })([]);
   const menuItems = [
     'Start',
     'Add a virtical line',
@@ -124,7 +150,7 @@ class HLinePos implements HLinePos {
   ];
   let svg = `
   <svg id="amida-svg" height="${VLINE_HEIGHT*(1+AMIDA_CONTAINER_MARGIN_RATIO)}" width="${LINE_SPAN*DEFAULT_VLINES*(1+AMIDA_CONTAINER_MARGIN_RATIO)}" xmlns="http://www.w3.org/2000/svg" >
-    <g style="stroke:rgb(255,0,0);stroke-width:2" >`
+    <g style="stroke:rgb(0,0,0);stroke-width:2" >`
   svg += vLines.reduce((result, next, idx) => {
     return `${result}
       <g id="vline${idx}" transform="translate(${next.position.x},0)" >
@@ -136,6 +162,12 @@ class HLinePos implements HLinePos {
     return `${result}
       <g id="${h.key}" class="hline" transform="translate(${h.position.x},${h.position.y})" >
         <line x1="0" y1="0" x2="${LINE_SPAN}" y2="0" />
+      </g>`
+  }, '')
+  svg += players.reduce((result, next, idx) => {
+    return `${result}
+      <g id="players${idx}-path-container">
+        <path id="players${idx}-path" fill="transparent"/>
       </g>`
   }, '')
   svg += `
@@ -163,14 +195,8 @@ class HLinePos implements HLinePos {
       hLines,
       innerHTML: rootElm.innerHTML,
       activeVlineIdx: NO_INDICATOR,
-      players: ((p: Player[]) => {
-        for(let i=0; i<vLines.length; i++) p.push({ name: ''+i, paths: [] });
-        return p;
-      })([]),
-      goals: ((g: string[]) => {
-        for(let i=65/*'A'*/; i<vLines.length; i++) g.push(String.fromCharCode(i));
-        return g;
-      })([]),
+      players,
+      goals,
     }
     global.amida = amida;
     global.log(JSON.parse(JSON.stringify(amida)));
@@ -190,35 +216,56 @@ class HLinePos implements HLinePos {
     })
     const startLineElm = menuElm.children[0]
     startLineElm.addEventListener('mousedown', () => { // TODO click event
-      amida.players = amida.players.map((p, idx) => {
-        p.paths.push({ x: amida.vLines[idx].position.x, y: 0 });
-        const finIdx = fn(amida.vLines[idx].startRoute, idx);
-        function fn(routeKey: string | null, i: number): number {
+        amida.players = calcPath(amida);
+        amida.players.forEach((p,i) => renderPath(p.path, i));
+    });
+    function calcPath({ players, vLines } : Amida) {
+      return players.map((p, idx) => {
+        p.path.push({ x: vLines[p.startVLineIdx].position.x, y: 0 });
+        const finIdx = (function setMidwayPathAndGetFinIdx(routeKey: string | null, i: number): number {
           if (!routeKey) return i;
-          const hl = amida.hLines[routeKey];
-          const vl = amida.vLines[i];
-          p.paths.push({ x: vl.position.x, y: hl.position.y });
+          const hl = hLines[routeKey];
+          const vl = vLines[i];
+          p.path.push({ x: vl.position.x, y: hl.position.y });
           const route = vl.routes[routeKey];
-          const nextVl = amida.vLines[i+route.lr];
-          p.paths.push({ x: nextVl.position.x, y: hl.position.y });
-          return fn(nextVl.routes[routeKey].nextKey, i+route.lr);
-        }
-        p.paths.push({ x: amida.vLines[finIdx].position.x, y: VLINE_HEIGHT });
+          const nextVl = vLines[i+route.lr];
+          p.path.push({ x: nextVl.position.x, y: hl.position.y });
+          return setMidwayPathAndGetFinIdx(nextVl.routes[routeKey].nextKey, i+route.lr);
+        })(vLines[p.startVLineIdx].startRoute, idx);
+        p.path.push({ x: vLines[finIdx].position.x, y: VLINE_HEIGHT });
         return p;
       });
-    })
+    }
+    function renderPath(path: Path, idx: number) {
+      const pathElm = document.getElementById(`players${idx}-path`) as Element;
+      const command = path.slice(1).reduce(
+        (result, next) => `${result} L ${next.x} ${next.y}`,
+        `M ${path[0].x} ${path[0].y}`
+      );
+      pathElm.setAttribute('d', command);
+      pathElm.setAttribute('stroke', COLORS[idx%COLORS.length]);
+      return path;
+    }
     const addVLineElm = menuElm.children[1]
     addVLineElm.addEventListener('mousedown', () => { // TODO click event
-      const lastVLineIdx = amida.vLines.length-1;
-      const lastVLine = amida.vLines[lastVLineIdx];
-      const newVLine = new VLine({ position: { x: lastVLine.position.x + LINE_SPAN }, LINE_SPAN });
-      amida.vLines.push(newVLine)
-      const lastVLineElm = document.getElementById('vline'+lastVLineIdx) as unknown as SVGElement;
-      const clone = lastVLineElm.cloneNode(true) as SVGGElement;
-      clone.id = 'vline' + (amida.vLines.length-1);
-      clone.setAttribute('transform', `translate(${newVLine.position.x}, 0)`);
-      (lastVLineElm.parentNode as Node).insertBefore(clone, lastVLineElm.nextSibling);
+      const prevLastVLineIdx = amida.vLines.length-1;
+      const prevLastVLine = amida.vLines[prevLastVLineIdx];
+      const newVLine = new VLine({ position: { x: prevLastVLine.position.x + LINE_SPAN }, LINE_SPAN });
+      amida.vLines.push(newVLine);
+      const prevLastPlayersIdx = amida.players.length-1;
+      amida.players.push({ name: ''+amida.players.length, path: [], startVLineIdx: amida.players.length });
+      amida.goals.push(String.fromCharCode(CHAR_A+goals.length) as never); //TODO why should I cast it to never?
+      const lastVLineElm = document.getElementById('vline'+prevLastVLineIdx) as unknown as SVGElement;
+      const cloneV = lastVLineElm.cloneNode(true) as SVGGElement;
+      cloneV.id = 'vline' + (amida.vLines.length-1);
+      cloneV.setAttribute('transform', `translate(${newVLine.position.x}, 0)`);
+      (lastVLineElm.parentNode as Node).insertBefore(cloneV, lastVLineElm.nextSibling);
       svgElm.setAttribute('width', '' + LINE_SPAN*amida.vLines.length*(1+AMIDA_CONTAINER_MARGIN_RATIO));
+      const lastPathContainerElm = document.getElementById(`players${prevLastPlayersIdx}-path-container`) as Element;
+      const cloneP = lastPathContainerElm.cloneNode(true) as SVGGElement;
+      cloneP.id = `players${amida.players.length-1}-path-container`;
+      cloneP.children[0].id = `players${amida.players.length-1}-path`;
+      (lastPathContainerElm.parentNode as Node).insertBefore(cloneP, lastPathContainerElm.nextSibling);
     })
     const addHLineElm = menuElm.children[2] as HTMLElement // cast is needed, otherwise mdEvt is not recognized as MouseEvent
     addHLineElm.addEventListener('mousedown', mdEvt => { // TODO click event
