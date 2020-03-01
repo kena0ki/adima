@@ -214,8 +214,9 @@ class HLinePos implements HLinePos {
       }
       document.addEventListener('mousedown', clearCtxMenu)
     })
-    const startLineElm = menuElm.children[0]
-    startLineElm.addEventListener('mousedown', () => { // TODO click event
+    const startElm = menuElm.children[0]
+    startElm.addEventListener('mousedown', () => { // TODO click event
+      if (amida.players[0].path.length > 0) return; // Already rendered result
       amida.players = calcPath(amida);
       (async function afn() {
         for (let i=0; i<amida.players.length; i++) {
@@ -309,6 +310,19 @@ class HLinePos implements HLinePos {
       clone.setAttribute('transform', `translate(${newHLine.position.x}, ${newHLine.position.y})`);
       (hLineElm.parentNode as Node).insertBefore(clone, hLineElm.nextSibling);
       draggablify(clone, amida);
+    })
+    const clearElm = menuElm.children[3] as HTMLElement
+    clearElm.addEventListener('mousedown', () => { // TODO click event
+      amida.players = amida.players.map(p => ({
+        ...p,
+        path: [],
+      }));
+      amida.players.forEach((p,i) => {
+        const pathElm = document.getElementById(`players${i}-path`) as Element;
+        pathElm.removeAttribute('stroke');
+        pathElm.removeAttribute('stroke-width');
+        pathElm.removeAttribute('d');
+      });
     })
 
     document.querySelectorAll('[id^="hline"]').forEach(function(n) {
