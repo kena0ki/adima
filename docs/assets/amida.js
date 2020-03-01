@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -182,8 +193,10 @@ var HLinePos = /** @class */ (function () {
             };
             document.addEventListener('mousedown', clearCtxMenu);
         });
-        var startLineElm = menuElm.children[0];
-        startLineElm.addEventListener('mousedown', function () {
+        var startElm = menuElm.children[0];
+        startElm.addEventListener('mousedown', function () {
+            if (amida.players[0].path.length > 0)
+                return; // Already rendered result
             amida.players = calcPath(amida);
             (function afn() {
                 return __awaiter(this, void 0, void 0, function () {
@@ -301,6 +314,16 @@ var HLinePos = /** @class */ (function () {
             clone.setAttribute('transform', "translate(" + newHLine.position.x + ", " + newHLine.position.y + ")");
             hLineElm.parentNode.insertBefore(clone, hLineElm.nextSibling);
             draggablify(clone, amida);
+        });
+        var clearElm = menuElm.children[3];
+        clearElm.addEventListener('mousedown', function () {
+            amida.players = amida.players.map(function (p) { return (__assign(__assign({}, p), { path: [] })); });
+            amida.players.forEach(function (p, i) {
+                var pathElm = document.getElementById("players" + i + "-path");
+                pathElm.removeAttribute('stroke');
+                pathElm.removeAttribute('stroke-width');
+                pathElm.removeAttribute('d');
+            });
         });
         document.querySelectorAll('[id^="hline"]').forEach(function (n) {
             draggablify(n, amida);
