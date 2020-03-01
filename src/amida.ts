@@ -1,4 +1,4 @@
-interface Global {
+interface Global extends Window{
   amida: Amida,
   log: (...any) => void,
 }
@@ -80,8 +80,8 @@ class HLinePos implements HLinePos {
 
   const PRODUCTION = false;
   const NO_INDICATOR = -1;
-  const DEFAULT_VLINES = 4;
-  const DEFAULT_HLINES = 6;
+  const DEFAULT_VLINES = 6;
+  const DEFAULT_HLINES = 10;
   const VLINE_HEIGHT = 200
   const VLINE_MARGIN_HEIGHT_RATIO = .1
   const VLINE_MARGIN_HEIGHT = VLINE_HEIGHT * VLINE_MARGIN_HEIGHT_RATIO
@@ -216,8 +216,12 @@ class HLinePos implements HLinePos {
     })
     const startLineElm = menuElm.children[0]
     startLineElm.addEventListener('mousedown', () => { // TODO click event
-        amida.players = calcPath(amida);
-        amida.players.forEach((p,i) => renderPath(p.path, i));
+      amida.players = calcPath(amida);
+      (async function afn() {
+        for (let i=0; i<amida.players.length; i++) {
+          await renderPathGradually(amida.players[i].path, i);
+        }
+      })();
     });
     function calcPath({ players, vLines } : Amida) {
       return players.map((p, idx) => {
@@ -236,15 +240,25 @@ class HLinePos implements HLinePos {
         return p;
       });
     }
-    function renderPath(path: Path, idx: number) {
+    async function renderPathGradually(path: Path, idx: number) {
+      let command = `M ${path[0].x} ${path[0].y}`;
+      let cnt = 1;
       const pathElm = document.getElementById(`players${idx}-path`) as Element;
-      const command = path.slice(1).reduce(
-        (result, next) => `${result} L ${next.x} ${next.y}`,
-        `M ${path[0].x} ${path[0].y}`
-      );
-      pathElm.setAttribute('d', command);
       pathElm.setAttribute('stroke', COLORS[idx%COLORS.length]);
-      return path;
+      pathElm.setAttribute('stroke-width', '3');
+      const promise = new Promise(resolve => {
+        const intervalId = global.setInterval(function() {
+          if (cnt >= path.length) {
+            global.clearInterval(intervalId);
+            resolve();
+            return;
+          }
+          command = `${command} L ${path[cnt].x} ${path[cnt].y}`;
+          cnt++
+          pathElm.setAttribute('d', command);
+        }, 100);
+      });
+      return promise;
     }
     const addVLineElm = menuElm.children[1]
     addVLineElm.addEventListener('mousedown', () => { // TODO click event
