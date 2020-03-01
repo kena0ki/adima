@@ -149,8 +149,8 @@ class HLinePos implements HLinePos {
     'Clear',
   ];
   let svg = `
-  <svg id="amida-svg" height="${VLINE_HEIGHT*(1+AMIDA_CONTAINER_MARGIN_RATIO)}" width="${LINE_SPAN*DEFAULT_VLINES*(1+AMIDA_CONTAINER_MARGIN_RATIO)}" xmlns="http://www.w3.org/2000/svg" >
-    <g style="stroke:rgb(0,0,0);stroke-width:2" >`
+  <svg id="amida-svg" height="${VLINE_HEIGHT+10}" width="${LINE_SPAN*(DEFAULT_VLINES-1)+10}" xmlns="http://www.w3.org/2000/svg" >
+    <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(5, 5)" >`
   svg += vLines.reduce((result, next, idx) => {
     return `${result}
       <g id="vline${idx}" transform="translate(${next.position.x},0)" >
@@ -171,9 +171,9 @@ class HLinePos implements HLinePos {
       </g>`
   }, '')
   svg += `
-    </g>
-    <g id="indicator" class="inactive" transform="translate(0,0)" >
-      <circle cx="4" cy="4" r="4" fill="blue" />
+      <g id="indicator" class="inactive">
+        <circle cx="4" cy="4" r="4" fill="blue" />
+      </g>
     </g>
     Sorry, your browser does not support inline SVG.
   </svg>`
