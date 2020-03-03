@@ -10,7 +10,7 @@ interface Amida {
   innerHTML: string, // TODO getter
   activeVlineIdx: number,
   players: Player[],
-  goals: string[] | number[],
+  goals: Goal[],
 }
 interface HLineArray {
   [key: string]: HLine,
@@ -39,13 +39,16 @@ interface HLinePos extends Pozition{
 interface Player {
   name: string,
   path: Path,
-  goal?: string | number,
-  startVLineIdx: number,
+  goalIdx?: string | number,
 }
 type Path = Pozition[];
 interface Pozition {
   x: number,
   y: number,
+}
+interface Goal {
+  label: string,
+  order?: number,
 }
 
 class VLine implements VLine {
@@ -135,11 +138,11 @@ class HLinePos implements HLinePos {
     return hLines;
   })();
   const players = ((p: Player[]) => {
-    for(let i=0; i<vLines.length; i++) p.push({ name: ''+i, path: [], startVLineIdx: i });
+    for(let i=0; i<vLines.length; i++) p.push({ name: ''+i, path: [] });
     return p;
   })([]);
-  const goals = ((g: string[]) => {
-    for(let i=CHAR_A; i<vLines.length; i++) g.push(String.fromCharCode(i));
+  const goals = ((g: Goal[]) => {
+    for(let i=CHAR_A; i<vLines.length; i++) g.push({ label: String.fromCharCode(i) });
     return g;
   })([]);
   const menuItems = [
@@ -151,6 +154,12 @@ class HLinePos implements HLinePos {
   let svg = `
   <svg id="amida-svg" height="${VLINE_HEIGHT+10}" width="${LINE_SPAN*(DEFAULT_VLINES-1)+10}" xmlns="http://www.w3.org/2000/svg" >
     <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(5, 5)" >`
+  svg += players.reduce((result, next, idx) => {
+    return `${result}
+      <g id="players${idx}" transform="translate(${vLines[idx].position.x},0)" >
+        <text x1="0" y1="0" >${next.name}</text>
+      </g>`
+  }, '')
   svg += vLines.reduce((result, next, idx) => {
     return `${result}
       <g id="vline${idx}" transform="translate(${next.position.x},0)" >
@@ -162,6 +171,12 @@ class HLinePos implements HLinePos {
     return `${result}
       <g id="${h.key}" class="hline" transform="translate(${h.position.x},${h.position.y})" >
         <line x1="0" y1="0" x2="${LINE_SPAN}" y2="0" />
+      </g>`
+  }, '')
+  svg += goals.reduce((result, next, idx) => {
+    return `${result}
+      <g id="players${idx}" transform="translate(${vLines[idx].position.x},0)" >
+        <text x1="0" y1="0" >${next.label}</text>
       </g>`
   }, '')
   svg += players.reduce((result, next, idx) => {
@@ -226,7 +241,7 @@ class HLinePos implements HLinePos {
     });
     function calcPath({ players, vLines } : Amida) {
       return players.map((p, idx) => {
-        p.path.push({ x: vLines[p.startVLineIdx].position.x, y: 0 });
+        p.path.push({ x: vLines[idx].position.x, y: 0 });
         const finIdx = (function setMidwayPathAndGetFinIdx(routeKey: string | null, i: number): number {
           if (!routeKey) return i;
           const hl = hLines[routeKey];
@@ -236,7 +251,7 @@ class HLinePos implements HLinePos {
           const nextVl = vLines[i+route.lr];
           p.path.push({ x: nextVl.position.x, y: hl.position.y });
           return setMidwayPathAndGetFinIdx(nextVl.routes[routeKey].nextKey, i+route.lr);
-        })(vLines[p.startVLineIdx].startRoute, idx);
+        })(vLines[idx].startRoute, idx);
         p.path.push({ x: vLines[finIdx].position.x, y: VLINE_HEIGHT });
         return p;
       });
@@ -268,7 +283,7 @@ class HLinePos implements HLinePos {
       const newVLine = new VLine({ position: { x: prevLastVLine.position.x + LINE_SPAN }, LINE_SPAN });
       amida.vLines.push(newVLine);
       const prevLastPlayersIdx = amida.players.length-1;
-      amida.players.push({ name: ''+amida.players.length, path: [], startVLineIdx: amida.players.length });
+      amida.players.push({ name: ''+amida.players.length, path: [] });
       amida.goals.push(String.fromCharCode(CHAR_A+goals.length) as never); //TODO why should I cast it to never?
       const lastVLineElm = document.getElementById('vline'+prevLastVLineIdx) as unknown as SVGElement;
       const cloneV = lastVLineElm.cloneNode(true) as SVGGElement;
