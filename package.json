@@ -4,6 +4,8 @@
   "description": "Amidakuji on the Web",
   "// main": "index.js",
   "scripts": {
+    "prenetlify": "mkdir -p ./demo/dist",
+    "netlify": "cp ./src/amida.css ./demo/dist && tsc --outDir ./demo/dist",
     "prewatch": "mkdir -p ./demo/dist",
     "watch": "cp ./src/amida.css ./demo/dist && tsc -w --outDir ./demo/dist",
     "test": "echo \"Error: no test specified\" && exit 1"
