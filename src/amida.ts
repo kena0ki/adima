@@ -387,14 +387,14 @@ class HLinePos implements HLinePos {
   })
 
   function draggablify(hLineElm: Element, amida: Amida) {
-    let pntrX = 0, pntrY = 0;
     hLineElm.addEventListener('mousedown', dragStart);
     function dragStart(mdEvt: MouseEvent) {
       if (mdEvt.button !== 0) return;
-      pntrX = +mdEvt.clientX;
-      pntrY = +mdEvt.clientY;
-      const key = ((mdEvt.target as Element).parentElement as Element).id;
+      const initialPointX = +mdEvt.clientX;
+      const initialPointY = +mdEvt.clientY;
+      const key = (mdEvt.currentTarget as Element).id;
       const hLine = amida.hLines[key];
+      const initialPosition = hLine.position;
       amida.activeVlineIdx = hLine.ownerIdx
       removeRoute(amida.vLines, hLine);
       global.log(JSON.parse(JSON.stringify(amida)));
@@ -404,17 +404,15 @@ class HLinePos implements HLinePos {
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
       document.addEventListener('mousemove', dragging);
       function dragging(mmEvt) {
-        const diffX = +mmEvt.clientX - pntrX;
-        const diffY = +mmEvt.clientY - pntrY;
-        pntrX = +mmEvt.clientX;
-        pntrY = +mmEvt.clientY;
+        const diffX = +mmEvt.clientX - initialPointX;
+        const diffY = +mmEvt.clientY - initialPointY;
         hLine.position = new HLinePos({
-          x: hLine.position.x + diffX,
-          y: hLine.position.y + diffY,
+          x: initialPosition.x + diffX,
+          y: initialPosition.y + diffY,
           VLINE_CONTENT_MIN_POS,
           VLINE_CONTENT_MAX_POS,
         })
-        const offsetFromAmidaLeft = hLineElm.getBoundingClientRect().left - (document.getElementById('amida-main-container') as Element).getBoundingClientRect().left;
+        const offsetFromAmidaLeft = hLineElm.getBoundingClientRect().left - (document.getElementById('vline0') as Element).getBoundingClientRect().left;
         if (offsetFromAmidaLeft < vLine.boundary.x1) {
           if (0 < hLine.ownerIdx) {
             hLine.ownerIdx--
