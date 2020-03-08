@@ -4,7 +4,7 @@
 .amida-container {
   padding: 1rem;
 }
-#indicator.inactive {
+#amida-indicator.inactive {
   display: none;
 }
 .amida-menu-container {
