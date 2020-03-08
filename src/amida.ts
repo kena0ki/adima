@@ -242,7 +242,7 @@ class HLinePos implements HLinePos {
       document.addEventListener('mousedown', clearCtxMenu)
     })
     const startElm = menuElm.children[0]
-    startElm.addEventListener('mousedown', () => { // TODO click event
+    startElm.addEventListener('mousedown', () => {
       if (amida.players[0].path.length > 0) return; // Already rendered result
       amida.players = calcPath(amida);
       (async function afn() {
@@ -295,7 +295,7 @@ class HLinePos implements HLinePos {
       return promise;
     }
     const addVLineElm = menuElm.children[1]
-    addVLineElm.addEventListener('mousedown', () => { // TODO click event
+    addVLineElm.addEventListener('mousedown', () => {
       const prevLastVLineIdx = amida.vLines.length-1;
       const prevLastVLine = amida.vLines[prevLastVLineIdx];
       const newVLine = new VLine({ position: { x: prevLastVLine.position.x + LINE_SPAN }, LINE_SPAN });
@@ -335,17 +335,16 @@ class HLinePos implements HLinePos {
       svgElm.setAttribute('width', '' + (LINE_SPAN*amida.vLines.length));
     })
     const addHLineElm = menuElm.children[2] as HTMLElement;
-    addHLineElm.addEventListener('mousedown', () => { // TODO click event
-      const baseClientRect = (document.getElementById('amida-main-container') as Element).getBoundingClientRect();
+    addHLineElm.addEventListener('mousedown', () => {
       const ownerIdx = (() => {
         const i = (amida.vLines.findIndex(v => {
-          return (menuElm.getBoundingClientRect().left - baseClientRect.left) < v.position.x
+          return (menuElm.getBoundingClientRect().left - (document.getElementById('vline0') as Element).getBoundingClientRect().left) < v.position.x
         }))
         const isLeftEnd = i === 0;
         const isRightEnd = i === -1;
         return isLeftEnd ? 0 : (isRightEnd ? amida.vLines.length - 2 : i - 1);
       })()
-      const y = menuElm.getBoundingClientRect().top - baseClientRect.top;
+      const y = menuElm.getBoundingClientRect().top - (document.getElementById('amida-main-container') as Element).getBoundingClientRect().top;
       const key = `hline${Date.now()}1`
       const newHLine: HLine = {
         key,
@@ -364,7 +363,7 @@ class HLinePos implements HLinePos {
       draggablify(clone, amida);
     })
     const clearElm = menuElm.children[3] as HTMLElement
-    clearElm.addEventListener('mousedown', () => { // TODO click event
+    clearElm.addEventListener('mousedown', () => {
       amida.players = amida.players.map(p => ({
         ...p,
         path: [],
