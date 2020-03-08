@@ -177,6 +177,7 @@ class HLinePos implements HLinePos {
         const h = hLines[next]
         return `${result}
         <g id="${h.key}" class="hline" transform="translate(${h.position.x},${h.position.y})" >
+          <rect width="${LINE_SPAN}" height="20" fill="transparent" />
           <line x1="0" y1="0" x2="${LINE_SPAN}" y2="0" />
         </g>`
       }, '')
@@ -383,15 +384,17 @@ class HLinePos implements HLinePos {
     document.querySelectorAll('[id^="hline"]').forEach(function(n) {
       draggablify(n as Element, amida)
     })
+    draggablify2(document.getElementById('drag') as Element);
   })
 
   function draggablify(hLineElm: Element, amida: Amida) {
     hLineElm.addEventListener('mousedown', dragStart);
-    function dragStart(mdEvt: MouseEvent) {
-      if (mdEvt.button !== 0) return;
-      const initialPointX = +mdEvt.clientX;
-      const initialPointY = +mdEvt.clientY;
-      const key = (mdEvt.currentTarget as Element).id;
+    hLineElm.addEventListener('touchstart', dragStart);
+    function dragStart(strtEvt: MouseEvent | TouchEvent) {
+      if (strtEvt instanceof MouseEvent &&  strtEvt.button !== 0) return;
+      const initialPointX = strtEvt instanceof MouseEvent ? strtEvt.clientX : strtEvt.touches[0].clientX;
+      const initialPointY = strtEvt instanceof MouseEvent ? strtEvt.clientY : strtEvt.touches[0].clientY;
+      const key = (strtEvt.currentTarget as Element).id;
       const hLine = amida.hLines[key];
       const initialPosition = hLine.position;
       amida.activeVlineIdx = hLine.ownerIdx
@@ -402,9 +405,11 @@ class HLinePos implements HLinePos {
       indicator.setAttribute('class', 'active');
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
       document.addEventListener('mousemove', dragging);
-      function dragging(mmEvt) {
-        const diffX = +mmEvt.clientX - initialPointX;
-        const diffY = +mmEvt.clientY - initialPointY;
+      document.addEventListener('touchmove', dragging);
+      function dragging(mvEvt: MouseEvent | TouchEvent) {
+        global.log(mvEvt);
+        const diffX = (mvEvt instanceof MouseEvent ? mvEvt.clientX : mvEvt.touches[0].clientX) - initialPointX;
+        const diffY = (mvEvt instanceof MouseEvent ? mvEvt.clientY : mvEvt.touches[0].clientY) - initialPointY;
         hLine.position = new HLinePos({
           x: initialPosition.x + diffX,
           y: initialPosition.y + diffY,
@@ -440,9 +445,12 @@ class HLinePos implements HLinePos {
         }
       }
       document.addEventListener('mouseup', dragEnd)
+      document.addEventListener('touchend', dragEnd)
       function dragEnd() {
         document.removeEventListener('mousemove', dragging)
+        document.removeEventListener('touchmove', dragging)
         document.removeEventListener('mouseup', dragEnd)
+        document.removeEventListener('touchend', dragEnd)
         if (amida.activeVlineIdx === NO_INDICATOR) {
           delete amida.hLines[key];
           (hLineElm.parentNode as Node).removeChild(hLineElm);
@@ -481,9 +489,6 @@ class HLinePos implements HLinePos {
          * After:
          *  [Start] -> |newKey| -> |currentKey|
          */
-        global.log('first.vl', JSON.parse(JSON.stringify(vl)));
-        global.log('first.newHLine.key', newHLine.key);
-        global.log('first.prevKey', null);
         vl.startRoute = newHLine.key;
         vl.routes[currentKey].prevKey = newHLine.key;
         vl.routes[newHLine.key] = { nextKey: currentKey, prevKey: null, lr };
@@ -495,9 +500,6 @@ class HLinePos implements HLinePos {
          * After:
          *  |currentKey| -> |newKey| -> [End]
          */
-        global.log('last.vl', JSON.parse(JSON.stringify(vl)));
-        global.log('last.newHLine.key', newHLine.key);
-        global.log('last.currentKey', currentKey);
         vl.routes[newHLine.key] = { nextKey: null, prevKey: currentKey, lr };
         currentRoute.nextKey = newHLine.key;
         return;
@@ -508,9 +510,6 @@ class HLinePos implements HLinePos {
          * After:
          *  |currentKey| -> |newKey| -> |nextKey|
          */
-        global.log('middle.vl', JSON.parse(JSON.stringify(vl)));
-        global.log('middle.newHLine.key', newHLine.key);
-        global.log('middle.currentKey', currentKey);
         vl.routes[currentRoute.nextKey].prevKey = newHLine.key;
         vl.routes[newHLine.key] = { nextKey: currentRoute.nextKey, prevKey: currentKey, lr };
         currentRoute.nextKey = newHLine.key;
@@ -535,5 +534,31 @@ class HLinePos implements HLinePos {
     if (isProduction) global.log = () => {};
     else global.log = console.log;
   }
+  function draggablify2(elm: Element) {
+    elm.addEventListener('mousedown', dragStart);
+    elm.addEventListener('touchstart', dragStart);
+    function dragStart(strtEvt: MouseEvent | TouchEvent) {
+      if (strtEvt instanceof MouseEvent &&  strtEvt.button !== 0) return;
+      const initialPointX = strtEvt instanceof MouseEvent ? strtEvt.clientX : strtEvt.touches[0].clientX;
+      const initialPointY = strtEvt instanceof MouseEvent ? strtEvt.clientY : strtEvt.touches[0].clientY;
+      document.addEventListener('mousemove', dragging);
+      document.addEventListener('touchmove', dragging);
+      function dragging(mvEvt: MouseEvent | TouchEvent) {
+        global.log(mvEvt);
+        const diffX = (mvEvt instanceof MouseEvent ? mvEvt.clientX : mvEvt.touches[0].clientX) - initialPointX;
+        const diffY = (mvEvt instanceof MouseEvent ? mvEvt.clientY : mvEvt.touches[0].clientY) - initialPointY;
+        elm.setAttribute('transform', `translate(${initialPointX + diffX},${initialPointY + diffY})`)
+      }
+      document.addEventListener('mouseup', dragEnd)
+      document.addEventListener('touchend', dragEnd)
+      function dragEnd() {
+        document.removeEventListener('mousemove', dragging)
+        document.removeEventListener('touchmove', dragging)
+        document.removeEventListener('mouseup', dragEnd)
+        document.removeEventListener('touchend', dragEnd)
+      }
+    }
+  }
 })(Function('return this')())
+
 
