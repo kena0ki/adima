@@ -8,13 +8,14 @@
     "netlify": "cp ./src/amida.css ./demo/dist && tsc --outDir ./demo/dist",
     "prewatch": "mkdir -p ./demo/dist",
     "watch": "cp ./src/amida.css ./demo/dist && tsc -w --outDir ./demo/dist",
+    "serve": "npx ts-node ./script/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kena0ki/amida.git"
   },
-  "author": "",
+  "author": "@kena0ki",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kena0ki/amida/issues"
@@ -22,9 +23,11 @@
   "homepage": "https://github.com/kena0ki/amida#readme",
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^13.9.0",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
     "eslint": "^6.8.0",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   }
 }
