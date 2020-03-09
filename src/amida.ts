@@ -384,13 +384,15 @@ class HLinePos implements HLinePos {
     document.querySelectorAll('[id^="hline"]').forEach(function(n) {
       draggablify(n as Element, amida)
     })
-    draggablify2(document.getElementById('drag') as Element);
+    draggablify2(document.getElementById('drag') as HTMLElement);
+    draggablify2(document.getElementById('drag2') as HTMLElement);
   })
 
   function draggablify(hLineElm: Element, amida: Amida) {
-    hLineElm.addEventListener('mousedown', dragStart);
+    // hLineElm.addEventListener('mousedown', dragStart);
     hLineElm.addEventListener('touchstart', dragStart);
     function dragStart(strtEvt: MouseEvent | TouchEvent) {
+      global.log('strtEvt', strtEvt);
       if (strtEvt instanceof MouseEvent &&  strtEvt.button !== 0) return;
       const initialPointX = strtEvt instanceof MouseEvent ? strtEvt.clientX : strtEvt.touches[0].clientX;
       const initialPointY = strtEvt instanceof MouseEvent ? strtEvt.clientY : strtEvt.touches[0].clientY;
@@ -399,15 +401,14 @@ class HLinePos implements HLinePos {
       const initialPosition = hLine.position;
       amida.activeVlineIdx = hLine.ownerIdx
       removeRoute(amida.vLines, hLine);
-      global.log(JSON.parse(JSON.stringify(amida)));
       let vLine = amida.vLines[hLine.ownerIdx];
       const indicator = document.getElementById('amida-indicator') as Element;
       indicator.setAttribute('class', 'active');
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
-      document.addEventListener('mousemove', dragging);
+      // document.addEventListener('mousemove', dragging);
       document.addEventListener('touchmove', dragging);
       function dragging(mvEvt: MouseEvent | TouchEvent) {
-        global.log(mvEvt);
+        global.log('mvEvt', mvEvt);
         const diffX = (mvEvt instanceof MouseEvent ? mvEvt.clientX : mvEvt.touches[0].clientX) - initialPointX;
         const diffY = (mvEvt instanceof MouseEvent ? mvEvt.clientY : mvEvt.touches[0].clientY) - initialPointY;
         hLine.position = new HLinePos({
@@ -444,12 +445,13 @@ class HLinePos implements HLinePos {
           indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.adjustedY})`)
         }
       }
-      document.addEventListener('mouseup', dragEnd)
+      // document.addEventListener('mouseup', dragEnd)
       document.addEventListener('touchend', dragEnd)
       function dragEnd() {
-        document.removeEventListener('mousemove', dragging)
+        global.log('dragEnd');
+        // document.removeEventListener('mousemove', dragging)
         document.removeEventListener('touchmove', dragging)
-        document.removeEventListener('mouseup', dragEnd)
+        // document.removeEventListener('mouseup', dragEnd)
         document.removeEventListener('touchend', dragEnd)
         if (amida.activeVlineIdx === NO_INDICATOR) {
           delete amida.hLines[key];
@@ -460,7 +462,6 @@ class HLinePos implements HLinePos {
           hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
           indicator.setAttribute('class', 'inactive')
         }
-        global.log(JSON.parse(JSON.stringify(amida)));
       }
     }
   }
@@ -534,24 +535,33 @@ class HLinePos implements HLinePos {
     if (isProduction) global.log = () => {};
     else global.log = console.log;
   }
-  function draggablify2(elm: Element) {
+  function draggablify2(elm: HTMLElement) {
     elm.addEventListener('mousedown', dragStart);
     elm.addEventListener('touchstart', dragStart);
+    let offsetX = 0, offsetY = 0; 
     function dragStart(strtEvt: MouseEvent | TouchEvent) {
+      global.log('dragStart:', strtEvt);
       if (strtEvt instanceof MouseEvent &&  strtEvt.button !== 0) return;
-      const initialPointX = strtEvt instanceof MouseEvent ? strtEvt.clientX : strtEvt.touches[0].clientX;
-      const initialPointY = strtEvt instanceof MouseEvent ? strtEvt.clientY : strtEvt.touches[0].clientY;
+      const initialPointX = (strtEvt instanceof MouseEvent ? strtEvt.clientX : strtEvt.touches[0].clientX) - offsetX;
+      const initialPointY = (strtEvt instanceof MouseEvent ? strtEvt.clientY : strtEvt.touches[0].clientY) - offsetY;
       document.addEventListener('mousemove', dragging);
       document.addEventListener('touchmove', dragging);
       function dragging(mvEvt: MouseEvent | TouchEvent) {
-        global.log(mvEvt);
+        global.log('dragging:', mvEvt);
+        mvEvt.preventDefault();
         const diffX = (mvEvt instanceof MouseEvent ? mvEvt.clientX : mvEvt.touches[0].clientX) - initialPointX;
         const diffY = (mvEvt instanceof MouseEvent ? mvEvt.clientY : mvEvt.touches[0].clientY) - initialPointY;
-        elm.setAttribute('transform', `translate(${initialPointX + diffX},${initialPointY + diffY})`)
+        global.log('initial:', initialPointX, initialPointY)
+        global.log('diff:', diffX, diffY)
+        elm.setAttribute('transform', `translate(${diffX},${diffY})`)
+        elm.style.transform = "translate3d(" + diffX + "px, " + diffY + "px, 0)";
       }
       document.addEventListener('mouseup', dragEnd)
       document.addEventListener('touchend', dragEnd)
-      function dragEnd() {
+      function dragEnd(endEvt) {
+        global.log('dragEnd', endEvt);
+        offsetX = (endEvt instanceof MouseEvent ? endEvt.clientX : endEvt.changedTouches[0].clientX) - initialPointX;
+        offsetY = (endEvt instanceof MouseEvent ? endEvt.clientY : endEvt.changedTouches[0].clientY) - initialPointY;
         document.removeEventListener('mousemove', dragging)
         document.removeEventListener('touchmove', dragging)
         document.removeEventListener('mouseup', dragEnd)
