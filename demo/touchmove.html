@@ -55,76 +55,77 @@
     var svgContainer = document.getElementById('svg-container');
     var svgDragee = document.getElementById('svg-dragee');
     var dragFuncs1 = new DragFuncs(svgDragee);
-    svgContainer.addEventListener("touchstart", dragFuncs1.dragStart, false);
-    svgContainer.addEventListener("touchend", dragFuncs1.dragEnd, false);
-    svgContainer.addEventListener("touchmove", dragFuncs1.drag, false);
+    svgContainer.addEventListener("touchstart", dragFuncs1.dragStart.bind(dragFuncs1), false);
+    svgContainer.addEventListener("touchend", dragFuncs1.dragEnd.bind(dragFuncs1), false);
+    svgContainer.addEventListener("touchmove", dragFuncs1.drag.bind(dragFuncs1), false);
+
+    svgContainer.addEventListener("mousedown", dragFuncs1.dragStart.bind(dragFuncs1), false);
+    svgContainer.addEventListener("mouseup", dragFuncs1.dragEnd.bind(dragFuncs1), false);
+    svgContainer.addEventListener("mousemove", dragFuncs1.drag.bind(dragFuncs1), false);
 
     var dragItem = document.querySelector("#item");
     var dragFuncs2 = new DragFuncs(dragItem);
     var container = document.querySelector("#container");
 
-    var active = false;
-    var currentX;
-    var currentY;
-    var initialX;
-    var initialY;
-    var xOffset = 0;
-    var yOffset = 0;
+    container.addEventListener("touchstart", dragFuncs2.dragStart.bind(dragFuncs2), false);
+    container.addEventListener("touchend", dragFuncs2.dragEnd.bind(dragFuncs2), false);
+    container.addEventListener("touchmove", dragFuncs2.drag.bind(dragFuncs2), false);
 
-    container.addEventListener("touchstart", dragFuncs2.dragStart, false);
-    container.addEventListener("touchend", dragFuncs2.dragEnd, false);
-    container.addEventListener("touchmove", dragFuncs2.drag, false);
-
-    container.addEventListener("mousedown", dragFuncs2.dragStart, false);
-    container.addEventListener("mouseup", dragFuncs2.dragEnd, false);
-    container.addEventListener("mousemove", dragFuncs2.drag, false);
+    container.addEventListener("mousedown", dragFuncs2.dragStart.bind(dragFuncs2), false);
+    container.addEventListener("mouseup", dragFuncs2.dragEnd.bind(dragFuncs2), false);
+    container.addEventListener("mousemove", dragFuncs2.drag.bind(dragFuncs2), false);
 
     function DragFuncs(dragItem) {
-        this.dragStart = function (e) {
-            console.log('dragStart', e)
-            if (e.type === "touchstart") {
-                initialX = e.touches[0].clientX - xOffset;
-                initialY = e.touches[0].clientY - yOffset;
-            } else {
-                initialX = e.clientX - xOffset;
-                initialY = e.clientY - yOffset;
-            }
+      this.initialX;
+      this.initialY;
+      this.active = false;
+      this.xOffset = 0;
+      this.yOffset = 0;
 
-            if (e.target === dragItem) {
-                active = true;
-            }
+      this.dragStart = function (e) {
+        console.log('dragStart', e)
+        if (e.type === "touchstart") {
+          this.initialX = e.touches[0].clientX - this.xOffset;
+          this.initialY = e.touches[0].clientY - this.yOffset;
+        } else {
+          this.initialX = e.clientX - this.xOffset;
+          this.initialY = e.clientY - this.yOffset;
         }
 
-        this.dragEnd = function(e) {
-            console.log('dragEnd', e)
-
-            active = false;
+        if (e.target === dragItem) {
+          this.active = true;
         }
+      }
 
-        this.drag = function(e) {
-            console.log('drag', e)
-            if (active) {
-            
-                e.preventDefault();
-            
-                if (e.type === "touchmove") {
-                currentX = e.touches[0].clientX - initialX;
-                currentY = e.touches[0].clientY - initialY;
-                } else {
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                }
+      this.dragEnd = function(e) {
+        console.log('dragEnd', e)
+        this.active = false;
+      }
 
-                xOffset = currentX;
-                yOffset = currentY;
+      this.drag = function(e) {
+        console.log('drag', e)
+        if (this.active) {
+          e.preventDefault();
+          var currentX;
+          var currentY;
+          if (e.type === "touchmove") {
+            currentX = e.touches[0].clientX - this.initialX;
+            currentY = e.touches[0].clientY - this.initialY;
+          } else {
+          currentX = e.clientX - this.initialX;
+          currentY = e.clientY - this.initialY;
+          }
 
-                setTranslate(currentX, currentY, dragItem);
-            }
+          this.xOffset = currentX;
+          this.yOffset = currentY;
+
+          setTranslate(currentX, currentY, dragItem);
         }
+      }
 
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        }
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+      }
     }
   </script>
 </body>
