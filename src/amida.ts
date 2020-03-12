@@ -387,11 +387,12 @@ class HLinePos implements HLinePos {
 
   function draggablify(hLineElm: Element, amida: Amida) {
     hLineElm.addEventListener('mousedown', dragStart);
-    function dragStart(mdEvt: MouseEvent) {
-      if (mdEvt.button !== 0) return;
-      const initialPointX = +mdEvt.clientX;
-      const initialPointY = +mdEvt.clientY;
-      const key = (mdEvt.currentTarget as Element).id;
+    hLineElm.addEventListener('touchstart', dragStart, {passive: true});
+    function dragStart(strtEvt: MouseEvent | TouchEvent) {
+      if (strtEvt instanceof MouseEvent && strtEvt.button !== 0) return;
+      const initialPointX = (strtEvt instanceof MouseEvent ? strtEvt.clientX : strtEvt.touches[0].clientX);
+      const initialPointY = (strtEvt instanceof MouseEvent ? strtEvt.clientY : strtEvt.touches[0].clientY);
+      const key = (strtEvt.currentTarget as Element).id;
       const hLine = amida.hLines[key];
       const initialPosition = hLine.position;
       amida.activeVlineIdx = hLine.ownerIdx
@@ -402,9 +403,11 @@ class HLinePos implements HLinePos {
       indicator.setAttribute('class', 'active');
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
       document.addEventListener('mousemove', dragging);
-      function dragging(mmEvt) {
-        const diffX = +mmEvt.clientX - initialPointX;
-        const diffY = +mmEvt.clientY - initialPointY;
+      document.addEventListener('touchmove', dragging, {passive: false});
+      function dragging(mvEvt: MouseEvent | TouchEvent) {
+        mvEvt.preventDefault();
+        const diffX = (mvEvt instanceof MouseEvent ? mvEvt.clientX : mvEvt.touches[0].clientX) - initialPointX;
+        const diffY = (mvEvt instanceof MouseEvent ? mvEvt.clientY : mvEvt.touches[0].clientY) - initialPointY;
         hLine.position = new HLinePos({
           x: initialPosition.x + diffX,
           y: initialPosition.y + diffY,
@@ -440,9 +443,12 @@ class HLinePos implements HLinePos {
         }
       }
       document.addEventListener('mouseup', dragEnd)
+      document.addEventListener('touchend', dragEnd)
       function dragEnd() {
         document.removeEventListener('mousemove', dragging)
+        document.removeEventListener('touchmove', dragging)
         document.removeEventListener('mouseup', dragEnd)
+        document.removeEventListener('touchend', dragEnd)
         if (amida.activeVlineIdx === NO_INDICATOR) {
           delete amida.hLines[key];
           (hLineElm.parentNode as Node).removeChild(hLineElm);
