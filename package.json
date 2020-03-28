@@ -8,7 +8,7 @@
     "netlify": "cp ./src/amida.css ./demo/dist && tsc --outDir ./demo/dist",
     "prewatch": "mkdir -p ./demo/dist",
     "watch": "cp ./src/amida.css ./demo/dist && tsc -w --outDir ./demo/dist",
-    "serve": "npx ts-node ./script/server.ts",
+    "serve": "npx ts-node -P ./script/tsconfig.json ./script/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

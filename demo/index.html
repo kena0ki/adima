@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>amida</title>
   <link rel="stylesheet" href="./dist/amida.css" >
-  <script type="text/javascript" src="./dist/amida.js" ></script>
 </head>
 <body>
 <div style="display:flex;" >
@@ -17,6 +16,13 @@
 <hr/>
 <div id="root" class="amida-container">
 </div>
+<script type="module" >
+  import Amida from './dist/amida.js';
+  const amida = new Amida();
+  document.addEventListener('DOMContentLoaded', function() {
+    amida.init();
+  });
+</script>
 </body>
 </html>
 

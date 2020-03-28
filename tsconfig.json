@@ -4,6 +4,7 @@
     "target": "es5",
     "strictNullChecks": true,
     "outDir": "./dist",
+    "module": "ES6",
     // "strict": true,
     // "diagnostics": true,
   },

@@ -2,13 +2,22 @@ import * as http from 'http';
 import * as fs from 'fs';
 import * as path from 'path';
 
+const contentTypes = {
+  js: 'text/javascript; charset=UTF-8',
+  svg: 'image/svg+xml',
+}
+
 const PORT = 8080;
 http.createServer(function (req, res) {
   const reqUrl = req.url || '';
-  const reqFile = /js$|css$|svg$|html$/.test(reqUrl) ? path.join(__dirname, '../demo', reqUrl) :
+  const found = reqUrl.match(/\.(.*?)$/);
+  const ext = found && found[1] || '';
+  const reqFile = /js|css|svg|html/.test(ext) ? path.join(__dirname, '../demo', reqUrl) :
                   req.url === '/' ? path.join(__dirname, '../demo/index.html') :
                   null;
+  console.log('ext:', ext);
   let resCode;
+  // TODO isDevelopment
   if (reqFile) {
     fs.readFile(reqFile, function (err, data) {
       if (err) {
@@ -17,11 +26,7 @@ http.createServer(function (req, res) {
         res.end(JSON.stringify(err));
       } else {
         resCode = 200;
-        if (/svg$/.test(reqUrl)) {
-          res.writeHead(resCode, { 'Content-Type': 'image/svg+xml' });
-        } else {
-          res.writeHead(resCode);
-        }
+        res.writeHead(resCode, { 'Content-Type': contentTypes[ext] || '' });
         res.end(data);
       }
       console.log(reqUrl, resCode);
