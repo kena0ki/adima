@@ -158,6 +158,25 @@ class Amida {
     });
     let svg = `
     <svg id="amida-svg" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight+this.HEADER_HEIGHT+this.FOOTER_HEIGHT+this.MARGIN_Y}" xmlns="${this.SVG_NAMESPACE}" >
+      <style>
+        .hline {
+          cursor: grab;
+        }
+        .amida-menu-container {
+          box-shadow: 1px 1px 15px rgba(0,0,0,.2);
+          border: solid 1px rgba(0,0,0,.2);
+          display: inline-block;
+          background: white;
+          position: absolute;
+        }
+        .amida-menu-item {
+          padding: .2em .4em;
+        }
+        .amida-menu-item:hover {
+          background-color: rgba(0,0,0,.1);
+          cursor: pointer;
+        }
+      </style>
       <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(${this.LINE_SPAN/2}, ${this.MARGIN_Y/2})" >`
       svg += `
         <g id="amida-player-container" >`
@@ -192,7 +211,7 @@ class Amida {
           </g>`
         }, '')
         svg += `
-          <g id="amida-indicator" class="inactive" >
+          <g id="amida-indicator" style="display: none" >
             <circle r="4" fill="blue" stroke="none" />
           </g>`
       svg += `
@@ -404,7 +423,7 @@ class Amida {
       self.removeRoute(self.data.vLines, hLine);
       logger.log(JSON.parse(JSON.stringify(self.data)));
       let vLine = self.data.vLines[hLine.ownerIdx];
-      const indicator = document.getElementById('amida-indicator') as Element;
+      const indicator = document.getElementById('amida-indicator') as unknown as SVGElement;
       indicator.setAttribute('class', 'active');
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
       document.addEventListener('mousemove', dragging);
@@ -441,9 +460,9 @@ class Amida {
         }
         hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
         if (self.data.activeVlineIdx === self.NO_INDICATOR) {
-          indicator.setAttribute('class', 'inactive')
+          indicator.style.display = 'none';
         } else {
-          indicator.setAttribute('class', 'active')
+          indicator.style.display = '';
           indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.adjustedY})`)
         }
       }
@@ -461,7 +480,7 @@ class Amida {
           hLine.position.y = hLine.position.adjustedY;
           self.addRoute(self.data.vLines, hLine, self.data.hLines); // old route is already removed at mousedown, so just add it
           hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
-          indicator.setAttribute('class', 'inactive')
+          indicator.style.display = 'none';
         }
         logger.log(JSON.parse(JSON.stringify(self.data)));
       }
