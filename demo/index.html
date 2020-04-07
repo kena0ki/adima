@@ -4,24 +4,50 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>amida</title>
+  <link href="./index.css" rel="stylesheet" type="text/css">
+  <script type="module" src="./build/index.js" ></script>
+<style>
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #ffd485;
+  color: white;
+  padding: 1rem 0;
+}
+.header {
+  margin: auto .5rem;
+}
+.footer {
+  background-color: #ffd485;
+  color: white;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+</style>
 </head>
 <body>
-<div style="display:flex;" >
+<div class="header-container" >
   <a href="https://github.com/kena0ki/amida" >
     <img src="./assets/GitHub-Mark.svg" />
   </a>
-  <h2 style="margin: auto .5rem" >amida</h2>
+  <h2 class="header" >Amida</h2>
 </div>
-<hr/>
-<div id="root" class="amida-container">
-</div>
-<script type="module" >
-  import Amida from './dist/amida.js';
-  const amida = new Amida();
-  document.addEventListener('DOMContentLoaded', function() {
-    amida.init();
-  });
-</script>
+<div id="root" class="amida-container"></div>
+<div class="footer" >Copyright kena0ki</div>
 </body>
 </html>
 

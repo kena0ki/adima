@@ -75,7 +75,8 @@ class HLinePos implements HLinePos {
 
 class Amida {
 
-  constructor() {
+  constructor(targetElm: Element) {
+    this.targetElm = targetElm;
     this.menuItems = {
       'Start': this.startAmida,
       'Add a virtical line': this.addVLine,
@@ -107,6 +108,7 @@ class Amida {
     'PURPLE',
     'GRAY',
   ];
+  private targetElm: Element;
   private readonly SVG_NAMESPACE = "http://www.w3.org/2000/svg";
   private readonly NO_INDICATOR = -1;
   private readonly VLINE_MARGIN_HEIGHT_RATIO = .1;
@@ -238,12 +240,11 @@ class Amida {
       </div>`, '')}
     </div>`
 
-    const rootElm = document.getElementById('root') as Element;
-    rootElm.innerHTML = svg + menu;
+    this.targetElm.innerHTML = svg + menu;
     this.data = {
       vLines,
       hLines,
-      innerHTML: rootElm.innerHTML,
+      innerHTML: this.targetElm.innerHTML,
       activeVlineIdx: this.NO_INDICATOR,
       players,
       goals,

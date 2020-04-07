@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as http from 'http';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -5,6 +7,7 @@ import * as path from 'path';
 const contentTypes = {
   js: 'text/javascript; charset=UTF-8',
   svg: 'image/svg+xml',
+  css: 'text/css; charset=UTF-8',
 }
 
 const PORT = 8080;

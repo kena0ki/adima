@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext", "dom"],
+    "target": "es5",
+    "strictNullChecks": true,
+    "module": "ES6",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    // "strict": true,
+    // "diagnostics": true,
+  },
+  "include": []
+}

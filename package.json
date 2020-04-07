@@ -4,11 +4,18 @@
   "description": "Amidakuji on the Web",
   "// main": "index.js",
   "scripts": {
-    "prenetlify": "mkdir -p ./demo/dist",
-    "netlify": "cp ./src/amida.css ./demo/dist && tsc --outDir ./demo/dist",
-    "prewatch": "mkdir -p ./demo/dist",
-    "watch": "cp ./src/amida.css ./demo/dist && tsc -w --outDir ./demo/dist",
+    "build:lib": "tsc -b ./src/",
+    "postbuild:lib": "rm -rf ./demo/dist/ && cp -pr ./dist ./demo",
+    "prebuild:demo": "mkdir -p demo/build/",
+    "build:demo": "tsc -b ./demo/",
+    "build": "npm run build:lib && npm run build:demo",
+    "watch:lib": "watch \"npm run build:lib\" ./src",
+    "prewatch:demo": "npm run build:lib",
+    "watch:demo": "watch \"npm run build:demo\" ./demo -p /build\\|dist/",
+    "watch": "concurrently -c green,yellow npm:watch:lib npm:watch:demo",
     "serve": "npx ts-node -P ./script/tsconfig.json ./script/server.ts",
+    "// watch:serve": "watch \"npm run serve\" ./script",
+    "start": "concurrently -c green,yellow,blue  npm:serve npm:watch:lib npm:watch:demo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,8 +33,11 @@
     "@types/node": "^13.9.5",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "chokidar": "^3.3.1",
+    "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
     "ts-node": "^8.8.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "watch": "kena0ki/watch"
   }
 }
