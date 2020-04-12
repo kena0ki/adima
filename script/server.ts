@@ -13,9 +13,8 @@ const contentTypes = {
 const PORT = 8080;
 http.createServer(function (req, res) {
   const reqUrl = req.url || '';
-  const found = reqUrl.match(/\.(.*?)$/);
-  const ext = found && found[1] || '';
-  const reqFile = /js|css|svg|html/.test(ext) ? path.join(__dirname, '../demo', reqUrl) :
+  const [,ext=''] = reqUrl.match(/\.(.*?)$/) || [];
+  const reqFile = /js|css|svg|html|ts/.test(ext) ? path.join(__dirname, '../demo', reqUrl) :
                   req.url === '/' ? path.join(__dirname, '../demo/index.html') :
                   null;
   console.log('ext:', ext);

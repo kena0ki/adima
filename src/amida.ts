@@ -140,7 +140,7 @@ class Amida {
       const timestamp = Date.now()
       for(let i=0, j=0; i<this.hLinesNum; i++, j++) {
         if (j >= this.vLinesNum - 1) j = 0;
-        const key = 'hline' + timestamp + i
+        const key = 'amida-hline' + timestamp + i
         const y = Math.floor(Math.random() * this.vLineContentHeight) + (this.vLineContentMinPos);
         const newHLine = {
           key,
@@ -161,7 +161,7 @@ class Amida {
     let svg = `
     <svg id="amida-svg" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight+this.HEADER_HEIGHT+this.FOOTER_HEIGHT+this.MARGIN_Y}" xmlns="${this.SVG_NAMESPACE}" >
       <style>
-        .hline {
+        .amida-hline {
           cursor: grab;
         }
         .amida-menu-container {
@@ -184,7 +184,7 @@ class Amida {
         <g id="amida-player-container" >`
         svg += players.reduce((result, next, idx) => {
           return `${result}
-          <svg id="player${idx}" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="0" width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
+          <svg id="amida-player${idx}" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="0" width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
             <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.name}</text>
           </svg>`
         }, '')
@@ -195,21 +195,21 @@ class Amida {
           <rect id="amida-bg-rect" x="-${this.LINE_SPAN/2}" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight}" stroke="none" fill="transparent" />` // In order for player's texts not to be selected while HLine being dragged
         svg += vLines.reduce((result, next, idx) => {
           return `${result}
-          <g id="vline${idx}" transform="translate(${next.position.x},0)" >
+          <g id="amida-vline${idx}" transform="translate(${next.position.x},0)" >
             <line x1="0" y1="0" x2="0" y2="${this.vLineHeight}" />
           </g>`
         }, '')
         svg += Object.keys(hLines).reduce((result, next) => {
           const h = hLines[next]
           return `${result}
-          <g id="${h.key}" class="hline" transform="translate(${h.position.x},${h.position.y})" >
+          <g id="${h.key}" class="amida-hline" transform="translate(${h.position.x},${h.position.y})" >
             <line x1="0" y1="0" x2="${this.LINE_SPAN}" y2="0" />
           </g>`
         }, '')
         svg += players.reduce((result, next, idx) => { // path
           return `${result}
-          <g id="player${idx}-path-container">
-            <path id="player${idx}-path" fill="transparent"/>
+          <g id="amida-player${idx}-path-container">
+            <path id="amida-player${idx}-path" fill="transparent"/>
           </g>`
         }, '')
         svg += `
@@ -222,7 +222,7 @@ class Amida {
         <g id="amida-goal-container" transform="translate(0, ${this.HEADER_HEIGHT})" >`  // TODO why don't we have to add this.vLineHeight?
         svg += goals.reduce((result, next, idx) => {
           return `${result}
-          <svg id="goal${idx}" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="${this.vLineHeight}" width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
+          <svg id="amida-goal${idx}" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="${this.vLineHeight}" width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
             <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.label}</text>
           </svg>`
         }, '')
@@ -268,7 +268,7 @@ class Amida {
       menuElm.children[idx].addEventListener('mousedown', func);
     });
 
-    document.querySelectorAll('[id^="hline"]').forEach((n) => {
+    document.querySelectorAll('[id^="amida-hline"]').forEach((n) => {
       this.draggablify(n as Element);
     })
   };
@@ -281,31 +281,31 @@ class Amida {
     this.data.players.push({ name: ''+(this.data.players.length+1), path: [] });
     const prevLastGoalIdx = this.data.goals.length-1;
     this.data.goals.push({ label: String.fromCharCode(this.CHAR_A+this.data.goals.length) });
-    const lastVLineElm = document.getElementById('vline'+prevLastVLineIdx) as unknown as SVGElement;
+    const lastVLineElm = document.getElementById('amida-vline'+prevLastVLineIdx) as unknown as SVGElement;
     const vLineClone = lastVLineElm.cloneNode(true) as SVGGElement;
-    vLineClone.id = 'vline' + (this.data.vLines.length-1);
+    vLineClone.id = 'amida-vline' + (this.data.vLines.length-1);
     vLineClone.setAttribute('transform', `translate(${newVLine.position.x}, 0)`);
     (lastVLineElm.parentNode as Node).insertBefore(vLineClone, lastVLineElm.nextSibling);
-    const lastPlayerElm = document.getElementById(`player${prevLastPlayerIdx}`) as Element;
+    const lastPlayerElm = document.getElementById(`amida-player${prevLastPlayerIdx}`) as Element;
     const playerClone = lastPlayerElm.cloneNode(true) as SVGGElement;
     const playerTxtElm = playerClone.querySelector('text') as SVGTextElement;
     playerTxtElm.textContent = this.data.players[this.data.players.length-1].name;
-    playerClone.id = `player${this.data.players.length-1}`;
+    playerClone.id = `amida-player${this.data.players.length-1}`;
     playerClone.setAttribute('x', ''+(newVLine.position.x-this.LINE_SPAN/2));
     playerClone.removeAttribute('stroke');
     (lastPlayerElm.parentNode as Node).insertBefore(playerClone, lastPlayerElm.nextSibling);
-    const lastGoalElm = document.getElementById(`goal${prevLastGoalIdx}`) as Element;
+    const lastGoalElm = document.getElementById(`amida-goal${prevLastGoalIdx}`) as Element;
     const goalClone = lastGoalElm.cloneNode(true) as SVGGElement;
     const goalTxtElm = goalClone.querySelector('text') as SVGTextElement;
     goalTxtElm.textContent = this.data.goals[this.data.goals.length-1].label;
-    goalClone.id = `goal${this.data.goals.length-1}`;
+    goalClone.id = `amida-goal${this.data.goals.length-1}`;
     goalClone.setAttribute('x', ''+(newVLine.position.x-this.LINE_SPAN/2));
     goalClone.removeAttribute('stroke');
     (lastGoalElm.parentNode as Node).insertBefore(goalClone, lastGoalElm.nextSibling);
-    const lastPathContainerElm = document.getElementById(`player${prevLastPlayerIdx}-path-container`) as Element;
+    const lastPathContainerElm = document.getElementById(`amida-player${prevLastPlayerIdx}-path-container`) as Element;
     const pathClone = lastPathContainerElm.cloneNode(true) as SVGGElement;
-    pathClone.id = `player${this.data.players.length-1}-path-container`;
-    pathClone.children[0].id = `player${this.data.players.length-1}-path`;
+    pathClone.id = `amida-player${this.data.players.length-1}-path-container`;
+    pathClone.children[0].id = `amida-player${this.data.players.length-1}-path`;
     (lastPathContainerElm.parentNode as Node).insertBefore(pathClone, lastPathContainerElm.nextSibling);
     const amidaRectElm = document.getElementById('amida-bg-rect') as Element;
     amidaRectElm.setAttribute('width', '' + (this.LINE_SPAN*this.data.vLines.length));
@@ -316,7 +316,7 @@ class Amida {
     const menuElm = document.getElementById('amida-menu') as HTMLElement;
     const ownerIdx = (() => {
       const i = (this.data.vLines.findIndex(v => {
-        return (menuElm.getBoundingClientRect().left - (document.getElementById('vline0') as Element).getBoundingClientRect().left) < v.position.x;
+        return (menuElm.getBoundingClientRect().left - (document.getElementById('amida-vline0') as Element).getBoundingClientRect().left) < v.position.x;
       }))
       const isLeftEnd = i === 0;
       const isRightEnd = i === -1;
@@ -333,7 +333,7 @@ class Amida {
     this.data.hLines[key] = newHLine;
     this.addRoute(this.data.vLines, newHLine, this.data.hLines);
     logger.log(JSON.parse(JSON.stringify(this.data)));
-    const hLineElm = document.querySelector('[id^=hline]') as Node;
+    const hLineElm = document.querySelector('[id^=amida-hline]') as Node;
     const clone = hLineElm.cloneNode(true) as Element;
     clone.id = key;
     clone.setAttribute('transform', `translate(${newHLine.position.x}, ${newHLine.position.y})`);
@@ -345,10 +345,10 @@ class Amida {
     this.data.players = this.calcPath(this.data);
     (async () => {
       for (let i=0; i<this.data.players.length; i++) {
-        const playerElm = document.getElementById(`player${i}`) as Element;
+        const playerElm = document.getElementById(`amida-player${i}`) as Element;
         playerElm.setAttribute('stroke', this.colors[i%this.colors.length]);
         await this.renderPathGradually(this.data.players[i].path, i);
-        const goalElm = document.getElementById(`goal${(this.data.players[i].goalIdx as number)}`) as Element;
+        const goalElm = document.getElementById(`amida-goal${(this.data.players[i].goalIdx as number)}`) as Element;
         goalElm.setAttribute('stroke', this.colors[i%this.colors.length]);
       }
     })();
@@ -360,13 +360,13 @@ class Amida {
       path: [],
     }));
     this.data.players.forEach((p,i) => {
-      const pathElm = document.getElementById(`player${i}-path`) as Element;
+      const pathElm = document.getElementById(`amida-player${i}-path`) as Element;
       pathElm.removeAttribute('stroke');
       pathElm.removeAttribute('stroke-width');
       pathElm.removeAttribute('d');
-      const playerElm = document.getElementById(`player${i}`) as Element;
+      const playerElm = document.getElementById(`amida-player${i}`) as Element;
       playerElm.removeAttribute('stroke');
-      const goalElm = document.getElementById(`goal${i}`) as Element;
+      const goalElm = document.getElementById(`amida-goal${i}`) as Element;
       goalElm.removeAttribute('stroke');
     });
   };
@@ -392,7 +392,7 @@ class Amida {
   private readonly renderPathGradually = async (path: Path, idx: number) => {
     let command = `M ${path[0].x} ${path[0].y}`;
     let cnt = 1;
-    const pathElm = document.getElementById(`player${idx}-path`) as Element;
+    const pathElm = document.getElementById(`amida-player${idx}-path`) as Element;
     pathElm.setAttribute('stroke', this.colors[idx%this.colors.length]);
     pathElm.setAttribute('stroke-width', '3');
     const promise = new Promise(resolve => {
@@ -439,7 +439,7 @@ class Amida {
           VLINE_CONTENT_MIN_POS: self.vLineContentMinPos,
           VLINE_CONTENT_MAX_POS: self.vLineContentMaxPos,
         })
-        const offsetFromAmidaLeft = hLineElm.getBoundingClientRect().left - (document.getElementById('vline0') as Element).getBoundingClientRect().left;
+        const offsetFromAmidaLeft = hLineElm.getBoundingClientRect().left - (document.getElementById('amida-vline0') as Element).getBoundingClientRect().left;
         if (offsetFromAmidaLeft < vLine.boundary.x1) {
           if (0 < hLine.ownerIdx) {
             hLine.ownerIdx--
