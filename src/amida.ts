@@ -82,6 +82,8 @@ class Amida {
       'Add a virtical line': this.addVLine,
       'Add a horizontal line': this.addHLine,
       'Clear': this.clearPath,
+      'Shuffle goals': this.shuffleGoals,
+      'Show result': this.showResult,
     };
   }
   public data: AmidaData;
@@ -178,6 +180,9 @@ class Amida {
           background-color: rgba(0,0,0,.1);
           cursor: pointer;
         }
+        .amida-goal {
+          transition: transform 1000ms 100ms;
+        }
       </style>
       <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(${this.LINE_SPAN/2}, ${this.MARGIN_Y/2})" >`
       svg += `
@@ -222,9 +227,17 @@ class Amida {
         <g id="amida-goal-container" transform="translate(0, ${this.HEADER_HEIGHT})" >`  // TODO why don't we have to add this.vLineHeight?
         svg += goals.reduce((result, next, idx) => {
           return `${result}
-          <svg id="amida-goal${idx}" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="${this.vLineHeight}" width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
-            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.label}</text>
-          </svg>`
+          <g id="amida-goal${idx}" class="amida-goal" style="transform:translate(${vLines[idx].position.x-this.LINE_SPAN/2}px,${this.vLineHeight}px)" >
+            <svg width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
+              <svg width="100%" height="100%" >
+                <text class="amida-goal-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.label}</text>
+              </svg>
+              <svg class="amida-goal-blind" style="display:none" width="100%" height="100%" >
+                <rect width="100%" height="100%" fill="grey" ></rect>
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" >?</text>
+              </svg>
+            </svg>
+          </g>`
         }, '')
       svg += `
         </g>`
@@ -370,6 +383,77 @@ class Amida {
       goalElm.removeAttribute('stroke');
     });
   };
+  public readonly shuffleGoals = () => {
+    const PARSE_TRANSLATE = /translate\(\s*(-?\d+\D*)\s*,\s*(-?\d+\D*)\s*\)/;
+    const SHUFFLE_DURATION = 1000;
+    const SHUFFLE_DURATION_MIN = 100;
+    const TIMES_OF_SHUFFLE = 25;
+    const self = this;
+    const goalBlindElms = document.querySelectorAll('.amida-goal-blind') as NodeListOf<SVGElement>;
+    goalBlindElms.forEach(function(e) {
+      e.style.display = '';
+    });
+    const goalElms = document.querySelectorAll('.amida-goal') as NodeListOf<SVGElement>;
+    const originalTransforms = (function() {
+      const arr : string[] = [];
+      goalElms.forEach(function(e,i) {
+        arr[i] = e.style.transform;
+      });
+      return arr;
+    })();
+    goalElms.forEach(function(e) {
+      e.style.transitionDuration = SHUFFLE_DURATION+'ms';
+    });
+    let i=0;
+    let duration = SHUFFLE_DURATION;
+    let justBefore = Date.now();
+    fn();
+    function fn() {
+      const pickedIndex1 = Math.floor(Math.random() * self.data.vLines.length);
+      const pickedIndex2 = (function() {
+        const pickedIndex = Math.floor(Math.random() * (self.data.vLines.length-1));
+        return pickedIndex < pickedIndex1 ? pickedIndex : pickedIndex + 1;
+      })();
+      const goalElm1 = goalElms[pickedIndex1];
+      const goalElm2 = goalElms[pickedIndex2];
+      const [,x1,y1] = goalElm1.style.transform.match(PARSE_TRANSLATE) as string[];
+      const [,x2,y2] = goalElm2.style.transform.match(PARSE_TRANSLATE) as string[];
+      goalElm1.style.transform = 'translate('+x2+','+y2+')';
+      goalElm2.style.transform = 'translate('+x1+','+y1+')';
+      setTimeout(function() {
+        if (TIMES_OF_SHUFFLE<i++) {
+          actualShuffle();
+          return;
+        }
+        duration -= (10 - i/2)*10; // An = An-1 - 10 * (10 - (n-10)/2)  (A1 = 1000)
+        const now = Date.now();
+        console.log(i, now - justBefore, duration);
+        justBefore = now;
+        goalElms.forEach(function(e) {
+          e.style.transitionDuration = duration+'ms';
+        });
+        fn();
+      }, duration < SHUFFLE_DURATION_MIN ? SHUFFLE_DURATION_MIN : duration);
+    }
+    function actualShuffle() {
+      goalElms.forEach(function(e, i) { // reset translate values
+        e.style.transform = originalTransforms[i];
+      });
+      const goalTexts = document.querySelectorAll('.amida-goal-text') as NodeListOf<SVGElement>;
+      goalTexts.forEach(function(textElm, idx) { // shuffle texts
+        const pickedIdx = Math.floor(Math.random()*(goalTexts.length - idx));
+        const tmp = goalTexts[pickedIdx].innerHTML;
+        goalTexts[pickedIdx].innerHTML = goalTexts[idx].innerHTML;
+        goalTexts[idx].innerHTML = tmp;
+      });
+    }
+  }
+  public readonly showResult = () => {
+    const goalBlindElms = document.querySelectorAll('.amida-goal-blind') as NodeListOf<SVGElement>;
+    goalBlindElms.forEach(function(e) {
+      e.style.display = 'none';
+    });
+  }
   private readonly calcPath = ({ players, vLines, hLines } : AmidaData) => {
     return players.map((p, idx) => {
       p.path.push({ x: vLines[idx].position.x, y: 0 });
