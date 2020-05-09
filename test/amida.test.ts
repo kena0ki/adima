@@ -10,7 +10,7 @@ test('Snapshot', async function() {
   const dateNow = Date.now;
   Date.now = (function() {
     let cnt = 0;
-    const time = new Date(2000,0,1).getTime();
+    const time = new Date(2000,0,1).getTime() - (new Date().getTimezoneOffset() * 60 * 1000);
     return function() {
       return time + cnt++;
     }
