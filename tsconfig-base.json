@@ -4,6 +4,7 @@
     "target": "es5",
     "strictNullChecks": true,
     "module": "ES6",
+    "moduleResolution": "node",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

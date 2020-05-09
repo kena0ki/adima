@@ -436,7 +436,7 @@ class Amida {
         await this.renderPathOneByOne(this.data.players[i].path, i);
         const goalElm = document.getElementById(`amida-goal${(this.data.players[i].goalIdx as number)}`) as unknown as SVGGElement;
         const goalBlindElm = goalElm.querySelector('.amida-goal-blind') as SVGTextElement;
-        await this.revealGoal(goalBlindElm); // do async to be able to use animation
+        await this.revealGoal(goalBlindElm); // async to make it available to be used with animation
         goalElm.setAttribute('stroke', this.colors[i%this.colors.length]);
       }
     })();
@@ -499,7 +499,7 @@ class Amida {
           }
           duration -= (10 - i/2)*10; // An = An-1 - 10 * (10 - (n-10)/2)  (A1 = 1000)
           const now = Date.now();
-          console.log(i, now - justBefore, duration);
+          logger.log(i, now - justBefore, duration);
           justBefore = now;
           goalElms.forEach((e) => {
             e.style.transitionDuration = duration+'ms';
@@ -607,8 +607,7 @@ class Amida {
           VLINE_CONTENT_MIN_POS: self.vLineContentMinPos,
           VLINE_CONTENT_MAX_POS: self.vLineContentMaxPos,
         })
-        const offsetFromAmidaLeft = hLineElm.getBoundingClientRect().left - (document.getElementById('amida-vline0') as Element).getBoundingClientRect().left;
-        if (offsetFromAmidaLeft < vLine.boundary.x1) {
+        if (hLine.position.x < vLine.boundary.x1) {
           if (0 < hLine.ownerIdx) {
             hLine.ownerIdx--
             vLine = self.data.vLines[hLine.ownerIdx]
@@ -616,7 +615,7 @@ class Amida {
           } else {
             self.data.activeVlineIdx = self.NO_INDICATOR
           }
-        } else if (vLine.boundary.x2 < offsetFromAmidaLeft) {
+        } else if (vLine.boundary.x2 < hLine.position.x) {
           if (hLine.ownerIdx < self.data.vLines.length - 2) {
             hLine.ownerIdx++
             vLine = self.data.vLines[hLine.ownerIdx]
@@ -624,7 +623,7 @@ class Amida {
           } else {
             self.data.activeVlineIdx = self.NO_INDICATOR
           }
-        } else if (vLine.boundary.x1 < offsetFromAmidaLeft || offsetFromAmidaLeft < vLine.boundary.x2) {
+        } else {
           self.data.activeVlineIdx = hLine.ownerIdx
         }
         hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
@@ -646,9 +645,10 @@ class Amida {
           delete self.data.hLines[key];
           (hLineElm.parentNode as Node).removeChild(hLineElm);
         } else {
+          hLine.position.x = vLine.position.x;
           hLine.position.y = hLine.position.adjustedY;
           self.addRoute(self.data.vLines, hLine, self.data.hLines); // old route is already removed at mousedown, so just add it
-          hLineElm.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`)
+          hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
           indicator.style.display = 'none';
         }
         logger.log(JSON.parse(JSON.stringify(self.data)));
