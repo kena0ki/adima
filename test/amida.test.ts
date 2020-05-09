@@ -77,24 +77,12 @@ test('Snapshot', async function() {
   expect(document.body).toMatchSnapshot('hide contextmenu');
   const menuElms = document.querySelectorAll('.amida-menu-item');
   const menuItemIdxes = Object.keys(amida.menuItems).reduce((result,next,idx) => ({...result, [next]:idx}), {});
-  // const shuffleGoalsTimerRunner = new TimerRunner();
   menuElms[menuItemIdxes['Shuffle goals']].dispatchEvent(mdEvt);
-  // amida.shuffleGoals().then(function() {
-  //   shuffleGoalsTimerRunner.isFullfilled = true;
-  //   expect(document.body).toMatchSnapshot('shuffleGoals');
-  // });
   while(amida.isShuffling) {
     await 0; // wait for other tasks being finishd
     jest.runAllTimers();
   }
   expect(document.body).toMatchSnapshot('shuffleGoals');
-  // await shuffleGoalsTimerRunner.runAllTimersRecursive();
-  // const startAmidaTimerRunner = new TimerRunner();
-  // amida.startAmida().then(function() {
-  //   startAmidaTimerRunner.isFullfilled = true;
-  //   expect(document.body).toMatchSnapshot('startAmida');
-  // });
-  // await startAmidaTimerRunner.runAllTimersRecursive();
   menuElms[menuItemIdxes['Start']].dispatchEvent(mdEvt);
   while(amida.isRendering) {
     await 0; // wait for other tasks being finishd
@@ -103,6 +91,8 @@ test('Snapshot', async function() {
   expect(document.body).toMatchSnapshot('startAmida');
   amida.clearPath();
   expect(document.body).toMatchSnapshot('clearPath');
+  amida.revealGoals();
+  expect(document.body).toMatchSnapshot('reveal goals');
 
   Date.now = dateNow;
   Math.random = mathRandom;

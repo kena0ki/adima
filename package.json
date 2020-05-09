@@ -11,15 +11,15 @@
     "watch:lib": "watch -w 1 'npm run build:lib' ./src",
     "prewatch:demo": "npm run build:lib",
     "watch:demo": "watch -w 1 'npm run build:demo' ./demo -p '/build|dist/'",
-    "serve": "npx ts-node -P ./script/tsconfig.json ./script/server.ts",
+    "serve": "ts-node -P ./script/tsconfig.json ./script/server.ts",
     "// watch:serve": "watch -w 1 'npm run serve' ./script",
     "start": "concurrently -p '{time} {name}' -t 'HH:mm:ss.SSS' -c green,yellow,blue  npm:serve npm:watch:lib npm:watch:demo",
     "pretest": "sed -i~ -e \"s#'./util.js'#'./util'#\" src/amida.ts",
     "test": "jest",
     "posttest": "mv src/amida.ts~ src/amida.ts",
-    "test:upd": "npm run test -u",
-    "cov": "npm run test --coverage",
-    "cov:upd": "npm run cov -u"
+    "test:upd": "npm run test -- -u",
+    "cov": "npm run test -- --coverage",
+    "cov:upd": "npm run cov -- -u"
   },
   "repository": {
     "type": "git",

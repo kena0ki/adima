@@ -547,7 +547,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -563,7 +563,7 @@ exports[`Snapshot: addHLine 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -581,7 +581,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -599,7 +599,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -617,7 +617,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -635,7 +635,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -653,7 +653,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -671,7 +671,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -689,7 +689,7 @@ exports[`Snapshot: addHLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -2075,7 +2075,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -2093,7 +2093,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -2111,7 +2111,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -2129,7 +2129,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -2147,7 +2147,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -2165,7 +2165,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -2183,7 +2183,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -2201,7 +2201,7 @@ exports[`Snapshot: addVLine 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -3588,7 +3588,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -3604,7 +3604,7 @@ exports[`Snapshot: clearPath 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -3622,7 +3622,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -3640,7 +3640,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -3658,7 +3658,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -3676,7 +3676,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -3694,7 +3694,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -3712,7 +3712,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -3730,7 +3730,7 @@ exports[`Snapshot: clearPath 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -5053,7 +5053,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -5071,7 +5071,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -5089,7 +5089,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -5107,7 +5107,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -5125,7 +5125,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -5143,7 +5143,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -5161,7 +5161,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -5179,7 +5179,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -5197,7 +5197,7 @@ exports[`Snapshot: drag hline beyond left edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000009"
+            id="amida-hline9466848000009"
             transform="translate(160,28)"
           >
             
@@ -6419,7 +6419,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000000"
+            id="amida-hline9466848000000"
             transform="translate(0,10)"
           >
             
@@ -6437,7 +6437,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -6455,7 +6455,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -6473,7 +6473,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -6491,7 +6491,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -6509,7 +6509,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -6527,7 +6527,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -6545,7 +6545,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -6563,7 +6563,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -6581,7 +6581,7 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000009"
+            id="amida-hline9466848000009"
             transform="translate(160,28)"
           >
             
@@ -7803,7 +7803,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000000"
+            id="amida-hline9466848000000"
             transform="translate(40,10)"
           >
             
@@ -7821,7 +7821,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -7839,7 +7839,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -7857,7 +7857,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -7875,7 +7875,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -7893,7 +7893,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -7911,7 +7911,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -7929,7 +7929,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -7947,7 +7947,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -7965,7 +7965,7 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000009"
+            id="amida-hline9466848000009"
             transform="translate(160,28)"
           >
             
@@ -9187,7 +9187,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000000"
+            id="amida-hline9466848000000"
             transform="translate(0,10)"
           >
             
@@ -9205,7 +9205,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -9223,7 +9223,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -9241,7 +9241,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -9259,7 +9259,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -9277,7 +9277,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -9295,7 +9295,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -9313,7 +9313,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -9331,7 +9331,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -9349,7 +9349,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000009"
+            id="amida-hline9466848000009"
             transform="translate(160,28)"
           >
             
@@ -10571,7 +10571,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -10589,7 +10589,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -10607,7 +10607,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -10625,7 +10625,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -10643,7 +10643,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -10661,7 +10661,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -10679,7 +10679,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -10697,7 +10697,7 @@ exports[`Snapshot: drag hline beyond right edge of amida 2`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -11921,7 +11921,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000000"
+            id="amida-hline9466848000000"
             transform="translate(0,10)"
           >
             
@@ -11939,7 +11939,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -11957,7 +11957,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -11975,7 +11975,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -11993,7 +11993,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -12011,7 +12011,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -12029,7 +12029,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -12047,7 +12047,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -12065,7 +12065,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -12083,7 +12083,7 @@ exports[`Snapshot: drag hline within span 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000009"
+            id="amida-hline9466848000009"
             transform="translate(160,28)"
           >
             
@@ -13372,7 +13372,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -13388,7 +13388,7 @@ exports[`Snapshot: edit goal text 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -13406,7 +13406,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -13424,7 +13424,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -13442,7 +13442,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -13460,7 +13460,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -13478,7 +13478,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -13496,7 +13496,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -13514,7 +13514,7 @@ exports[`Snapshot: edit goal text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -14902,7 +14902,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -14918,7 +14918,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -14936,7 +14936,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -14954,7 +14954,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -14972,7 +14972,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -14990,7 +14990,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -15008,7 +15008,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -15026,7 +15026,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -15044,7 +15044,7 @@ exports[`Snapshot: edit goal text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -16432,7 +16432,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -16448,7 +16448,7 @@ exports[`Snapshot: edit player text 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -16466,7 +16466,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -16484,7 +16484,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -16502,7 +16502,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -16520,7 +16520,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -16538,7 +16538,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -16556,7 +16556,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -16574,7 +16574,7 @@ exports[`Snapshot: edit player text 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -17961,7 +17961,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -17977,7 +17977,7 @@ exports[`Snapshot: edit player text done 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -17995,7 +17995,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -18013,7 +18013,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -18031,7 +18031,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -18049,7 +18049,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -18067,7 +18067,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -18085,7 +18085,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -18103,7 +18103,7 @@ exports[`Snapshot: edit player text done 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -19490,7 +19490,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -19506,7 +19506,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -19524,7 +19524,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -19542,7 +19542,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -19560,7 +19560,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -19578,7 +19578,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -19596,7 +19596,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -19614,7 +19614,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -19632,7 +19632,7 @@ exports[`Snapshot: hide contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -20953,7 +20953,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000000"
+            id="amida-hline9466848000000"
             transform="translate(0,10)"
           >
             
@@ -20971,7 +20971,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -20989,7 +20989,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -21007,7 +21007,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -21025,7 +21025,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -21043,7 +21043,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -21061,7 +21061,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -21079,7 +21079,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -21097,7 +21097,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -21115,7 +21115,7 @@ exports[`Snapshot: init 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000009"
+            id="amida-hline9466848000009"
             transform="translate(160,28)"
           >
             
@@ -21854,6 +21854,1536 @@ exports[`Snapshot: init 1`] = `
 </body>
 `;
 
+exports[`Snapshot: reveal goals 1`] = `
+<body>
+  <div
+    id="root"
+  >
+    
+    
+    <svg
+      height="270"
+      id="amida-svg"
+      width="280"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      
+      
+      <style>
+        
+        .amida-hline {
+          cursor: grab;
+        }
+        .amida-menu-container {
+          box-shadow: 1px 1px 15px rgba(0,0,0,.2);
+          border: solid 1px rgba(0,0,0,.2);
+          display: inline-block;
+          background: white;
+          position: absolute;
+        }
+        .amida-menu-item {
+          padding: .2em .4em;
+        }
+        .amida-menu-item:hover {
+          background-color: rgba(0,0,0,.1);
+          cursor: pointer;
+        }
+        .amida-goal {
+          transition: transform 1000ms 100ms;
+        }
+      
+      </style>
+      
+      
+      <g
+        style="stroke:rgb(0,0,0);stroke-width:2"
+        transform="translate(20, 5)"
+      >
+        
+        
+        <g
+          id="amida-player-container"
+        >
+          
+          
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player0"
+            width="40"
+            x="-20"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display: none;"
+                >
+                  1
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                style=""
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                1
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          
+          
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player1"
+            width="40"
+            x="20"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display:none"
+                >
+                  2
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                2
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          
+          
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player2"
+            width="40"
+            x="60"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display:none"
+                >
+                  3
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                3
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          
+          
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player3"
+            width="40"
+            x="100"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display:none"
+                >
+                  4
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                4
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          
+          
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player4"
+            width="40"
+            x="140"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display:none"
+                >
+                  5
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                5
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          
+          
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player5"
+            width="40"
+            x="180"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display:none"
+                >
+                  6
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                6
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          <svg
+            class="amida-player"
+            height="30"
+            id="amida-player6"
+            width="40"
+            x="220"
+            y="0"
+          >
+            
+            
+            <svg
+              height="100%"
+              width="100%"
+            >
+              
+              
+              <foreignobject
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <div
+                  class="amida-player-editable-element"
+                  contenteditable=""
+                  style="display:none"
+                >
+                  7
+                </div>
+                
+              
+              </foreignobject>
+              
+              
+              <text
+                class="amida-player-text"
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x="50%"
+                y="50%"
+              >
+                7
+              </text>
+              
+            
+            </svg>
+            
+          
+          </svg>
+          
+        
+        </g>
+        
+        
+        <g
+          id="amida-main-container"
+          transform="translate(0, 30)"
+        >
+          
+          
+          <rect
+            fill="transparent"
+            height="200"
+            id="amida-bg-rect"
+            stroke="none"
+            width="280"
+            x="-20"
+          />
+          
+          
+          <g
+            id="amida-vline0"
+            transform="translate(0,0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-vline1"
+            transform="translate(40,0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-vline2"
+            transform="translate(80,0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-vline3"
+            transform="translate(120,0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-vline4"
+            transform="translate(160,0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-vline5"
+            transform="translate(200,0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          <g
+            id="amida-vline6"
+            transform="translate(240, 0)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="200"
+            />
+            
+          
+          </g>
+          
+          
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000001"
+            transform="translate(40,28)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          <g
+            class="amida-hline"
+            id="hline9466848000011"
+            transform="translate(0, 10)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000002"
+            transform="translate(80,82)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000003"
+            transform="translate(120,172)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000004"
+            transform="translate(160,118)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000005"
+            transform="translate(0,100)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000006"
+            transform="translate(40,118)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000007"
+            transform="translate(80,172)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-hline"
+            id="amida-hline9466848000008"
+            transform="translate(120,82)"
+          >
+            
+            
+            <line
+              x1="0"
+              x2="40"
+              y1="0"
+              y2="0"
+            />
+            
+          
+          </g>
+          
+          
+          
+          
+          <g
+            id="amida-player0-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player0-path"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-player1-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player1-path"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-player2-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player2-path"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-player3-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player3-path"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-player4-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player4-path"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            id="amida-player5-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player5-path"
+            />
+            
+          
+          </g>
+          <g
+            id="amida-player6-path-container"
+          >
+            
+            
+            <path
+              fill="transparent"
+              id="amida-player6-path"
+            />
+            
+          
+          </g>
+          
+          
+          <g
+            class="active"
+            id="amida-indicator"
+            style="display: none;"
+            transform="translate(160,28)"
+          >
+            
+            
+            <circle
+              fill="blue"
+              r="4"
+              stroke="none"
+            />
+            
+          
+          </g>
+          
+        
+        </g>
+        
+        
+        <g
+          id="amida-goal-container"
+          transform="translate(0, 30)"
+        >
+          
+          
+          <g
+            class="amida-goal"
+            id="amida-goal0"
+            style="transform: translate(-20px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display: none;"
+                  >
+                    G
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  style=""
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  G
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-goal"
+            id="amida-goal1"
+            style="transform: translate(20px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display:none"
+                  >
+                    A
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  A
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-goal"
+            id="amida-goal2"
+            style="transform: translate(60px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display:none"
+                  >
+                    B
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  B
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-goal"
+            id="amida-goal3"
+            style="transform: translate(100px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display:none"
+                  >
+                    C
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  C
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-goal"
+            id="amida-goal4"
+            style="transform: translate(140px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display:none"
+                  >
+                    D
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  D
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          
+          
+          <g
+            class="amida-goal"
+            id="amida-goal5"
+            style="transform: translate(180px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display:none"
+                  >
+                    E
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  E
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          <g
+            class="amida-goal"
+            id="amida-goal6"
+            style="transform: translate(220px,200px); transition-duration: 155ms;"
+          >
+            
+            
+            <svg
+              height="30"
+              width="40"
+            >
+              
+              
+              <svg
+                height="100%"
+                width="100%"
+              >
+                
+                
+                <foreignobject
+                  height="100%"
+                  width="100%"
+                >
+                  
+                  
+                  <div
+                    class="amida-goal-editable-element"
+                    contenteditable=""
+                    style="display:none"
+                  >
+                    F
+                  </div>
+                  
+                
+                </foreignobject>
+                
+                
+                <text
+                  class="amida-goal-text"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  F
+                </text>
+                
+              
+              </svg>
+              
+              
+              <svg
+                class="amida-goal-blind"
+                height="100%"
+                style="display: none;"
+                width="100%"
+              >
+                
+                
+                <rect
+                  fill="grey"
+                  height="100%"
+                  width="100%"
+                />
+                
+                
+                <text
+                  dominant-baseline="middle"
+                  fill="white"
+                  text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                >
+                  ?
+                </text>
+                
+              
+              </svg>
+              
+            
+            </svg>
+            
+          
+          </g>
+          
+        
+        </g>
+        
+      
+      </g>
+      
+      Sorry, your browser does not support inline SVG.
+    
+    </svg>
+    
+    
+    <div
+      class="amida-menu-container"
+      id="amida-menu"
+      style="display: none;"
+    >
+      
+      
+      
+      <div
+        class="amida-menu-item"
+      >
+        
+        
+        <span
+          class="amida-menu-item-text"
+        >
+          Start
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="amida-menu-item"
+      >
+        
+        
+        <span
+          class="amida-menu-item-text"
+        >
+          Add a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="amida-menu-item"
+      >
+        
+        
+        <span
+          class="amida-menu-item-text"
+        >
+          Add a horizontal line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="amida-menu-item"
+      >
+        
+        
+        <span
+          class="amida-menu-item-text"
+        >
+          Clear
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="amida-menu-item"
+      >
+        
+        
+        <span
+          class="amida-menu-item-text"
+        >
+          Shuffle goals
+        </span>
+        
+      
+      </div>
+      
+    
+    </div>
+  </div>
+</body>
+`;
+
 exports[`Snapshot: show contextmenu 1`] = `
 <body>
   <div
@@ -22402,7 +23932,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -22418,7 +23948,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -22436,7 +23966,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -22454,7 +23984,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -22472,7 +24002,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -22490,7 +24020,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -22508,7 +24038,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -22526,7 +24056,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -22544,7 +24074,7 @@ exports[`Snapshot: show contextmenu 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -23932,7 +25462,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -23948,7 +25478,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -23966,7 +25496,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -23984,7 +25514,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -24002,7 +25532,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -24020,7 +25550,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -24038,7 +25568,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -24056,7 +25586,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -24074,7 +25604,7 @@ exports[`Snapshot: shuffleGoals 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
@@ -25469,7 +26999,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000001"
+            id="amida-hline9466848000001"
             transform="translate(40,28)"
           >
             
@@ -25485,7 +27015,7 @@ exports[`Snapshot: startAmida 1`] = `
           </g>
           <g
             class="amida-hline"
-            id="hline9466524000011"
+            id="hline9466848000011"
             transform="translate(0, 10)"
           >
             
@@ -25503,7 +27033,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000002"
+            id="amida-hline9466848000002"
             transform="translate(80,82)"
           >
             
@@ -25521,7 +27051,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000003"
+            id="amida-hline9466848000003"
             transform="translate(120,172)"
           >
             
@@ -25539,7 +27069,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000004"
+            id="amida-hline9466848000004"
             transform="translate(160,118)"
           >
             
@@ -25557,7 +27087,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000005"
+            id="amida-hline9466848000005"
             transform="translate(0,100)"
           >
             
@@ -25575,7 +27105,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000006"
+            id="amida-hline9466848000006"
             transform="translate(40,118)"
           >
             
@@ -25593,7 +27123,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000007"
+            id="amida-hline9466848000007"
             transform="translate(80,172)"
           >
             
@@ -25611,7 +27141,7 @@ exports[`Snapshot: startAmida 1`] = `
           
           <g
             class="amida-hline"
-            id="amida-hline9466524000008"
+            id="amida-hline9466848000008"
             transform="translate(120,82)"
           >
             
