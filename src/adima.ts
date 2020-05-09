@@ -1,6 +1,6 @@
 import { global, logger } from './util.js';
 
-interface AmidaData {
+interface AdimaData {
   vLines: VLine[],
   hLines: HLines,
   innerHTML: string, // TODO getter
@@ -73,7 +73,7 @@ class HLinePos implements HLinePos {
   }
 }
 
-class Amida {
+class Adima {
 
   constructor(targetElm: Element) {
     this.targetElm = targetElm;
@@ -82,7 +82,7 @@ class Amida {
         if (this.isRendering) return;
         this.isRendering++;
         if (this.data.players[0].path.length > 0) this.clearPath(); // In case already paths have bean rendered
-        await this.startAmida();
+        await this.startAdima();
         this.isRendering--;
       },
       'Add a virtical line': this.addVLine,
@@ -98,7 +98,7 @@ class Amida {
       },
     };
   }
-  public data: AmidaData;
+  public data: AdimaData;
   public isRendering = 0;
   public isShuffling = 0;
   public vLinesNum = 6;
@@ -156,7 +156,7 @@ class Amida {
       const timestamp = Date.now()
       for(let i=0, j=0; i<this.hLinesNum; i++, j++) {
         if (j >= this.vLinesNum - 1) j = 0;
-        const key = 'amida-hline' + timestamp + i
+        const key = 'adima-hline' + timestamp + i
         const y = Math.floor(Math.random() * this.vLineContentHeight) + (this.vLineContentMinPos);
         const newHLine = {
           key,
@@ -175,87 +175,87 @@ class Amida {
       return { label: String.fromCharCode(this.CHAR_A+i) };
     });
     let svg = `
-    <svg id="amida-svg" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight+this.HEADER_HEIGHT+this.FOOTER_HEIGHT+this.MARGIN_Y}" xmlns="${this.SVG_NAMESPACE}" >
+    <svg id="adima-svg" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight+this.HEADER_HEIGHT+this.FOOTER_HEIGHT+this.MARGIN_Y}" xmlns="${this.SVG_NAMESPACE}" >
       <style>
-        .amida-hline {
+        .adima-hline {
           cursor: grab;
         }
-        .amida-menu-container {
+        .adima-menu-container {
           box-shadow: 1px 1px 15px rgba(0,0,0,.2);
           border: solid 1px rgba(0,0,0,.2);
           display: inline-block;
           background: white;
           position: absolute;
         }
-        .amida-menu-item {
+        .adima-menu-item {
           padding: .2em .4em;
         }
-        .amida-menu-item:hover {
+        .adima-menu-item:hover {
           background-color: rgba(0,0,0,.1);
           cursor: pointer;
         }
-        .amida-goal {
+        .adima-goal {
           transition: transform 1000ms 100ms;
         }
       </style>
       <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(${this.LINE_SPAN/2}, ${this.MARGIN_Y/2})" >`
       svg += `
-        <g id="amida-player-container" >`
+        <g id="adima-player-container" >`
         svg += players.reduce((result, next, idx) => {
           return `${result}
-          <svg id="amida-player${idx}" class="amida-player" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="0"
+          <svg id="adima-player${idx}" class="adima-player" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="0"
             width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
             <svg width="100%" height="100%" >
               <foreignObject width="100%" height="100%" >
-                <div class='amida-player-editable-element' style="display:none" contenteditable>${next.name}</div>
+                <div class='adima-player-editable-element' style="display:none" contenteditable>${next.name}</div>
               </foreignObject>
-              <text class="amida-player-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.name}</text>
+              <text class="adima-player-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.name}</text>
             </svg>
           </svg>`
         }, '')
       svg += `
         </g>`
       svg += `
-        <g id="amida-main-container" transform="translate(0, ${this.HEADER_HEIGHT})" >
-          <rect id="amida-bg-rect" x="-${this.LINE_SPAN/2}" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight}" stroke="none" fill="transparent" />` // In order for player's texts not to be selected while HLine being dragged
+        <g id="adima-main-container" transform="translate(0, ${this.HEADER_HEIGHT})" >
+          <rect id="adima-bg-rect" x="-${this.LINE_SPAN/2}" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight}" stroke="none" fill="transparent" />` // In order for player's texts not to be selected while HLine being dragged
         svg += vLines.reduce((result, next, idx) => {
           return `${result}
-          <g id="amida-vline${idx}" transform="translate(${next.position.x},0)" >
+          <g id="adima-vline${idx}" transform="translate(${next.position.x},0)" >
             <line x1="0" y1="0" x2="0" y2="${this.vLineHeight}" />
           </g>`
         }, '')
         svg += Object.keys(hLines).reduce((result, next) => {
           const h = hLines[next]
           return `${result}
-          <g id="${h.key}" class="amida-hline" transform="translate(${h.position.x},${h.position.y})" >
+          <g id="${h.key}" class="adima-hline" transform="translate(${h.position.x},${h.position.y})" >
             <line x1="0" y1="0" x2="${this.LINE_SPAN}" y2="0" />
           </g>`
         }, '')
         svg += players.reduce((result, next, idx) => { // path
           return `${result}
-          <g id="amida-player${idx}-path-container">
-            <path id="amida-player${idx}-path" fill="transparent"/>
+          <g id="adima-player${idx}-path-container">
+            <path id="adima-player${idx}-path" fill="transparent"/>
           </g>`
         }, '')
         svg += `
-          <g id="amida-indicator" style="display: none" >
+          <g id="adima-indicator" style="display: none" >
             <circle r="4" fill="blue" stroke="none" />
           </g>`
       svg += `
         </g>`
       svg += `
-        <g id="amida-goal-container" transform="translate(0, ${this.HEADER_HEIGHT})" >`  // TODO why don't we have to add this.vLineHeight?
+        <g id="adima-goal-container" transform="translate(0, ${this.HEADER_HEIGHT})" >`  // TODO why don't we have to add this.vLineHeight?
         svg += goals.reduce((result, next, idx) => {
           return `${result}
-          <g id="amida-goal${idx}" class="amida-goal" style="transform:translate(${vLines[idx].position.x-this.LINE_SPAN/2}px,${this.vLineHeight}px)" >
+          <g id="adima-goal${idx}" class="adima-goal" style="transform:translate(${vLines[idx].position.x-this.LINE_SPAN/2}px,${this.vLineHeight}px)" >
             <svg width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
               <svg width="100%" height="100%" >
                 <foreignObject width="100%" height="100%" >
-                  <div class='amida-goal-editable-element' style="display:none" contenteditable>${next.label}</div>
+                  <div class='adima-goal-editable-element' style="display:none" contenteditable>${next.label}</div>
                 </foreignObject>
-                <text class="amida-goal-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.label}</text>
+                <text class="adima-goal-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" >${next.label}</text>
               </svg>
-              <svg class="amida-goal-blind" style="display:none" width="100%" height="100%" >
+              <svg class="adima-goal-blind" style="display:none" width="100%" height="100%" >
                 <rect width="100%" height="100%" fill="grey" ></rect>
                 <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" >?</text>
               </svg>
@@ -269,10 +269,10 @@ class Amida {
       Sorry, your browser does not support inline SVG.
     </svg>`
     const menu = `
-    <div id="amida-menu" class="amida-menu-container" style="display: none">
+    <div id="adima-menu" class="adima-menu-container" style="display: none">
       ${Object.keys(this.menuItems).reduce((result, next) => `${result}
-      <div class="amida-menu-item" >
-        <span class="amida-menu-item-text">${next}</span>
+      <div class="adima-menu-item" >
+        <span class="adima-menu-item-text">${next}</span>
       </div>`, '')}
     </div>`
 
@@ -287,9 +287,9 @@ class Amida {
     };
     logger.log(JSON.parse(JSON.stringify(this.data)));
 
-    const amidaMainElm = document.getElementById('amida-main-container') as unknown as SVGElement // https://github.com/microsoft/TypeScript/issues/32822
-    const menuElm = document.getElementById('amida-menu') as HTMLElement
-    amidaMainElm.addEventListener('contextmenu', cEvt => {
+    const adimaMainElm = document.getElementById('adima-main-container') as unknown as SVGElement // https://github.com/microsoft/TypeScript/issues/32822
+    const menuElm = document.getElementById('adima-menu') as HTMLElement
+    adimaMainElm.addEventListener('contextmenu', cEvt => {
       cEvt.preventDefault();
       menuElm.style.left = cEvt.pageX + 'px';
       menuElm.style.top = cEvt.pageY + 'px';
@@ -304,20 +304,20 @@ class Amida {
       menuElm.children[idx].addEventListener('mousedown', func);
     });
 
-    document.querySelectorAll('.amida-player-text').forEach((n) => {
+    document.querySelectorAll('.adima-player-text').forEach((n) => {
       n.addEventListener('click', this.handlePlayerClick);
     });
-    document.querySelectorAll('.amida-player-editable-element').forEach((n) => {
+    document.querySelectorAll('.adima-player-editable-element').forEach((n) => {
       n.addEventListener('blur', this.handlePlayerBlur);
     });
-    document.querySelectorAll('.amida-goal-text').forEach((n) => {
+    document.querySelectorAll('.adima-goal-text').forEach((n) => {
       n.addEventListener('click', this.handleGoalClick);
     });
-    document.querySelectorAll('.amida-goal-editable-element').forEach((n) => {
+    document.querySelectorAll('.adima-goal-editable-element').forEach((n) => {
       n.addEventListener('blur', this.handleGoalBlur);
     });
 
-    document.querySelectorAll('.amida-hline').forEach((n) => {
+    document.querySelectorAll('.adima-hline').forEach((n) => {
       this.draggablify(n as Element);
     });
   };
@@ -330,7 +330,7 @@ class Amida {
   private readonly toEditable = (e: Event, target: 'player' | 'goal') => {
     const textElm = e.currentTarget as SVGTextElement;
     textElm.style.display = 'none';
-    const targetElm = textElm.closest(`.amida-${target}`) as SVGGElement;
+    const targetElm = textElm.closest(`.adima-${target}`) as SVGGElement;
     const divElm = targetElm.querySelector('div') as HTMLDivElement;
     divElm.style.display = '';
     divElm.focus();
@@ -343,11 +343,11 @@ class Amida {
   }
   private readonly toLabel = (e: Event, target: 'goal' | 'player') => {
     const divElm = e.currentTarget as HTMLDivElement;
-    const targetElm = divElm.closest(`.amida-${target}`) as SVGGElement;
-    const idx = targetElm.id.replace(`amida-${target}`,'');
+    const targetElm = divElm.closest(`.adima-${target}`) as SVGGElement;
+    const idx = targetElm.id.replace(`adima-${target}`,'');
     this.data.goals[idx].label = divElm.textContent || '';
     divElm.style.display = 'none';
-    const textElm = targetElm.querySelector(`.amida-${target}-text`) as SVGTextElement;
+    const textElm = targetElm.querySelector(`.adima-${target}-text`) as SVGTextElement;
     textElm.textContent = this.data.goals[idx].label;
     textElm.style.display = '';
   };
@@ -360,12 +360,12 @@ class Amida {
     this.data.players.push({ name: ''+(this.data.players.length+1), path: [] });
     const prevLastGoalIdx = this.data.goals.length-1;
     this.data.goals.push({ label: String.fromCharCode(this.CHAR_A+this.data.goals.length) });
-    const lastVLineElm = document.getElementById('amida-vline'+prevLastVLineIdx) as unknown as SVGElement;
+    const lastVLineElm = document.getElementById('adima-vline'+prevLastVLineIdx) as unknown as SVGElement;
     const vLineClone = lastVLineElm.cloneNode(true) as SVGGElement;
-    vLineClone.id = 'amida-vline' + (this.data.vLines.length-1);
+    vLineClone.id = 'adima-vline' + (this.data.vLines.length-1);
     vLineClone.setAttribute('transform', `translate(${newVLine.position.x}, 0)`);
     (lastVLineElm.parentNode as Node).insertBefore(vLineClone, lastVLineElm.nextSibling);
-    const lastPlayerElm = document.getElementById(`amida-player${prevLastPlayerIdx}`) as Element;
+    const lastPlayerElm = document.getElementById(`adima-player${prevLastPlayerIdx}`) as Element;
     const playerClone = lastPlayerElm.cloneNode(true) as SVGGElement;
     const playerTxtElm = playerClone.querySelector('text') as SVGTextElement;
     playerTxtElm.textContent = this.data.players[this.data.players.length-1].name;
@@ -373,43 +373,43 @@ class Amida {
     const playerDivElm = playerClone.querySelector('div') as HTMLDivElement;
     playerDivElm.textContent = this.data.players[this.data.players.length-1].name;
     playerDivElm.addEventListener('blur', this.handlePlayerBlur);
-    playerClone.id = `amida-player${this.data.players.length-1}`;
+    playerClone.id = `adima-player${this.data.players.length-1}`;
     playerClone.setAttribute('x', ''+(newVLine.position.x-this.LINE_SPAN/2));
     playerClone.removeAttribute('stroke');
     (lastPlayerElm.parentNode as Node).insertBefore(playerClone, lastPlayerElm.nextSibling);
-    const lastGoalElm = document.getElementById(`amida-goal${prevLastGoalIdx}`) as Element;
+    const lastGoalElm = document.getElementById(`adima-goal${prevLastGoalIdx}`) as Element;
     const goalClone = lastGoalElm.cloneNode(true) as SVGGElement;
-    const goalTxtElm = goalClone.querySelector('.amida-goal-text') as SVGTextElement;
+    const goalTxtElm = goalClone.querySelector('.adima-goal-text') as SVGTextElement;
     goalTxtElm.textContent = this.data.goals[this.data.goals.length-1].label;
     goalTxtElm.addEventListener('click', this.handleGoalClick);
-    const divElm = goalClone.querySelector('.amida-goal-editable-element') as HTMLDivElement;
+    const divElm = goalClone.querySelector('.adima-goal-editable-element') as HTMLDivElement;
     divElm.textContent = this.data.goals[this.data.goals.length-1].label;
     divElm.addEventListener('blur', this.handleGoalBlur);
-    goalClone.id = `amida-goal${this.data.goals.length-1}`;
+    goalClone.id = `adima-goal${this.data.goals.length-1}`;
     goalClone.setAttribute('style', `transform:translate(${newVLine.position.x-this.LINE_SPAN/2}px,${this.vLineHeight}px)`);
     goalClone.removeAttribute('stroke');
     (lastGoalElm.parentNode as Node).insertBefore(goalClone, lastGoalElm.nextSibling);
-    const lastPathContainerElm = document.getElementById(`amida-player${prevLastPlayerIdx}-path-container`) as Element;
+    const lastPathContainerElm = document.getElementById(`adima-player${prevLastPlayerIdx}-path-container`) as Element;
     const pathClone = lastPathContainerElm.cloneNode(true) as SVGGElement;
-    pathClone.id = `amida-player${this.data.players.length-1}-path-container`;
-    pathClone.children[0].id = `amida-player${this.data.players.length-1}-path`;
+    pathClone.id = `adima-player${this.data.players.length-1}-path-container`;
+    pathClone.children[0].id = `adima-player${this.data.players.length-1}-path`;
     (lastPathContainerElm.parentNode as Node).insertBefore(pathClone, lastPathContainerElm.nextSibling);
-    const amidaRectElm = document.getElementById('amida-bg-rect') as Element;
-    amidaRectElm.setAttribute('width', '' + (this.LINE_SPAN*this.data.vLines.length));
-    const svgElm = document.getElementById('amida-svg') as unknown as SVGElement; // https://github.com/microsoft/TypeScript/issues/32822
+    const adimaRectElm = document.getElementById('adima-bg-rect') as Element;
+    adimaRectElm.setAttribute('width', '' + (this.LINE_SPAN*this.data.vLines.length));
+    const svgElm = document.getElementById('adima-svg') as unknown as SVGElement; // https://github.com/microsoft/TypeScript/issues/32822
     svgElm.setAttribute('width', '' + (this.LINE_SPAN*this.data.vLines.length));
   };
   public addHLine = () => {
-    const menuElm = document.getElementById('amida-menu') as HTMLElement;
+    const menuElm = document.getElementById('adima-menu') as HTMLElement;
     const ownerIdx = (() => {
       const i = (this.data.vLines.findIndex(v => {
-        return (menuElm.getBoundingClientRect().left - (document.getElementById('amida-vline0') as Element).getBoundingClientRect().left) < v.position.x;
+        return (menuElm.getBoundingClientRect().left - (document.getElementById('adima-vline0') as Element).getBoundingClientRect().left) < v.position.x;
       }))
       const isLeftEnd = i === 0;
       const isRightEnd = i === -1;
       return isLeftEnd ? 0 : (isRightEnd ? this.data.vLines.length - 2 : i - 1);
     })()
-    const y = menuElm.getBoundingClientRect().top - (document.getElementById('amida-main-container') as Element).getBoundingClientRect().top;
+    const y = menuElm.getBoundingClientRect().top - (document.getElementById('adima-main-container') as Element).getBoundingClientRect().top;
     const key = `hline${Date.now()}1`;
     const newHLine: HLine = {
       key,
@@ -420,22 +420,22 @@ class Amida {
     this.data.hLines[key] = newHLine;
     this.addRoute(this.data.vLines, newHLine, this.data.hLines);
     logger.log(JSON.parse(JSON.stringify(this.data)));
-    const hLineElm = document.querySelector('.amida-hline') as Node;
+    const hLineElm = document.querySelector('.adima-hline') as Node;
     const clone = hLineElm.cloneNode(true) as Element;
     clone.id = key;
     clone.setAttribute('transform', `translate(${newHLine.position.x}, ${newHLine.position.y})`);
     (hLineElm.parentNode as Node).insertBefore(clone, hLineElm.nextSibling);
     this.draggablify(clone);
   };
-  public startAmida = async () => {
+  public startAdima = async () => {
     this.data.players = this.calcPath(this.data);
     await (async () => {
       for (let i=0; i<this.data.players.length; i++) {
-        const playerElm = document.getElementById(`amida-player${i}`) as unknown as SVGElement;
+        const playerElm = document.getElementById(`adima-player${i}`) as unknown as SVGElement;
         playerElm.setAttribute('stroke', this.colors[i%this.colors.length]);
         await this.renderPathOneByOne(this.data.players[i].path, i);
-        const goalElm = document.getElementById(`amida-goal${(this.data.players[i].goalIdx as number)}`) as unknown as SVGGElement;
-        const goalBlindElm = goalElm.querySelector('.amida-goal-blind') as SVGTextElement;
+        const goalElm = document.getElementById(`adima-goal${(this.data.players[i].goalIdx as number)}`) as unknown as SVGGElement;
+        const goalBlindElm = goalElm.querySelector('.adima-goal-blind') as SVGTextElement;
         await this.revealGoal(goalBlindElm); // async to make it available to be used with animation
         goalElm.setAttribute('stroke', this.colors[i%this.colors.length]);
       }
@@ -448,13 +448,13 @@ class Amida {
       path: [],
     }));
     this.data.players.forEach((p,i) => {
-      const pathElm = document.getElementById(`amida-player${i}-path`) as Element;
+      const pathElm = document.getElementById(`adima-player${i}-path`) as Element;
       pathElm.removeAttribute('stroke');
       pathElm.removeAttribute('stroke-width');
       pathElm.removeAttribute('d');
-      const playerElm = document.getElementById(`amida-player${i}`) as Element;
+      const playerElm = document.getElementById(`adima-player${i}`) as Element;
       playerElm.removeAttribute('stroke');
-      const goalElm = document.getElementById(`amida-goal${i}`) as Element;
+      const goalElm = document.getElementById(`adima-goal${i}`) as Element;
       goalElm.removeAttribute('stroke');
     });
   };
@@ -464,7 +464,7 @@ class Amida {
       const SHUFFLE_DURATION = 1000;
       const SHUFFLE_DURATION_MIN = 100;
       const TIMES_OF_SHUFFLE = 25;
-      const goalElms = document.querySelectorAll('.amida-goal') as NodeListOf<SVGElement>;
+      const goalElms = document.querySelectorAll('.adima-goal') as NodeListOf<SVGElement>;
       const originalTransforms = (() => {
         const arr : string[] = [];
         goalElms.forEach((e,i) => {
@@ -511,8 +511,8 @@ class Amida {
         goalElms.forEach((e, i) => { // reset translate values
           e.style.transform = originalTransforms[i];
         });
-        const textElms = document.querySelectorAll('.amida-goal-text') as NodeListOf<SVGTextElement>;
-        const divElms = document.querySelectorAll('.amida-goal-editable-element') as NodeListOf<HTMLDivElement>;
+        const textElms = document.querySelectorAll('.adima-goal-text') as NodeListOf<SVGTextElement>;
+        const divElms = document.querySelectorAll('.adima-goal-editable-element') as NodeListOf<HTMLDivElement>;
         textElms.forEach((textElm, idx) => { // shuffle texts
           const pickedIdx = Math.floor(Math.random()*(textElms.length - idx));
           const tmp = textElms[pickedIdx].textContent;
@@ -525,13 +525,13 @@ class Amida {
     });
   }
   public hideGoals = () => {
-    const goalBlindElms = document.querySelectorAll('.amida-goal-blind') as NodeListOf<SVGElement>;
+    const goalBlindElms = document.querySelectorAll('.adima-goal-blind') as NodeListOf<SVGElement>;
     goalBlindElms.forEach((e) => {
       e.style.display = '';
     });
   }
   public revealGoals = () => {
-    const goalBlindElms = document.querySelectorAll('.amida-goal-blind') as NodeListOf<SVGElement>;
+    const goalBlindElms = document.querySelectorAll('.adima-goal-blind') as NodeListOf<SVGElement>;
     goalBlindElms.forEach((e) => {
       this.revealGoal(e);
     });
@@ -539,7 +539,7 @@ class Amida {
   public revealGoal = (goalBlindElm: SVGElement) => {
     goalBlindElm.style.display = 'none';
   }
-  public calcPath = ({ players, vLines, hLines } : AmidaData) => {
+  public calcPath = ({ players, vLines, hLines } : AdimaData) => {
     return players.map((p, idx) => {
       p.path.push({ x: vLines[idx].position.x, y: 0 });
       const self = this;
@@ -562,7 +562,7 @@ class Amida {
     return new Promise(resolve => {
       let command = `M ${path[0].x} ${path[0].y}`;
       let cnt = 1;
-      const pathElm = document.getElementById(`amida-player${idx}-path`) as Element;
+      const pathElm = document.getElementById(`adima-player${idx}-path`) as Element;
       pathElm.setAttribute('stroke', this.colors[idx%this.colors.length]);
       pathElm.setAttribute('stroke-width', '3');
       const intervalId = global.setInterval(() => {
@@ -592,7 +592,7 @@ class Amida {
       self.removeRoute(self.data.vLines, hLine);
       logger.log(JSON.parse(JSON.stringify(self.data)));
       let vLine = self.data.vLines[hLine.ownerIdx];
-      const indicator = document.getElementById('amida-indicator') as unknown as SVGElement;
+      const indicator = document.getElementById('adima-indicator') as unknown as SVGElement;
       indicator.setAttribute('class', 'active');
       indicator.setAttribute('transform', `translate(${vLine.position.x},${hLine.position.y})`);
       document.addEventListener('mousemove', dragging);
@@ -732,5 +732,5 @@ class Amida {
   }
 }
 
-export default Amida;
+export default Adima;
 

@@ -1,8 +1,8 @@
 import './config.js';
-import Amida from '../dist/index.js';
+import Adima from '../dist/index.js';
 const root = document.getElementById('root') as Element;
-const amida = new Amida(root);
+const adima = new Adima(root);
 document.addEventListener('DOMContentLoaded', function() {
-  amida.init();
+  adima.init();
 });
 

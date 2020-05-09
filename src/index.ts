@@ -1,1 +1,1 @@
-export { default } from './amida.js';
+export { default } from './adima.js';

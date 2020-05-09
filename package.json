@@ -1,6 +1,6 @@
 {
   "name": "adima",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Amidakuji on the Web",
   "// main": "index.js",
   "scripts": {
@@ -14,23 +14,23 @@
     "serve": "ts-node -P ./script/tsconfig.json ./script/server.ts",
     "// watch:serve": "watch -w 1 'npm run serve' ./script",
     "start": "concurrently -p '{time} {name}' -t 'HH:mm:ss.SSS' -c green,yellow,blue  npm:serve npm:watch:lib npm:watch:demo",
-    "pretest": "sed -i~ -e \"s#'./util.js'#'./util'#\" src/amida.ts",
+    "pretest": "sed -i~ -e \"s#'./util.js'#'./util'#\" src/adima.ts",
     "test": "jest",
-    "posttest": "mv src/amida.ts~ src/amida.ts",
+    "posttest": "mv src/adima.ts~ src/adima.ts",
     "test:upd": "npm run test -- -u",
     "cov": "npm run test -- --coverage",
     "cov:upd": "npm run cov -- -u"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kena0ki/amida.git"
+    "url": "git+https://github.com/kena0ki/adima.git"
   },
   "author": "@kena0ki",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kena0ki/amida/issues"
+    "url": "https://github.com/kena0ki/adima/issues"
   },
-  "homepage": "https://github.com/kena0ki/amida#readme",
+  "homepage": "https://github.com/kena0ki/adima#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.2.1",
