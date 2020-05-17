@@ -14,12 +14,11 @@
     "serve": "ts-node -P ./script/tsconfig.json ./script/server.ts",
     "// watch:serve": "watch -w 1 'npm run serve' ./script",
     "start": "concurrently -p '{time} {name}' -t 'HH:mm:ss.SSS' -c green,yellow,blue  npm:serve npm:watch:lib npm:watch:demo",
-    "pretest": "sed -i~ -e \"s#'./util.js'#'./util'#\" src/adima.ts",
-    "test": "jest",
-    "posttest": "mv src/adima.ts~ src/adima.ts",
+    "test": "node ./script/test-run.js",
     "test:upd": "npm run test -- -u",
     "cov": "npm run test -- --coverage",
     "cov:upd": "npm run cov -- -u"
+    ,"debug": "node --inspect-brk node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",

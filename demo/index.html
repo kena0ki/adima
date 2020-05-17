@@ -3,51 +3,150 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>adima</title>
+  <title>Adima</title>
   <link href="./index.css" rel="stylesheet" type="text/css">
   <script type="module" src="./build/index.js" ></script>
-<style>
-html {
-  height: 100%;
-  width: 100%;
-}
-body {
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.header-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  background-color: #ffd485;
-  color: white;
-  padding: 1rem 0;
-}
-.header {
-  margin: auto .5rem;
-}
-.footer {
-  background-color: #ffd485;
-  color: white;
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-</style>
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background-color: #ffd485;
+      color: white;
+      padding: 1rem 0;
+    }
+    .header {
+      margin: auto .5rem;
+    }
+    .footer-container {
+      background-color: #ffd485;
+      color: white;
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+    }
+    .footer {
+      margin: 0 .5rem;
+    }
+    .gh-ribbon {
+      display: block;
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .settings {
+      margin: 1rem 0;
+    }
+    .sub-container-settings-input {
+      text-align: center;
+    }
+    .settings-container {
+      max-width: 400px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .settings {
+      width: 200px;
+    }
+    .guide {
+      font-size: .7rem;
+      color: rgba(0,0,0,.5);
+    }
+    .settings-title {
+      margin: 2rem auto 0 auto;
+    }
+    .rerender-btn-container {
+      margin: 1rem auto 3rem auto;
+    }
+  </style>
 </head>
 <body>
-<div class="header-container" >
+  <div class="header-container" >
+    <h2 class="header" >Adima</h2>
+  </div>
   <a href="https://github.com/kena0ki/adima" >
-    <img src="./assets/GitHub-Mark.svg" />
+    <img class="gh-ribbon" src="./assets/forkme_right_red_aa0000.svg" />
   </a>
-  <h2 class="header" >Adima</h2>
-</div>
-<div id="root" class="adima-container"></div>
-<div class="footer" >Copyright kena0ki</div>
+  <div id="root" class="adima-container"></div>
+  <div class="guide" >* Right click to show menu</div>
+  <h3 class="settings-title" >Settings</h3>
+  <div class="settings-container" >
+    <div class="settings settings-height-container" >
+      <div class="settings-height-sub-container sub-container-settings-label-value" >
+        <span class="settings-height settings-label" >Height: </span>
+        <span class="settings-height settings-value" >6</span>
+      </div>
+      <div class="settings-height-sub-container sub-container-settings-input" >
+        <input class="settings-height settings-input" type="range" min="200" max="500" />
+      </div>
+    </div>
+    <div class="settings settings-width-container" >
+      <div class="settings-width-sub-container sub-container-settings-label-value" >
+        <span class="settings-width settings-label" >Width: </span>
+        <span class="settings-width settings-value" >6</span>
+      </div>
+      <div class="settings-width-sub-container sub-container-settings-input" >
+        <input class="settings-width settings-input" type="range" min="200" max="500" />
+      </div>
+    </div>
+    <div class="settings settings-header-height-container" >
+      <div class="settings-header-height-sub-container sub-container-settings-label-value" >
+        <span class="settings-header-height settings-label" >Height of header: </span>
+        <span class="settings-header-height settings-value" >6</span>
+      </div>
+      <div class="settings-header-height-sub-container sub-container-settings-input" >
+        <input class="settings-header-height settings-input" type="range" min="20" max="40" />
+      </div>
+    </div>
+    <div class="settings settings-footer-height-container" >
+      <div class="settings-footer-height-sub-container sub-container-settings-label-value" >
+        <span class="settings-footer-height settings-label" >Height of footer: </span>
+        <span class="settings-footer-height settings-value" >6</span>
+      </div>
+      <div class="settings-footer-height-sub-container sub-container-settings-input" >
+        <input class="settings-footer-height settings-input" type="range" min="20" max="40" />
+      </div>
+    </div>
+    <div class="settings settings-num-vlines-container" >
+      <div class="settings-num-vlines-sub-container sub-container-settings-label-value" >
+        <span class="settings-num-vlines settings-label" >Number of virtical lines: </span>
+        <span class="settings-num-vlines settings-value" >6</span>
+      </div>
+      <div class="settings-num-vlines-sub-container sub-container-settings-input" >
+        <input class="settings-num-vlines settings-input" type="range" min="2" max="20" />
+      </div>
+    </div>
+    <div class="settings settings-num-hlines-container" >
+      <div class="settings-num-hlines-sub-container sub-container-settings-label-value" >
+        <span class="settings-num-hlines settings-label" >Number of horizontal lines: </span>
+        <span class="settings-num-hlines settings-value" >10</span>
+      </div>
+      <div class="settings-num-hlines-sub-container sub-container-settings-input" >
+        <input class="settings-num-hlines settings-input" type="range" min="0" max="50" />
+      </div>
+    </div>
+    <div class="rerender-btn-container">
+      <button id="rerender-btn" >rerender</button>
+    </div>
+    <br/>
+  </div>
+  <div class="footer-container" >
+    <div class="footer" >Maintained by kena0ki</div>
+  </div>
 </body>
 </html>
 

@@ -1,4 +1,3 @@
-// globalThis.isDevelopment = true;
 import Adima from '../src/adima';
 interface Pos {
   x,y: number;
@@ -31,16 +30,16 @@ test('Snapshot', async function() {
   expect(document.body).toMatchSnapshot('drag hline beyond right edge of adima');
   const hLineElms = document.querySelectorAll('.adima-hline');
   const firstHLineElm = hLineElms[0];
-  drag(firstHLineElm,{x:0,y:0},{x:adima.LINE_SPAN/2,y:0});
+  drag(firstHLineElm,{x:0,y:0},{x:adima.lineSpan/2,y:0});
   expect(document.body).toMatchSnapshot('drag hline within span');
-  drag(firstHLineElm,{x:0,y:0},{x:adima.LINE_SPAN/2 + 1,y:0});
+  drag(firstHLineElm,{x:0,y:0},{x:adima.lineSpan/2 + 1,y:0});
   expect(document.body).toMatchSnapshot('drag hline beyond right edge');
-  drag(firstHLineElm,{x:adima.LINE_SPAN/2 + 1,y:0},{x:0,y:0});
+  drag(firstHLineElm,{x:adima.lineSpan/2 + 1,y:0},{x:0,y:0});
   expect(document.body).toMatchSnapshot('drag hline beyond left edge of span');
-  drag(firstHLineElm,{x:adima.LINE_SPAN/2 + 1,y:0},{x:0,y:0});
+  drag(firstHLineElm,{x:adima.lineSpan/2 + 1,y:0},{x:0,y:0});
   expect(document.body).toMatchSnapshot('drag hline beyond left edge of adima');
   const lastHLineElm = hLineElms[hLineElms.length-1];
-  drag(lastHLineElm,{x:0,y:0},{x:adima.LINE_SPAN/2 + 1,y:0});
+  drag(lastHLineElm,{x:0,y:0},{x:adima.lineSpan/2 + 1,y:0});
   expect(document.body).toMatchSnapshot('drag hline beyond right edge of adima');
   function drag(hLineElm: Element, startPos: Pos, endPos: Pos) {
     const mdEvt = new MouseEvent('mousedown', {clientX: startPos.x, clientY: startPos.y});
@@ -52,7 +51,7 @@ test('Snapshot', async function() {
   }
   adima.addVLine();
   expect(document.body).toMatchSnapshot('addVLine');
-  adima.addHLine();
+  adima.addHLine({x:0,y:0});
   expect(document.body).toMatchSnapshot('addHLine');
   const clckEvt = new MouseEvent('click');
   const playerTxtElm = document.querySelector('.adima-player-text') as Element;
@@ -76,7 +75,7 @@ test('Snapshot', async function() {
   document.dispatchEvent(mdEvt);
   expect(document.body).toMatchSnapshot('hide contextmenu');
   const menuElms = document.querySelectorAll('.adima-menu-item');
-  const menuItemIdxes = Object.keys(adima.menuItems).reduce((result,next,idx) => ({...result, [next]:idx}), {});
+  const menuItemIdxes = Object.keys(adima.ctxMenuHandlers).reduce((result,next,idx) => ({...result, [next]:idx}), {});
   menuElms[menuItemIdxes['Shuffle goals']].dispatchEvent(mdEvt);
   while(adima.isShuffling) {
     await 0; // wait for other tasks being finishd
@@ -84,7 +83,7 @@ test('Snapshot', async function() {
   }
   expect(document.body).toMatchSnapshot('shuffleGoals');
   menuElms[menuItemIdxes['Start']].dispatchEvent(mdEvt);
-  while(adima.isRendering) {
+  while(adima.isPlaying) {
     await 0; // wait for other tasks being finishd
     jest.runAllTimers();
   }

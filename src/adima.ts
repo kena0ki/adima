@@ -46,6 +46,18 @@ interface Goal {
   label: string,
   order?: number,
 }
+interface InitOptions {
+  height?: number,
+  width?: number,
+  headerHeight?: number,
+  footerHeight?: number,
+  numVLines?: number,
+  numHLines?: number,
+  colors?: string[],
+  ctxMenuHandlers?: CtxMenuHandlers,
+}
+type CtxMenuHandler = (evt: Event, adima: Adima) => void;
+type CtxMenuHandlers = {[label: string]: CtxMenuHandler};
 
 class VLine implements VLine {
   private LINE_SPAN;
@@ -60,107 +72,182 @@ class VLine implements VLine {
   }
 }
 class HLinePos implements HLinePos {
-  private VLINE_CONTENT_MIN_POS;
-  private VLINE_CONTENT_MAX_POS;
+  private MIN_Y;
+  private MAX_Y;
   constructor(props) {
     Object.keys(props).forEach(key => {
       this[key] = props[key];
     })
   }
   public get adjustedY(): number { // returns valid y position in the content area
-    return this.y < this.VLINE_CONTENT_MIN_POS ? this.VLINE_CONTENT_MIN_POS :
-            (this.VLINE_CONTENT_MAX_POS < this.y ? this.VLINE_CONTENT_MAX_POS : this.y)
+    return this.y < this.MIN_Y ? this.MIN_Y :
+            (this.MAX_Y < this.y ? this.MAX_Y : this.y)
   }
 }
 
-class Adima {
+const DEFAULTCOLORS = [
+  'RED',
+  'TEAL',
+  'OLIVE',
+  'LIME',
+  'ORANGE',
+  'FUCHSIA',
+  'MAROON',
+  'AQUA',
+  'BLUE',
+  'PINK',
+  'GREEN',
+  'NAVY',
+  'PURPLE',
+  'GRAY',
+];
 
+const DEFAULTCTXMENUHANDLERS = {
+  'Start': async (evt, adima) => {
+    if (adima._isPlaying) return;
+    adima._isPlaying++;
+    if (adima.data.players[0].path.length > 0) adima.clearPath(); // In case already paths have bean rendered
+    await adima.startAdima();
+    adima._isPlaying--;
+  },
+  'Add a virtical line': (evt, adima) => {
+    adima.addVLine();
+  },
+  'Add a horizontal line': (evt, adima) => {
+    const menuElm = document.getElementById('adima-menu') as HTMLElement;
+    const position = {
+      x: menuElm.getBoundingClientRect().left - (document.getElementById('adima-vline0') as Element).getBoundingClientRect().left,
+      y: menuElm.getBoundingClientRect().top - (document.getElementById('adima-main-container') as Element).getBoundingClientRect().top,
+    };
+    adima.addHLine(position);
+  },
+  'Clear': (evt, adima) => adima.clearPath(),
+  'Shuffle goals': async (evt, adima) => {
+    if (adima._isShuffling) return;
+    adima._isShuffling++;
+    if (adima.data.players[0].path.length > 0 && !adima._isPlaying) adima.clearPath(); // In case already paths have bean rendered
+    adima.hideGoals();
+    await adima.shuffleGoals();
+    adima._isShuffling--;
+  },
+};
+
+class Adima {
   constructor(targetElm: Element) {
     this.targetElm = targetElm;
-    this.menuItems = {
-      'Start': async () => {
-        if (this.isRendering) return;
-        this.isRendering++;
-        if (this.data.players[0].path.length > 0) this.clearPath(); // In case already paths have bean rendered
-        await this.startAdima();
-        this.isRendering--;
-      },
-      'Add a virtical line': this.addVLine,
-      'Add a horizontal line': this.addHLine,
-      'Clear': this.clearPath,
-      'Shuffle goals': async () => {
-        if (this.isShuffling) return;
-        this.isShuffling++;
-        if (this.data.players[0].path.length > 0 && !this.isRendering) this.clearPath(); // In case already paths have bean rendered
-        this.hideGoals();
-        await this.shuffleGoals();
-        this.isShuffling--;
-      },
-    };
   }
   public data: AdimaData;
-  public isRendering = 0;
-  public isShuffling = 0;
-  public vLinesNum = 6;
-  public hLinesNum = 10;
-  public vLineHeight = 200;
-  public LINE_SPAN = 40;
-  public HEADER_HEIGHT = 30;
-  public FOOTER_HEIGHT = 30;
-  public menuItems: { [label: string]: EventListener };
-  public colors = [
-    'RED',
-    'TEAL',
-    'OLIVE',
-    'LIME',
-    'ORANGE',
-    'FUCHSIA',
-    'MAROON',
-    'AQUA',
-    'BLUE',
-    'PINK',
-    'GREEN',
-    'NAVY',
-    'PURPLE',
-    'GRAY',
-  ];
+  public ctxMenuHandlers: CtxMenuHandlers;
+  private colors: string[];
+  public get numVLines() : number {
+    // return this.data?.vLines?.length;
+    return this._numVLines;
+  }
+  // public set numVLines(newNum: number) {
+  //   this.addVLines(newNum - this.numVLines);
+  // }
+  public get numHLines() : number{
+    // return this.data ? Object.keys(this.data.hLines).length : this._numHLines;
+    return this._numHLines;
+  }
+  // public set numHLines(num: number) {
+  //   this.addHLinesRandomly(num - this.numHLines);
+  // }
+  public get height() {
+    return this._height;
+  }
+  // public setHeight(num: number) {
+  //   this._height = num;
+  //   const svgElm = document.getElementById('adima-svg') as unknown as SVGElement
+  //   const rectElm = document.getElementById('adima-bg-rect') as unknown as SVGElement
+  //   svgElm.setAttribute('height', ''+this.height);
+  //   rectElm.setAttribute('height', ''+this.vLineHeight);
+  // }
+  public get width() {
+    return this._width;
+  }
+  // public setWidth(num: number) {
+  // }
+  public get headerHeight() {
+    return this._headerHeight;
+  }
+  public get footerHeight() {
+    return this._footerHeight;
+  }
+  private _height: number;
+  private _width: number;
+  private _headerHeight: number;
+  private _footerHeight: number;
+  private _numVLines: number;
+  private _numHLines: number;
+  public get lineSpan() : number {
+    return this.width/this.numVLines;
+  }
+  public get vLineHeight() : number {
+    return this.height - (this.headerHeight+this.footerHeight+this.MARGIN_Y);
+  }
+  public get vLineMarginHeight() : number {
+    return (this.vLineHeight * this.VLINE_MARGIN_HEIGHT_RATIO) / 2;
+  }
+  public get vLineContentHeight() : number {
+    return this.vLineHeight - (this.vLineMarginHeight * 2);
+  }
+  public get vLineContentTop() : number {
+    return this.vLineMarginHeight;
+  }
+  public get vLineContentBottom() : number {
+    return this.vLineHeight - this.vLineMarginHeight;
+  }
+  public get isPlaying() : number {
+    return this._isPlaying;
+  }
+  public get isShuffling() : number {
+    return this._isShuffling;
+  }
+  private _isPlaying = 0;
+  private _isShuffling = 0;
   private targetElm: Element;
   private readonly SVG_NAMESPACE = "http://www.w3.org/2000/svg";
   private readonly NO_INDICATOR = -1;
   private readonly VLINE_MARGIN_HEIGHT_RATIO = .1;
   private readonly MARGIN_Y = 10;
   private readonly CHAR_A = 65;
-  private get vLineMarginHeight() {
-    return this.vLineHeight * this.VLINE_MARGIN_HEIGHT_RATIO;
-  }
-  private get vLineContentHeight() {
-    return this.vLineHeight - this.vLineMarginHeight;
-  }
-  private get vLineContentMinPos() {
-    return this.vLineMarginHeight / 2;
-  }
-  private get vLineContentMaxPos() {
-    return this.vLineHeight - this.vLineContentMinPos;
-  }
-  public readonly init = () => {
+  public readonly init = ({
+      height = 270,
+      width = 240,
+      headerHeight = 30,
+      footerHeight = 30,
+      numVLines = 6,
+      numHLines = 10,
+      colors = DEFAULTCOLORS,
+      ctxMenuHandlers = DEFAULTCTXMENUHANDLERS,
+    }: InitOptions = {}) => {
+    this._height = height;
+    this._width = width;
+    this._headerHeight = headerHeight;
+    this._footerHeight = footerHeight;
+    this._numVLines = numVLines;
+    this._numHLines = numHLines;
+    this.colors = colors;
+    this.ctxMenuHandlers = ctxMenuHandlers;
     const vLines: VLine[] = (() => {
       const vLines: VLine[] = [];
-      for(let i=0; i<this.vLinesNum; i++) {
-        const posX = i*this.LINE_SPAN
-        vLines.push(new VLine({ position: { x: posX }, LINE_SPAN: this.LINE_SPAN }));
+      for(let i=0; i<this.numVLines; i++) {
+        const posX = i*this.lineSpan
+        vLines.push(new VLine({ position: { x: posX }, LINE_SPAN: this.lineSpan }));
       }
       return vLines;
     })();
     const hLines: HLines = (() => {
       const hLines: HLines = {}
       const timestamp = Date.now()
-      for(let i=0, j=0; i<this.hLinesNum; i++, j++) {
-        if (j >= this.vLinesNum - 1) j = 0;
+      for(let i=0, j=0; i<this.numHLines; i++, j++) {
+        if (j >= this.numVLines - 1) j = 0;
         const key = 'adima-hline' + timestamp + i
-        const y = Math.floor(Math.random() * this.vLineContentHeight) + (this.vLineContentMinPos);
+        const y = Math.floor(Math.random() * this.vLineContentHeight) + (this.vLineContentTop);
         const newHLine = {
           key,
-          position: new HLinePos({ x: vLines[j].position.x, y, VLINE_CONTENT_MAX_POS: this.vLineContentMaxPos, VLINE_CONTENT_MIN_POS: this.vLineContentMinPos }),
+          position: new HLinePos({ x: vLines[j].position.x, y, MAX_Y: this.vLineContentBottom, MIN_Y: this.vLineContentTop }),
           ownerIdx: j,
         }
         hLines[key] = newHLine;
@@ -175,7 +262,7 @@ class Adima {
       return { label: String.fromCharCode(this.CHAR_A+i) };
     });
     let svg = `
-    <svg id="adima-svg" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight+this.HEADER_HEIGHT+this.FOOTER_HEIGHT+this.MARGIN_Y}" xmlns="${this.SVG_NAMESPACE}" >
+    <svg id="adima-svg" width="${this.width}" height="${this.height}" xmlns="${this.SVG_NAMESPACE}" >
       <style>
         .adima-hline {
           cursor: grab;
@@ -198,13 +285,13 @@ class Adima {
           transition: transform 1000ms 100ms;
         }
       </style>
-      <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(${this.LINE_SPAN/2}, ${this.MARGIN_Y/2})" >`
+      <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(${this.lineSpan/2}, ${this.MARGIN_Y/2})" >`
       svg += `
         <g id="adima-player-container" >`
         svg += players.reduce((result, next, idx) => {
           return `${result}
-          <svg id="adima-player${idx}" class="adima-player" x="${vLines[idx].position.x - this.LINE_SPAN/2}" y="0"
-            width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
+          <svg id="adima-player${idx}" class="adima-player" x="${vLines[idx].position.x - this.lineSpan/2}" y="0"
+            width="${this.lineSpan}" height="${this.headerHeight}" >
             <svg width="100%" height="100%" >
               <foreignObject width="100%" height="100%" >
                 <div class='adima-player-editable-element' style="display:none" contenteditable>${next.name}</div>
@@ -216,8 +303,8 @@ class Adima {
       svg += `
         </g>`
       svg += `
-        <g id="adima-main-container" transform="translate(0, ${this.HEADER_HEIGHT})" >
-          <rect id="adima-bg-rect" x="-${this.LINE_SPAN/2}" width="${this.LINE_SPAN*this.vLinesNum}" height="${this.vLineHeight}" stroke="none" fill="transparent" />` // In order for player's texts not to be selected while HLine being dragged
+        <g id="adima-main-container" transform="translate(0, ${this.headerHeight})" >
+          <rect id="adima-bg-rect" x="-${this.lineSpan/2}" width="${this.lineSpan*this.numVLines}" height="${this.vLineHeight}" stroke="none" fill="transparent" />` // In order for player's texts not to be selected while HLine being dragged
         svg += vLines.reduce((result, next, idx) => {
           return `${result}
           <g id="adima-vline${idx}" transform="translate(${next.position.x},0)" >
@@ -228,7 +315,7 @@ class Adima {
           const h = hLines[next]
           return `${result}
           <g id="${h.key}" class="adima-hline" transform="translate(${h.position.x},${h.position.y})" >
-            <line x1="0" y1="0" x2="${this.LINE_SPAN}" y2="0" />
+            <line x1="0" y1="0" x2="${this.lineSpan}" y2="0" />
           </g>`
         }, '')
         svg += players.reduce((result, next, idx) => { // path
@@ -244,11 +331,11 @@ class Adima {
       svg += `
         </g>`
       svg += `
-        <g id="adima-goal-container" transform="translate(0, ${this.HEADER_HEIGHT})" >`  // TODO why don't we have to add this.vLineHeight?
+        <g id="adima-goal-container" transform="translate(0, ${this.footerHeight})" >`  // TODO why don't we have to add this.vLineHeight?
         svg += goals.reduce((result, next, idx) => {
           return `${result}
-          <g id="adima-goal${idx}" class="adima-goal" style="transform:translate(${vLines[idx].position.x-this.LINE_SPAN/2}px,${this.vLineHeight}px)" >
-            <svg width="${this.LINE_SPAN}" height="${this.HEADER_HEIGHT}" >
+          <g id="adima-goal${idx}" class="adima-goal" style="transform:translate(${vLines[idx].position.x-this.lineSpan/2}px,${this.vLineHeight}px)" >
+            <svg width="${this.lineSpan}" height="${this.footerHeight}" >
               <svg width="100%" height="100%" >
                 <foreignObject width="100%" height="100%" >
                   <div class='adima-goal-editable-element' style="display:none" contenteditable>${next.label}</div>
@@ -270,7 +357,7 @@ class Adima {
     </svg>`
     const menu = `
     <div id="adima-menu" class="adima-menu-container" style="display: none">
-      ${Object.keys(this.menuItems).reduce((result, next) => `${result}
+      ${Object.keys(this.ctxMenuHandlers).reduce((result, next) => `${result}
       <div class="adima-menu-item" >
         <span class="adima-menu-item-text">${next}</span>
       </div>`, '')}
@@ -300,8 +387,8 @@ class Adima {
       };
       document.addEventListener('mousedown', clearCtxMenu);
     });
-    Object.values(this.menuItems).forEach((func, idx) => {
-      menuElm.children[idx].addEventListener('mousedown', func);
+    Object.values(this.ctxMenuHandlers).forEach((func, idx) => {
+      menuElm.children[idx].addEventListener('mousedown', evt => func(evt, this));
     });
 
     document.querySelectorAll('.adima-player-text').forEach((n) => {
@@ -354,7 +441,7 @@ class Adima {
   public addVLine = () => {
     const prevLastVLineIdx = this.data.vLines.length-1;
     const prevLastVLine = this.data.vLines[prevLastVLineIdx];
-    const newVLine = new VLine({ position: { x: prevLastVLine.position.x + this.LINE_SPAN }, LINE_SPAN: this.LINE_SPAN });
+    const newVLine = new VLine({ position: { x: prevLastVLine.position.x + this.lineSpan }, LINE_SPAN: this.lineSpan });
     this.data.vLines.push(newVLine);
     const prevLastPlayerIdx = this.data.players.length-1;
     this.data.players.push({ name: ''+(this.data.players.length+1), path: [] });
@@ -374,7 +461,7 @@ class Adima {
     playerDivElm.textContent = this.data.players[this.data.players.length-1].name;
     playerDivElm.addEventListener('blur', this.handlePlayerBlur);
     playerClone.id = `adima-player${this.data.players.length-1}`;
-    playerClone.setAttribute('x', ''+(newVLine.position.x-this.LINE_SPAN/2));
+    playerClone.setAttribute('x', ''+(newVLine.position.x-this.lineSpan/2));
     playerClone.removeAttribute('stroke');
     (lastPlayerElm.parentNode as Node).insertBefore(playerClone, lastPlayerElm.nextSibling);
     const lastGoalElm = document.getElementById(`adima-goal${prevLastGoalIdx}`) as Element;
@@ -386,7 +473,7 @@ class Adima {
     divElm.textContent = this.data.goals[this.data.goals.length-1].label;
     divElm.addEventListener('blur', this.handleGoalBlur);
     goalClone.id = `adima-goal${this.data.goals.length-1}`;
-    goalClone.setAttribute('style', `transform:translate(${newVLine.position.x-this.LINE_SPAN/2}px,${this.vLineHeight}px)`);
+    goalClone.setAttribute('style', `transform:translate(${newVLine.position.x-this.lineSpan/2}px,${this.vLineHeight}px)`);
     goalClone.removeAttribute('stroke');
     (lastGoalElm.parentNode as Node).insertBefore(goalClone, lastGoalElm.nextSibling);
     const lastPathContainerElm = document.getElementById(`adima-player${prevLastPlayerIdx}-path-container`) as Element;
@@ -395,25 +482,38 @@ class Adima {
     pathClone.children[0].id = `adima-player${this.data.players.length-1}-path`;
     (lastPathContainerElm.parentNode as Node).insertBefore(pathClone, lastPathContainerElm.nextSibling);
     const adimaRectElm = document.getElementById('adima-bg-rect') as Element;
-    adimaRectElm.setAttribute('width', '' + (this.LINE_SPAN*this.data.vLines.length));
+    adimaRectElm.setAttribute('width', '' + (this.lineSpan*this.data.vLines.length));
     const svgElm = document.getElementById('adima-svg') as unknown as SVGElement; // https://github.com/microsoft/TypeScript/issues/32822
-    svgElm.setAttribute('width', '' + (this.LINE_SPAN*this.data.vLines.length));
+    svgElm.setAttribute('width', '' + (this.lineSpan*this.data.vLines.length));
   };
-  public addHLine = () => {
-    const menuElm = document.getElementById('adima-menu') as HTMLElement;
+  public removeVLine() {
+    if (this.data.vLines.length === 0) return;
+    const lastVLine = this.data.vLines[this.data.vLines.length-1]
+    Object.keys(lastVLine.routes).forEach((hLineKey) => {
+      this.removeRoute(this.data.hLines[hLineKey]);
+    });
+    this.data.vLines.pop();
+  }
+  public addVLines(num: number) {
+    if (0<num) {
+      for (let i=0; i<num; i++) this.addVLine();
+    } else if(num<0) {
+      for (let i=num; i<0 || 2 < this.numVLines; i++) this.removeVLine();
+    }
+  }
+  public addHLine = ({x,y}: Pozition) => {
     const ownerIdx = (() => {
       const i = (this.data.vLines.findIndex(v => {
-        return (menuElm.getBoundingClientRect().left - (document.getElementById('adima-vline0') as Element).getBoundingClientRect().left) < v.position.x;
+        return x < v.position.x;
       }))
       const isLeftEnd = i === 0;
       const isRightEnd = i === -1;
       return isLeftEnd ? 0 : (isRightEnd ? this.data.vLines.length - 2 : i - 1);
-    })()
-    const y = menuElm.getBoundingClientRect().top - (document.getElementById('adima-main-container') as Element).getBoundingClientRect().top;
+    })();
     const key = `hline${Date.now()}1`;
     const newHLine: HLine = {
       key,
-      position: new HLinePos({ x: this.data.vLines[ownerIdx].position.x, y, VLINE_CONTENT_MIN_POS: this.vLineContentMinPos, VLINE_CONTENT_MAX_POS: this.vLineContentMaxPos }),
+      position: new HLinePos({ x: this.data.vLines[ownerIdx].position.x, y, MIN_Y: this.vLineContentTop, MAX_Y: this.vLineContentBottom }),
       ownerIdx,
     };
     newHLine.position.y = newHLine.position.adjustedY; // New horizontal line should be placed at valid position, so let's immediately overwrite it
@@ -427,6 +527,27 @@ class Adima {
     (hLineElm.parentNode as Node).insertBefore(clone, hLineElm.nextSibling);
     this.draggablify(clone);
   };
+  public removeHLine = () => {
+    const hLineElms = document.querySelectorAll('.amida-hline');
+    const lastHLineElm = hLineElms[hLineElms.length-1];
+    const hLine = this.data.hLines[lastHLineElm.id];
+    this.removeRoute(hLine);
+    delete this.data.hLines[lastHLineElm.id];
+    (lastHLineElm.parentNode as Node).removeChild(lastHLineElm);
+  }
+  public addHLinesRandomly(num: number) {
+    if (0<num) {
+      for (let i=0; i<num; i++) {
+        const x = Math.floor(Math.random() * this.numVLines);
+        const y = Math.floor(Math.random() * this.vLineContentHeight) + (this.vLineContentTop);
+        this.addHLine({x,y});
+      }
+    } else if(num<0) {
+      for (let i=num; i<0 || 0 < this.numHLines; i++) {
+        this.removeHLine();
+      }
+    }
+  }
   public startAdima = async () => {
     this.data.players = this.calcPath(this.data);
     await (async () => {
@@ -460,7 +581,7 @@ class Adima {
   };
   public shuffleGoals = () => {
     return new Promise(resolve => {
-      const PARSE_TRANSLATE = /translate\(\s*(-?\d+\D*)\s*,\s*(-?\d+\D*)\s*\)/;
+      const PARSE_TRANSLATE = /translate\(\s*(-?\d+\.?\d*\D*)\s*,\s*(-?\d+\.?\d*\D*)\s*\)/;
       const SHUFFLE_DURATION = 1000;
       const SHUFFLE_DURATION_MIN = 100;
       const TIMES_OF_SHUFFLE = 25;
@@ -589,7 +710,7 @@ class Adima {
       const hLine = self.data.hLines[key];
       const initialPosition = hLine.position;
       self.data.activeVlineIdx = hLine.ownerIdx
-      self.removeRoute(self.data.vLines, hLine);
+      self.removeRoute(hLine);
       logger.log(JSON.parse(JSON.stringify(self.data)));
       let vLine = self.data.vLines[hLine.ownerIdx];
       const indicator = document.getElementById('adima-indicator') as unknown as SVGElement;
@@ -604,8 +725,8 @@ class Adima {
         hLine.position = new HLinePos({
           x: initialPosition.x + diffX,
           y: initialPosition.y + diffY,
-          VLINE_CONTENT_MIN_POS: self.vLineContentMinPos,
-          VLINE_CONTENT_MAX_POS: self.vLineContentMaxPos,
+          MIN_Y: self.vLineContentTop,
+          MAX_Y: self.vLineContentBottom,
         })
         if (hLine.position.x < vLine.boundary.x1) {
           if (0 < hLine.ownerIdx) {
@@ -647,7 +768,7 @@ class Adima {
         } else {
           hLine.position.x = vLine.position.x;
           hLine.position.y = hLine.position.adjustedY;
-          self.addRoute(self.data.vLines, hLine, self.data.hLines); // old route is already removed at mousedown, so just add it
+          self.addRoute(self.data.vLines, hLine, self.data.hLines); // old route is already removed on mousedown, so just add it
           hLineElm.setAttribute('transform', `translate(${hLine.position.x},${hLine.position.y})`)
           indicator.style.display = 'none';
         }
@@ -718,7 +839,8 @@ class Adima {
       recursive(currentRoute.nextKey, vl, lr, newHLine, hLines);
     }
   }
-  private readonly removeRoute = (vls: VLine[], hl: HLine) => {
+  private readonly removeRoute = (hl: HLine) => {
+    const vls = this.data.vLines;
     fn(hl.ownerIdx);
     fn(hl.ownerIdx+1);
     function fn(idx) {
