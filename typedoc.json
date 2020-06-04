@@ -1,0 +1,6 @@
+{
+  "inputFiles": ["./src/index.ts"]
+  ,"mode": "library"
+  ,"out": "docs"
+  ,"tsconfig": "tsconfig-base.json"
+}

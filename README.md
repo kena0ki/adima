@@ -1,4 +1,5 @@
 # Adima
 [![codecov](https://codecov.io/gh/kena0ki/adima/branch/master/graph/badge.svg)](https://codecov.io/gh/kena0ki/adima)  
 
-Amidakuji on the Web  
+This is a fast, lightweight, no dependency, not so impressive, and completely useless library of Amidakuji ;-)  
+
