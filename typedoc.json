@@ -3,4 +3,7 @@
   ,"mode": "library"
   ,"out": "docs"
   ,"tsconfig": "tsconfig-base.json"
+  ,"excludeNotExported": true
+  ,"excludePrivate": true
+  ,"excludeProtected": true
 }
