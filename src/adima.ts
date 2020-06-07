@@ -104,11 +104,11 @@ const DEFAULTCOLORS = [
 
 const DEFAULTCTXMENUHANDLERS = {
   'Start': async (evt, adima) => {
-    if (adima._isPlaying) return;
-    adima._isPlaying++;
+    if (adima.isPlaying) return;
+    adima.setPlaying();
     if (adima.data.players[0].path.length > 0) adima.clearPath(); // In case already paths have bean rendered
     await adima.startAdima();
-    adima._isPlaying--;
+    adima.unsetPlaying();
   },
   'Add a virtical line': (evt, adima) => {
     adima.addVLine();
@@ -121,14 +121,19 @@ const DEFAULTCTXMENUHANDLERS = {
     };
     adima.addHLine(position);
   },
+  'Remove a virtical line': (evt, adima) => {
+    if (adima.isPlaying || adima.isShuffling) return;
+    if (adima.data.players[0].path.length > 0) adima.clearPath(); // In case already paths have bean rendered
+    adima.removeVLine();
+  },
   'Clear': (evt, adima) => adima.clearPath(),
   'Shuffle goals': async (evt, adima) => {
-    if (adima._isShuffling) return;
-    adima._isShuffling++;
-    if (adima.data.players[0].path.length > 0 && !adima._isPlaying) adima.clearPath(); // In case already paths have bean rendered
+    if (adima.isShuffling) return;
+    adima.setShuffling();
+    if (adima.data.players[0].path.length > 0 && !adima.isPlaying) adima.clearPath(); // In case already paths have bean rendered
     adima.hideGoals();
     await adima.shuffleGoals();
-    adima._isShuffling--;
+    adima.unsetShuffling();
   },
 };
 
@@ -201,8 +206,20 @@ class Adima {
   public get isPlaying() : number {
     return this._isPlaying;
   }
+  public setPlaying() : void {
+    this._isPlaying++;
+  }
+  public unsetPlaying() : void {
+    this._isPlaying--;
+  }
   public get isShuffling() : number {
     return this._isShuffling;
+  }
+  public setShuffling() : void {
+    this._isShuffling++;
+  }
+  public unsetShuffling() : void {
+    this._isShuffling--;
   }
   private _isPlaying = 0;
   private _isShuffling = 0;
@@ -284,6 +301,14 @@ class Adima {
         .adima-goal {
           transition: transform 1000ms 100ms;
         }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
       </style>
       <g style="stroke:rgb(0,0,0);stroke-width:2" transform="translate(${this.lineSpan/2}, ${this.MARGIN_Y/2})" >`
       svg += `
@@ -315,6 +340,7 @@ class Adima {
           const h = hLines[next]
           return `${result}
           <g id="${h.key}" class="adima-hline" transform="translate(${h.position.x},${h.position.y})" >
+            <rect class="adima-draggable-area" y="-5" height="10" width="${this.lineSpan}" stroke="none" fill="transparent" />
             <line x1="0" y1="0" x2="${this.lineSpan}" y2="0" />
           </g>`
         }, '')
@@ -491,8 +517,24 @@ class Adima {
     const lastVLine = this.data.vLines[this.data.vLines.length-1]
     Object.keys(lastVLine.routes).forEach((hLineKey) => {
       this.removeRoute(this.data.hLines[hLineKey]);
+      const hLineElm = document.getElementById(hLineKey);
+      hLineElm!.parentNode!.removeChild(hLineElm!);
     });
     this.data.vLines.pop();
+    const lastVLineElm = document.getElementById('adima-vline'+this.data.vLines.length);
+    lastVLineElm!.parentNode!.removeChild(lastVLineElm!);
+    this.data.players.pop();
+    const lastPlayerElm = document.getElementById(`adima-player${this.data.players.length}`) as Element;
+    lastPlayerElm!.parentNode!.removeChild(lastPlayerElm!);
+    const lastPathContainerElm = document.getElementById(`adima-player${this.data.players.length}-path-container`) as Element;
+    lastPathContainerElm!.parentNode!.removeChild(lastPathContainerElm!);
+    this.data.goals.pop();
+    const lastGoalElm = document.getElementById(`adima-goal${this.data.goals.length}`) as Element;
+    lastGoalElm!.parentNode!.removeChild(lastGoalElm!);
+    const adimaRectElm = document.getElementById('adima-bg-rect') as Element;
+    adimaRectElm.setAttribute('width', '' + (this.lineSpan*this.data.vLines.length));
+    const svgElm = document.getElementById('adima-svg') as unknown as SVGElement; // https://github.com/microsoft/TypeScript/issues/32822
+    svgElm.setAttribute('width', '' + (this.lineSpan*this.data.vLines.length));
   }
   public addVLines(num: number) {
     if (0<num) {

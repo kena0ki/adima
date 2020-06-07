@@ -10,7 +10,7 @@
   "main": "./dist/",
   "types": "./dist/index.d.ts",
   "files": [
-    "./dist/*"
+    "dist/*"
   ],
   "scripts": {
     "build:lib": "tsc -p ./src/tsconfig.json",
@@ -27,6 +27,7 @@
     "test:upd": "npm run test -- -u",
     "cov": "npm run test -- --coverage",
     "cov:upd": "npm run cov -- -u",
+    "docgen": "typedoc",
     "debug": "node --inspect-brk node_modules/.bin/jest"
   },
   "repository": {
