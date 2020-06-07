@@ -1,7 +1,7 @@
 # Adima
 [![codecov](https://codecov.io/gh/kena0ki/adima/branch/master/graph/badge.svg)](https://codecov.io/gh/kena0ki/adima)  
 
-This is a fast, lightweight, no dependency, not so impressive, and completely useless library of [Amidakuji](https://en.wikipedia.org/wiki/Ghost_Leg) ;-)  
+This is a fast, lightweight, no dependency, not so impressive, and completely useless library for [Amidakuji](https://en.wikipedia.org/wiki/Ghost_Leg) ;-)  
 
 ## Basic usage
 ### Install
