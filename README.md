@@ -4,17 +4,29 @@
 This is a fast, lightweight, no dependency, not so impressive, and completely useless library for [Amidakuji](https://en.wikipedia.org/wiki/Ghost_Leg) ;-)  
 
 ## Basic usage
-### Install
+### Use with installation.
+Install by npm
 ```shell
 npm install adima
 ```
-### Use
+and use it.
 ```javascript
 import Adima from 'adima';
 
 const container = document.getElementById('some-container');
 const adima = new Adima(container);
 adima.init();
+```
+
+### Use without installation
+```html
+<script type="module" >
+  import Adima from 'https://unpkg.com/adima@latest/dist/index.js';
+
+  const container = document.getElementById('some-container');
+  const adima = new Adima(container);
+  adima.init();
+</script>
 ```
 
 ## Demo
