@@ -28,7 +28,7 @@
     "cov": "npm run test -- --coverage",
     "cov:upd": "npm run cov -- -u",
     "docgen": "typedoc ./src/index.ts",
-    "debug": "node --inspect-brk node_modules/.bin/jest"
+    "test:debug": "node --inspect-brk ./script/test-run.js"
   },
   "repository": {
     "type": "git",

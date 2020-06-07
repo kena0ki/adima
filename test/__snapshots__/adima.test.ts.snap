@@ -37,6 +37,14 @@ exports[`Snapshot: addHLine 1`] = `
         .adima-goal {
           transition: transform 1000ms 100ms;
         }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
       
       </style>
       
@@ -552,6 +560,16 @@ exports[`Snapshot: addHLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -566,6 +584,16 @@ exports[`Snapshot: addHLine 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -586,6 +614,16 @@ exports[`Snapshot: addHLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -602,6 +640,16 @@ exports[`Snapshot: addHLine 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -622,6 +670,16 @@ exports[`Snapshot: addHLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -638,6 +696,16 @@ exports[`Snapshot: addHLine 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -658,6 +726,16 @@ exports[`Snapshot: addHLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -676,6 +754,16 @@ exports[`Snapshot: addHLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -692,6 +780,16 @@ exports[`Snapshot: addHLine 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -1487,6 +1585,21 @@ exports[`Snapshot: addHLine 1`] = `
           class="adima-menu-item-text"
         >
           Add a horizontal line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
+          Remove a virtical line
         </span>
         
       
@@ -1565,6 +1678,14 @@ exports[`Snapshot: addVLine 1`] = `
         .adima-goal {
           transition: transform 1000ms 100ms;
         }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
       
       </style>
       
@@ -2080,6 +2201,16 @@ exports[`Snapshot: addVLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -2096,6 +2227,16 @@ exports[`Snapshot: addVLine 1`] = `
             id="adima-hline9466848000002"
             transform="translate(80,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -2116,6 +2257,16 @@ exports[`Snapshot: addVLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -2132,6 +2283,16 @@ exports[`Snapshot: addVLine 1`] = `
             id="adima-hline9466848000004"
             transform="translate(160,118)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -2152,6 +2313,16 @@ exports[`Snapshot: addVLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -2168,6 +2339,16 @@ exports[`Snapshot: addVLine 1`] = `
             id="adima-hline9466848000006"
             transform="translate(40,118)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -2188,6 +2369,16 @@ exports[`Snapshot: addVLine 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -2204,6 +2395,16 @@ exports[`Snapshot: addVLine 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -3013,6 +3214,21 @@ exports[`Snapshot: addVLine 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -3076,6 +3292,14 @@ exports[`Snapshot: clearPath 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -3593,6 +3817,16 @@ exports[`Snapshot: clearPath 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -3607,6 +3841,16 @@ exports[`Snapshot: clearPath 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -3627,6 +3871,16 @@ exports[`Snapshot: clearPath 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -3643,6 +3897,16 @@ exports[`Snapshot: clearPath 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -3663,6 +3927,16 @@ exports[`Snapshot: clearPath 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -3679,6 +3953,16 @@ exports[`Snapshot: clearPath 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -3699,6 +3983,16 @@ exports[`Snapshot: clearPath 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -3717,6 +4011,16 @@ exports[`Snapshot: clearPath 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -3733,6 +4037,16 @@ exports[`Snapshot: clearPath 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -4543,6 +4857,21 @@ exports[`Snapshot: clearPath 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -4606,6 +4935,14 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -5058,6 +5395,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -5074,6 +5421,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
             id="adima-hline9466848000002"
             transform="translate(80,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -5094,6 +5451,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -5110,6 +5477,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
             id="adima-hline9466848000004"
             transform="translate(160,118)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -5130,6 +5507,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -5146,6 +5533,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
             id="adima-hline9466848000006"
             transform="translate(40,118)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -5166,6 +5563,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -5184,6 +5591,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -5200,6 +5617,16 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
             id="adima-hline9466848000009"
             transform="translate(160,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -5897,6 +6324,21 @@ exports[`Snapshot: drag hline beyond left edge of adima 1`] = `
           class="adima-menu-item-text"
         >
           Add a horizontal line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
+          Remove a virtical line
         </span>
         
       
@@ -5975,6 +6417,14 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
         .adima-goal {
           transition: transform 1000ms 100ms;
         }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
       
       </style>
       
@@ -6424,6 +6874,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -6440,6 +6900,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
             id="adima-hline9466848000001"
             transform="translate(40,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -6460,6 +6930,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -6476,6 +6956,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -6496,6 +6986,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -6512,6 +7012,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -6532,6 +7042,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -6548,6 +7068,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
             id="adima-hline9466848000007"
             transform="translate(80,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -6568,6 +7098,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -6584,6 +7124,16 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
             id="adima-hline9466848000009"
             transform="translate(160,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -7281,6 +7831,21 @@ exports[`Snapshot: drag hline beyond left edge of span 1`] = `
           class="adima-menu-item-text"
         >
           Add a horizontal line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
+          Remove a virtical line
         </span>
         
       
@@ -7359,6 +7924,14 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
         .adima-goal {
           transition: transform 1000ms 100ms;
         }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
       
       </style>
       
@@ -7808,6 +8381,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -7824,6 +8407,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
             id="adima-hline9466848000001"
             transform="translate(40,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -7844,6 +8437,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -7860,6 +8463,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -7880,6 +8493,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -7896,6 +8519,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -7916,6 +8549,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -7932,6 +8575,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
             id="adima-hline9466848000007"
             transform="translate(80,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -7952,6 +8605,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -7968,6 +8631,16 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
             id="adima-hline9466848000009"
             transform="translate(160,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -8679,6 +9352,21 @@ exports[`Snapshot: drag hline beyond right edge 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -8742,6 +9430,14 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -9192,6 +9888,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -9208,6 +9914,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
             id="adima-hline9466848000001"
             transform="translate(40,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -9228,6 +9944,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -9244,6 +9970,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -9264,6 +10000,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -9280,6 +10026,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -9300,6 +10056,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -9316,6 +10082,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
             id="adima-hline9466848000007"
             transform="translate(80,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -9336,6 +10112,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -9352,6 +10138,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
             id="adima-hline9466848000009"
             transform="translate(160,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -10061,6 +10857,21 @@ exports[`Snapshot: drag hline beyond right edge of adima 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -10124,6 +10935,14 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -10576,6 +11395,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -10592,6 +11421,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
             id="adima-hline9466848000002"
             transform="translate(80,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -10612,6 +11451,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -10628,6 +11477,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
             id="adima-hline9466848000004"
             transform="translate(160,118)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -10648,6 +11507,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -10664,6 +11533,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
             id="adima-hline9466848000006"
             transform="translate(40,118)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -10684,6 +11563,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -10700,6 +11589,16 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -11413,6 +12312,21 @@ exports[`Snapshot: drag hline beyond right edge of adima 2`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -11476,6 +12390,14 @@ exports[`Snapshot: drag hline within span 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -11926,6 +12848,16 @@ exports[`Snapshot: drag hline within span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -11942,6 +12874,16 @@ exports[`Snapshot: drag hline within span 1`] = `
             id="adima-hline9466848000001"
             transform="translate(40,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -11962,6 +12904,16 @@ exports[`Snapshot: drag hline within span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -11978,6 +12930,16 @@ exports[`Snapshot: drag hline within span 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -11998,6 +12960,16 @@ exports[`Snapshot: drag hline within span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -12014,6 +12986,16 @@ exports[`Snapshot: drag hline within span 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -12034,6 +13016,16 @@ exports[`Snapshot: drag hline within span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -12050,6 +13042,16 @@ exports[`Snapshot: drag hline within span 1`] = `
             id="adima-hline9466848000007"
             transform="translate(80,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -12070,6 +13072,16 @@ exports[`Snapshot: drag hline within span 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -12086,6 +13098,16 @@ exports[`Snapshot: drag hline within span 1`] = `
             id="adima-hline9466848000009"
             transform="translate(160,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -12797,6 +13819,21 @@ exports[`Snapshot: drag hline within span 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -12860,6 +13897,14 @@ exports[`Snapshot: edit goal text 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -13377,6 +14422,16 @@ exports[`Snapshot: edit goal text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -13391,6 +14446,16 @@ exports[`Snapshot: edit goal text 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -13411,6 +14476,16 @@ exports[`Snapshot: edit goal text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -13427,6 +14502,16 @@ exports[`Snapshot: edit goal text 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -13447,6 +14532,16 @@ exports[`Snapshot: edit goal text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -13463,6 +14558,16 @@ exports[`Snapshot: edit goal text 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -13483,6 +14588,16 @@ exports[`Snapshot: edit goal text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -13501,6 +14616,16 @@ exports[`Snapshot: edit goal text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -13517,6 +14642,16 @@ exports[`Snapshot: edit goal text 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -14327,6 +15462,21 @@ exports[`Snapshot: edit goal text 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -14390,6 +15540,14 @@ exports[`Snapshot: edit goal text done 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -14907,6 +16065,16 @@ exports[`Snapshot: edit goal text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -14921,6 +16089,16 @@ exports[`Snapshot: edit goal text done 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -14941,6 +16119,16 @@ exports[`Snapshot: edit goal text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -14957,6 +16145,16 @@ exports[`Snapshot: edit goal text done 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -14977,6 +16175,16 @@ exports[`Snapshot: edit goal text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -14993,6 +16201,16 @@ exports[`Snapshot: edit goal text done 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -15013,6 +16231,16 @@ exports[`Snapshot: edit goal text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -15031,6 +16259,16 @@ exports[`Snapshot: edit goal text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -15047,6 +16285,16 @@ exports[`Snapshot: edit goal text done 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -15857,6 +17105,21 @@ exports[`Snapshot: edit goal text done 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -15920,6 +17183,14 @@ exports[`Snapshot: edit player text 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -16437,6 +17708,16 @@ exports[`Snapshot: edit player text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -16451,6 +17732,16 @@ exports[`Snapshot: edit player text 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -16471,6 +17762,16 @@ exports[`Snapshot: edit player text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -16487,6 +17788,16 @@ exports[`Snapshot: edit player text 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -16507,6 +17818,16 @@ exports[`Snapshot: edit player text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -16523,6 +17844,16 @@ exports[`Snapshot: edit player text 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -16543,6 +17874,16 @@ exports[`Snapshot: edit player text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -16561,6 +17902,16 @@ exports[`Snapshot: edit player text 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -16577,6 +17928,16 @@ exports[`Snapshot: edit player text 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -17372,6 +18733,21 @@ exports[`Snapshot: edit player text 1`] = `
           class="adima-menu-item-text"
         >
           Add a horizontal line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
+          Remove a virtical line
         </span>
         
       
@@ -17450,6 +18826,14 @@ exports[`Snapshot: edit player text done 1`] = `
         .adima-goal {
           transition: transform 1000ms 100ms;
         }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
       
       </style>
       
@@ -17966,6 +19350,16 @@ exports[`Snapshot: edit player text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -17980,6 +19374,16 @@ exports[`Snapshot: edit player text done 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -18000,6 +19404,16 @@ exports[`Snapshot: edit player text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -18016,6 +19430,16 @@ exports[`Snapshot: edit player text done 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -18036,6 +19460,16 @@ exports[`Snapshot: edit player text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -18052,6 +19486,16 @@ exports[`Snapshot: edit player text done 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -18072,6 +19516,16 @@ exports[`Snapshot: edit player text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -18090,6 +19544,16 @@ exports[`Snapshot: edit player text done 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -18106,6 +19570,16 @@ exports[`Snapshot: edit player text done 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -18915,6 +20389,21 @@ exports[`Snapshot: edit player text done 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -18978,6 +20467,14 @@ exports[`Snapshot: hide contextmenu 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -19495,6 +20992,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -19509,6 +21016,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -19529,6 +21046,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -19545,6 +21072,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -19565,6 +21102,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -19581,6 +21128,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -19601,6 +21158,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -19619,6 +21186,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -19635,6 +21212,16 @@ exports[`Snapshot: hide contextmenu 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -20445,6 +22032,21 @@ exports[`Snapshot: hide contextmenu 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -20508,6 +22110,14 @@ exports[`Snapshot: init 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -20958,6 +22568,16 @@ exports[`Snapshot: init 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -20974,6 +22594,16 @@ exports[`Snapshot: init 1`] = `
             id="adima-hline9466848000001"
             transform="translate(40,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -20994,6 +22624,16 @@ exports[`Snapshot: init 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -21010,6 +22650,16 @@ exports[`Snapshot: init 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -21030,6 +22680,16 @@ exports[`Snapshot: init 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -21046,6 +22706,16 @@ exports[`Snapshot: init 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -21066,6 +22736,16 @@ exports[`Snapshot: init 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -21082,6 +22762,16 @@ exports[`Snapshot: init 1`] = `
             id="adima-hline9466848000007"
             transform="translate(80,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -21102,6 +22792,16 @@ exports[`Snapshot: init 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -21118,6 +22818,16 @@ exports[`Snapshot: init 1`] = `
             id="adima-hline9466848000009"
             transform="translate(160,28)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -21827,6 +23537,21 @@ exports[`Snapshot: init 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -21890,6 +23615,14 @@ exports[`Snapshot: reveal goals 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -22407,6 +24140,16 @@ exports[`Snapshot: reveal goals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -22421,6 +24164,16 @@ exports[`Snapshot: reveal goals 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -22441,6 +24194,16 @@ exports[`Snapshot: reveal goals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -22457,6 +24220,16 @@ exports[`Snapshot: reveal goals 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -22477,6 +24250,16 @@ exports[`Snapshot: reveal goals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -22493,6 +24276,16 @@ exports[`Snapshot: reveal goals 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -22513,6 +24306,16 @@ exports[`Snapshot: reveal goals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -22531,6 +24334,16 @@ exports[`Snapshot: reveal goals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -22547,6 +24360,16 @@ exports[`Snapshot: reveal goals 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -23357,6 +25180,21 @@ exports[`Snapshot: reveal goals 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -23420,6 +25258,14 @@ exports[`Snapshot: show contextmenu 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -23937,6 +25783,16 @@ exports[`Snapshot: show contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -23951,6 +25807,16 @@ exports[`Snapshot: show contextmenu 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -23971,6 +25837,16 @@ exports[`Snapshot: show contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -23987,6 +25863,16 @@ exports[`Snapshot: show contextmenu 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -24007,6 +25893,16 @@ exports[`Snapshot: show contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -24023,6 +25919,16 @@ exports[`Snapshot: show contextmenu 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -24043,6 +25949,16 @@ exports[`Snapshot: show contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -24061,6 +25977,16 @@ exports[`Snapshot: show contextmenu 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -24077,6 +26003,16 @@ exports[`Snapshot: show contextmenu 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -24887,6 +26823,21 @@ exports[`Snapshot: show contextmenu 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -24950,6 +26901,14 @@ exports[`Snapshot: shuffleGoals 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -25467,6 +27426,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -25481,6 +27450,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -25501,6 +27480,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -25517,6 +27506,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -25537,6 +27536,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -25553,6 +27562,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -25573,6 +27592,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -25591,6 +27620,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -25607,6 +27646,16 @@ exports[`Snapshot: shuffleGoals 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -26417,6 +28466,21 @@ exports[`Snapshot: shuffleGoals 1`] = `
         <span
           class="adima-menu-item-text"
         >
+          Remove a virtical line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
           Clear
         </span>
         
@@ -26480,6 +28544,14 @@ exports[`Snapshot: startAdima 1`] = `
         }
         .adima-goal {
           transition: transform 1000ms 100ms;
+        }
+        .adima-goal text { /* Long press on chrome mobile browser unintentionally selects a text, so we need to suppress the selection */
+          -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
         }
       
       </style>
@@ -27004,6 +29076,16 @@ exports[`Snapshot: startAdima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -27018,6 +29100,16 @@ exports[`Snapshot: startAdima 1`] = `
             id="hline9466848000011"
             transform="translate(0, 10)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -27038,6 +29130,16 @@ exports[`Snapshot: startAdima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -27054,6 +29156,16 @@ exports[`Snapshot: startAdima 1`] = `
             id="adima-hline9466848000003"
             transform="translate(120,172)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -27074,6 +29186,16 @@ exports[`Snapshot: startAdima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -27090,6 +29212,16 @@ exports[`Snapshot: startAdima 1`] = `
             id="adima-hline9466848000005"
             transform="translate(0,100)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -27110,6 +29242,16 @@ exports[`Snapshot: startAdima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -27128,6 +29270,16 @@ exports[`Snapshot: startAdima 1`] = `
           >
             
             
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
+            
+            
             <line
               x1="0"
               x2="40"
@@ -27144,6 +29296,16 @@ exports[`Snapshot: startAdima 1`] = `
             id="adima-hline9466848000008"
             transform="translate(120,82)"
           >
+            
+            
+            <rect
+              class="adima-draggable-area"
+              fill="transparent"
+              height="10"
+              stroke="none"
+              width="40"
+              y="-5"
+            />
             
             
             <line
@@ -27968,6 +30130,21 @@ exports[`Snapshot: startAdima 1`] = `
           class="adima-menu-item-text"
         >
           Add a horizontal line
+        </span>
+        
+      
+      </div>
+      
+      
+      <div
+        class="adima-menu-item"
+      >
+        
+        
+        <span
+          class="adima-menu-item-text"
+        >
+          Remove a virtical line
         </span>
         
       
