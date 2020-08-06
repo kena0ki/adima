@@ -42,7 +42,7 @@
   "homepage": "https://github.com/kena0ki/adima#readme",
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^26.0.9",
     "@types/node": "^13.11.1",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
