@@ -24,3 +24,7 @@ build
 
 # Coverage
 coverage
+
+# vscode
+.vscode
+
