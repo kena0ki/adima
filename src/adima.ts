@@ -1,4 +1,4 @@
-import { global, logger } from './util.js';
+import { global, logger } from './util';
 
 interface AdimaData {
   vLines: VLine[],

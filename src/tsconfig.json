@@ -2,7 +2,8 @@
   "extends": "../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "../dist",
-    "sourceRoot": "./src", // this points to 'demo/dist/src'
+    "isolatedModules": true, // needed for esbuild
+    "esModuleInterop": true, // needed for esbuild
     // "diagnostics": true,
   },
   "include": [

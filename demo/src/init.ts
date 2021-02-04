@@ -1,4 +1,4 @@
-import Adima from '../dist/index.js';
+import Adima from '../../dist/index.js';
 import { settings } from './settings.js';
 
 const root = document.getElementById('root') as Element;

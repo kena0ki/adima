@@ -10,25 +10,29 @@
   "main": "./dist/",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/*"
+    "dist/"
   ],
   "scripts": {
-    "build:lib": "tsc -p ./src/tsconfig.json",
-    "postbuild:lib": "rm -rf ./demo/dist/ && cp -pR ./dist ./demo && rsync -a -f'+ *.ts' -f'+ */' -f'- *' src demo/dist",
-    "build:demo": "tsc -p ./demo/tsconfig.json",
+    "build:lib": "tsc -p ./src/tsconfig.json --emitDeclarationOnly && npm run esbuild:lib",
+    "esbuild:lib": "ts-node -P ./script/tsconfig.json ./script/build.ts",
+    "// postesbuild:lib": "rm -rf ./demo/adima/ && mkdir -p ./demo/adima && cp -pR ./dist ./demo/adima && rsync -a -f'+ *.ts' -f'+ */' -f'- *' src demo/adima",
+    "watch:lib": "npm run esbuild:lib -- --watch",
+    "// watch:lib": "watch -w 1 'npm run esbuild:lib' ./src",
+    "build:demo": "ts-node -P ./script/tsconfig.json ./script/build.ts --entryPoints demo/src/index.ts --outdir demo/build",
+    "watch:demo": "npm run build:demo -- --watch",
     "build": "npm run build:lib && npm run build:demo",
-    "watch:lib": "watch -w 1 'npm run build:lib' ./src",
-    "prewatch:demo": "npm run build:lib",
-    "watch:demo": "watch -w 1 'npm run build:demo' ./demo -p '/build|dist/'",
+    "// watch:demo": "watch -w 1 'npm run build:demo' ./demo -p '/build|adima/'",
+    "// prewatch:demo": "npm run build:lib",
     "serve": "ts-node -P ./script/tsconfig.json ./script/server.ts",
     "// watch:serve": "watch -w 1 'npm run serve' ./script",
     "start": "concurrently -p '{time} {name}' -t 'HH:mm:ss.SSS' -c green,yellow,blue  npm:serve npm:watch:lib npm:watch:demo",
-    "test": "node ./script/test-run.js",
+    "// test": "node ./script/test-run.js",
+    "test": "jest",
     "test:upd": "npm run test -- -u",
     "cov": "npm run test -- --coverage",
     "cov:upd": "npm run cov -- -u",
     "docgen": "typedoc ./src/index.ts",
-    "test:debug": "node --inspect-brk ./script/test-run.js"
+    "// test:debug": "node --inspect-brk ./script/test-run.js"
   },
   "repository": {
     "type": "git",
@@ -48,12 +52,14 @@
     "@typescript-eslint/parser": "^2.25.0",
     "chokidar": "^3.3.1",
     "concurrently": "^5.1.0",
+    "esbuild": "^0.8.40",
     "eslint": "^6.8.0",
     "jest": "^25.4.0",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.8.1",
     "typedoc": "next",
     "typescript": "^3.9.5",
-    "watch": "kena0ki/watch"
+    "watch": "kena0ki/watch",
+    "yargs": "^16.2.0"
   }
 }
