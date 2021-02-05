@@ -10,7 +10,6 @@ require('esbuild').build({
   sourcemap: true,
   target: ['es2019'],
   outdir: argv.outdir || 'dist',
-  watch: 'watch' in argv,
   format: 'esm',
 }).catch(() => process.exit(1));
 

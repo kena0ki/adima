@@ -13,11 +13,12 @@
     "dist/"
   ],
   "scripts": {
-    "build:lib": "tsc -p ./src/tsconfig.json --emitDeclarationOnly && npm run esbuild:lib",
     "esbuild:lib": "ts-node -P ./script/tsconfig.json ./script/build.ts",
-    "watch:lib": "npm run esbuild:lib -- --watch",
-    "build:demo": "ts-node -P ./script/tsconfig.json ./script/build.ts --entryPoints demo/src/index.ts --outdir demo/build",
-    "watch:demo": "npm run build:demo -- --watch",
+    "build:lib": "tsc -p ./src/tsconfig.json --emitDeclarationOnly && npm run esbuild:lib",
+    "watch:lib": "chokidar \"src/**/*\" -c \"npm run build:lib\" --initial --debounce 5000",
+    "esbuild:demo": "ts-node -P ./script/tsconfig.json ./script/build.ts --entryPoints demo/src/index.ts --outdir demo/build",
+    "build:demo": "tsc -p ./demo/tsconfig.json --noEmit && npm run esbuild:demo",
+    "watch:demo": "chokidar \"demo/src/**/*\" \"demo/*.{html,css}\" -c \"npm run build:demo\" --initial --debounce 5000",
     "build": "npm run build:lib && npm run build:demo",
     "serve": "ts-node -P ./script/tsconfig.json ./script/server.ts",
     "start": "concurrently -p '{time} {name}' -t 'HH:mm:ss.SSS' -c green,yellow,blue  npm:serve npm:watch:lib npm:watch:demo",
@@ -51,6 +52,7 @@
     "typedoc": "next",
     "typescript": "^4.1.3",
     "esbuild": "^0.8.40",
-    "yargs": "^16.2.0"
+    "yargs": "^16.2.0",
+    "chokidar-cli": "^2.1.0"
   }
 }
