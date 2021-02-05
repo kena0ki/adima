@@ -622,7 +622,7 @@ class Adima {
     });
   };
   public shuffleGoals = () => {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       const PARSE_TRANSLATE = /translate\(\s*(-?\d+\.?\d*\D*)\s*,\s*(-?\d+\.?\d*\D*)\s*\)/;
       const SHUFFLE_DURATION = 1000;
       const SHUFFLE_DURATION_MIN = 100;
@@ -722,7 +722,7 @@ class Adima {
     });
   }
   public renderPathOneByOne = (path: Path, idx: number) => {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       let command = `M ${path[0].x} ${path[0].y}`;
       let cnt = 1;
       const pathElm = document.getElementById(`adima-player${idx}-path`) as Element;
