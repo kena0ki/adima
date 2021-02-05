@@ -1,9 +1,7 @@
 {
-  "inputFiles": ["./src/index.ts"]
-  ,"mode": "library"
+  "entryPoints": ["./src/index.ts"]
   ,"out": "docs"
-  ,"tsconfig": "tsconfig-base.json"
-  ,"excludeNotExported": true
+  ,"tsconfig": "./src/tsconfig.json"
   ,"excludePrivate": true
   ,"excludeProtected": true
 }
